@@ -9,24 +9,27 @@ p {
     background-color:  white;
     background-size: center;
 }
-#nav {
-display:table; /* centers modern browsers */
-margin:0 auto; /* centers modern browsers */
-text-align:center; /* centers IE6/7 */
+
+img {
+
+    position: relative;
+    left: 40%;
+    top: 50%;
+    box-shadow: 0 0 8px #000;
+
 }
-#nav ul {
-list-style:none;
-display:inline-block; /* IE6/7 haslayout trip-switch */
+
+#cssBoxModel {
+
+	width: 95%;
+    padding: 15px;
+    border: 5px solid gray;
+    margin: 2%;
+    box-shadow: 0 0 8px #000;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
 }
-#nav ul {
-display:inline; /* IE6/7 haslayout trip-switch, and IE6/7 only need ul to be display inline, yet does no harm to others */
-}
-#nav li {
-display:inline;
-}
-#nav a {
-float:left;
-text-decoration:none; 
-padding:0 30px; /* variable width */
-}
-	
+

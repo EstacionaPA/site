@@ -6,6 +6,7 @@ html {
 }
 
 ul {
+
     float: left;
     width: 100%;
     padding: 0;
@@ -14,9 +15,10 @@ ul {
 }
 
 a {
+    
     float: left;
     text-align: center;
-    width: 25em;
+    width: 28em;
     text-decoration: none;
     color: white;
     background-color: gray;
@@ -32,9 +34,3 @@ li {
     display: inline;
 }
 
-h1 {
-
-	background-color: white;
-    text-align: center;
-
-}
