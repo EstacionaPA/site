@@ -5,22 +5,36 @@ html {
 	background-attachment: fixed;
 }
 
-div {
-position:relative;
+ul {
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin: 10;
+    list-style-type: none;
 }
-#nav {
-position:absolute;
-left:50%;top:0;
-margin-left:-375px; /* negative margin equal to half the width */
-width:750px;
-list-style:none;
+
+a {
+    float: left;
+    text-align: center;
+    width: 30em;
+    text-decoration: none;
+    color: white;
+    background-color: gray;
+    padding: 0.5em 0.5em;
+    border-right: 1px solid white;
 }
-#nav li {
-float:left;
+
+a:hover {
+    background-color: green;
 }
-#nav a {
-display:block;
-text-align:center;
-width:150px; /* fixed width */
-text-decoration:none; 
+
+li {
+    display: inline;
+}
+
+h1 {
+
+	background-color: white;
+    text-align: center;
+
 }
