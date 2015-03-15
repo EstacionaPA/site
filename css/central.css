@@ -1,0 +1,26 @@
+html {
+
+	background:url("imagens/backGround.png") no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+div {
+position:relative;
+}
+#nav {
+position:absolute;
+left:50%;top:0;
+margin-left:-375px; /* negative margin equal to half the width */
+width:750px;
+list-style:none;
+}
+#nav li {
+float:left;
+}
+#nav a {
+display:block;
+text-align:center;
+width:150px; /* fixed width */
+text-decoration:none; 
+}
