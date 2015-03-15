@@ -12,9 +12,6 @@ p {
 
 img {
 
-    position: relative;
-    left: 40%;
-    top: 50%;
     box-shadow: 0 0 8px #000;
 
 }
@@ -26,10 +23,17 @@ img {
     border: 5px solid gray;
     margin: 2%;
     box-shadow: 0 0 8px #000;
+    text-align: center;
+    font-size: 30px;
 
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 
+}
+
+#cssBoxModel #FormataçãoFonteVermelha {
+
+	color: rgb(197,16,26);
 }
 
