@@ -19,7 +19,7 @@
 // Set Variables
 $LOCAL_ROOT         = "/home/alfredoes/public_html";
 $LOCAL_REPO_NAME    = "public_html";
-$LOCAL_REPO         = "{$LOCAL_ROOTy}/{$LOCAL_REPO_NAME}";
+$LOCAL_REPO         = "{$LOCAL_ROOT}/{$LOCAL_REPO_NAME}";
 $REMOTE_REPO        = "git@github.com:alfredudu/EstacionaPA/site.git";
 $BRANCH             = "master";
 
