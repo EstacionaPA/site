@@ -19,12 +19,13 @@ img {
 #cssBoxModel {
 
 	width: 95%;
-    padding: 15px;
+    padding: 40px;
     border: 5px solid gray;
-    margin: 2%;
+    margin: 3%;
     box-shadow: 0 0 8px #000;
     text-align: center;
     font-size: 30px;
+    left: 50%
 
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
