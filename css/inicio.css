@@ -18,7 +18,10 @@ img {
 
 }
 
-#cssBoxModel {
+.cssBoxModel + #slideshow{
+
+	    background-color:  white;
+    background-size: center;
 
 	width: 95%;
     padding: 40px;
@@ -35,7 +38,8 @@ img {
 
 }
 
-#cssBoxModel #FormataçãoFonteVermelha {
+
+.cssBoxModel #FormataçãoFonteVermelha {
 
 	color: rgb(197,16,26);
 }
