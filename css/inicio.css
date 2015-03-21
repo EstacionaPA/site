@@ -44,3 +44,11 @@ img {
 	color: rgb(197,16,26);
 }
 
+nav ul ul {
+	display: none;
+}
+
+	nav ul li:hover > ul {
+		display: block;       
+	}
+       
