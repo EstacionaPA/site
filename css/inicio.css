@@ -6,31 +6,19 @@ h1 {
 
 }
 
-p {
+.cssBoxModel{
 
-    background-color:  white;
-    background-size: center;
-}
-
-img {
-
-    box-shadow: 0 0 8px #000;
-
-}
-
-.cssBoxModel + #slideshow{
-
-	    background-color:  white;
+	background-color:  white;
     background-size: center;
 
-	width: 95%;
-    padding: 40px;
+    width: 95%;
+    padding: 90px;
     border: 5px solid gray;
     margin: 3%;
     box-shadow: 0 0 8px #000;
-    text-align: center;
+    text-align: left;
     font-size: 30px;
-    left: 50%
+    left: auto;
 
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -38,8 +26,17 @@ img {
 
 }
 
+#slide {
 
-.cssBoxModel #FormataçãoFonteVermelha {
+	position: absolute;
+	top: 330px;
+	left: 580px;
+
+
+}
+
+
+.cssBoxModel .FormataçãoFonteVermelha {
 
 	color: rgb(197,16,26);
 }

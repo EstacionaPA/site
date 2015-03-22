@@ -5,3 +5,44 @@ h1 {
     font-size: 40px;
     font-weight: bold;
 }
+
+.cssBoxModel{
+
+	background-color:  white;
+    background-size: center;
+
+    width: 95%;
+    padding: 90px;
+    border: 5px solid gray;
+    margin: 3%;
+    box-shadow: 0 0 8px #000;
+    text-align: left;
+    font-size: 30px;
+    font-family: 
+    left: auto;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+}
+
+table{
+
+	position: absolute;
+	top: 640px;
+	left: 530px;
+	
+
+}
+
+table * {
+
+	border-collapse: collapse;
+    border: 1px solid black;
+}
+
+th {
+
+	background-color: gray;
+}
