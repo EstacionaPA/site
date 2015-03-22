@@ -1,6 +1,6 @@
 <?php 
 
-include_once('../config/conexao.php');
+include_once('../config/conexao_remoto.php');
 
 $nome = $_POST['nome'];
 $usuario = $_POST['usuario'];
