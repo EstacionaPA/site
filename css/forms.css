@@ -24,7 +24,8 @@ input[type='submit'] {
 	font-weight: bold;
 	background: black;
 	color: #FFF;
-	text-transform: uppercase;	
+	text-transform: uppercase;
+	text-align: center;
 }
 
 legend {

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Estaciona PA</title>
+	<link rel="stylesheet" type="text/css" href="../css/central.css">
+	<link rel="stylesheet" type="text/css" href="../css/forms.css">
+	
+	<script src="http://code.jquery.com/jquery-2.0.0.js"></script>
+	
+	
+</head>
+<body>
+
+	
+<ul>
+	<li><a href="../index.html">Inicio</a></li>
+	<li><a href="../pages/about.html">Sobre a Empresa</a></li>
+	<li><a href="">Minha Conta</a></li>
+</ul>
+
+<h1>Cadastro de Usuário</h1>
+
+<br><br><br><br>
+
+
+
+<form id="cadastrar" action="../php/insert_user.php" method="post">
+	<fieldset>
+		<legend>Dados necessários</legend>
+
+		<label for="nome">Nome Completo:
+		<br>
+		<input type="text" name="nome" 
+			 id="nome">
+		<label for="usuario">Usuário:
+		<br>
+		<input type="text" name="usuario" 
+			 id="usuario">
+		<label for="senha">Senha:
+		<br>
+		<input type="password" name="senha" 
+			 id="senha">
+		<label for="email">Email:
+		<br>
+		<input type="text" name="email" 
+			 id="email">
+		<label for="cpf">Cpf:
+		<br>
+		<input type="text" name="cpf" 
+			 id="cpf">
+		<label for="endereco">Endereço:
+		<br>
+		<input type="text" name="endereco" 
+			 id="endereco">
+		<label for="numero">Número:
+		<br>
+		<input type="text" name="numero" 
+			 id="numero">
+		<label for="complement">Complemento:
+		<br>
+		<input type="text" name="complemento" 
+			 id="complemento">
+		<label for="bairro">Bairro:
+		<br>
+		<input type="text" name="bairro" 
+			 id="bairro">
+		<label for="cep">Cep:
+		<br>
+		<input type="text" name="cep" 
+			 id="cep">	 
+		</label>
+		<br>
+		<label for="cidade">Cidade:
+		<br>
+		<input type="text" name="cidade" 
+			 id="cidade">
+		</label>
+		<label for="estado">Estado:
+		<br>
+		<input type="text" name="estado" 
+			 id="estado">
+		</label>
+		<label for="telefone">Telefone:
+		<br>
+		<input type="text" name="telefone" 
+			 id="telefone">
+		</label>
+		<label for="celular">Celular:
+		<br>
+		<input type="text" name="celular" 
+			 id="celular">
+		</label>
+
+
+		<br><br>
+		<button id="enviar">Enviar</button>
+
+	</fieldset>
+
+
+</form>
+	<script type="text/javascript" language="javascript" src="../scripts/ajaxinsert.js"></script>
+
+	<span id = "resultado"></span>
+
+</body>
+
+</html>
