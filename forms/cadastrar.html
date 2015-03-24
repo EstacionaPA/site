@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>Estaciona PA</title>
 	<link rel="stylesheet" type="text/css" href="../css/central.css">
-	<link rel="stylesheet" type="text/css" href="../css/forms.css">
+	<link rel="stylesheet" type="text/css" href="../css/regForm.css">
 	
 	
 	
@@ -30,70 +30,88 @@
 
 <form id="cadastrar" action="../php/insert_user.php" method="post">
 	<fieldset>
+
 		<legend>Dados necessários</legend>
 
+		<br>
+
+		<legend>Dados pessoais</legend>
+
 		<label for="nome">Nome Completo:
-		<br>
-		<input type="text" name="nome" 
-			 id="nome">
-		<label for="usuario">Usuário:
-		<br>
-		<input type="text" name="usuario" 
-			 id="usuario">
-		<label for="senha">Senha:
-		<br>
-		<input type="password" name="senha" 
-			 id="senha">
-		<label for="email">Email:
-		<br>
-		<input type="text" name="email" 
-			 id="email">
+			<input type="text" name="nome" id="nome">
+			<br>
+		</label>
+
 		<label for="cpf">Cpf:
-		<br>
-		<input type="text" name="cpf" 
-			 id="cpf">
-		<label for="endereco">Endereço:
-		<br>
-		<input type="text" name="endereco" 
-			 id="endereco">
-		<label for="numero">Número:
-		<br>
-		<input type="text" name="numero" 
-			 id="numero">
-		<label for="complement">Complemento:
-		<br>
-		<input type="text" name="complemento" 
-			 id="complemento">
-		<label for="bairro">Bairro:
-		<br>
-		<input type="text" name="bairro" 
-			 id="bairro">
-		<label for="cep">Cep:
-		<br>
-		<input type="text" name="cep" 
-			 id="cep">	 
+			<input type="text" name="cpf" id="cpf">
+			<br>
 		</label>
-		<br>
-		<label for="cidade">Cidade:
-		<br>
-		<input type="text" name="cidade" 
-			 id="cidade">
+
+		<label for="telefone">Telefone:			
+			<input type="text" name="telefone" id="telefone">
+			<br>
 		</label>
-		<label for="estado">Estado:
-		<br>
-		<input type="text" name="estado" 
-			 id="estado">
-		</label>
-		<label for="telefone">Telefone:
-		<br>
-		<input type="text" name="telefone" 
-			 id="telefone">
-		</label>
+
 		<label for="celular">Celular:
-		<br>
-		<input type="text" name="celular" 
-			 id="celular">
+			<input type="text" name="celular" id="celular">
+			<br>
 		</label>
+
+		<label for="email">Email:
+			<input type="text" name="email" id="email">
+			<br>
+		</label>
+
+		<br>	
+
+		<legend>Dados geográficos</legend>
+
+		<label for="endereco">Endereço:
+			<input type="text" name="endereco" id="endereco">
+			<br>
+		</label>
+
+		<label for="complement">Complemento:
+			<input type="text" name="complemento" id="complemento">
+			<br>
+		</label>
+
+		<label for="bairro">Bairro:
+			<input type="text" name="bairro" id="bairro">
+			<br>
+		</label>
+
+		<label for="cep">Cep:
+			<input type="text" name="cep" id="cep">	 
+			<br>
+		</label>
+
+		<label for="cidade">Cidade:
+			<input type="text" name="cidade" id="cidade">
+			<br>
+		</label>
+
+		<label for="estado">Estado:
+			<input type="text" name="estado" id="estado">
+			<br>
+		</label>
+
+		<br>
+
+		<legend>Dados para o Sistema</legend>
+
+		<label for="usuario">Usuário:
+			<input type="text" name="usuario" id="usuario">
+			<br>
+		</label>
+
+		<label for="senha">Senha:
+			<input type="password" name="senha" id="senha">
+			<br>
+		</label>
+
+
+
 
 
 		<br><br>
