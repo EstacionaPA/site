@@ -33,7 +33,7 @@
             numero: numeroPost, complemento: complementoPost, bairro: bairroPost, 
             cep: cepPost, cidade: cidadePost, estado: estadoPost, teleone: telefonePost, celular: celularPost},
         function(data){
-         $("#resposta").html(data);
+         $("#resultado").html(data);
          }
          , "html");
     });
