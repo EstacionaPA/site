@@ -4,6 +4,7 @@ h1 {
     text-align: center;
     font-size: 40px;
     font-weight: bold;
+    padding: 50px;
 }
 
 .cssBoxModel{
@@ -27,18 +28,13 @@ h1 {
 
 }
 
-table{
+table {
 
-	position: absolute;
-	top: 640px;
-	left: 530px;
-	
-
+    margin: auto;
+    border-collapse: collapse;
 }
 
-table * {
-
-	border-collapse: collapse;
+table, th, td {
     border: 1px solid black;
 }
 

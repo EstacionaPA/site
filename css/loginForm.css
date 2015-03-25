@@ -4,6 +4,7 @@ h1 {
 	text-align: center;
     font-size: 40px;
     font-weight: bold;
+    padding: 0px;
 }
 
 fieldset, legend ,
