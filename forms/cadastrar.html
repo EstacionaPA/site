@@ -4,10 +4,7 @@
 	<meta charset="utf-8">
 	<title>Estaciona PA</title>
 	<link rel="stylesheet" type="text/css" href="../css/central.css">
-	<link rel="stylesheet" type="text/css" href="../css/regForm.css">
-	
-	
-	
+	<link rel="stylesheet" type="text/css" href="../css/cadForm.css">
 	
 </head>
 <body>
@@ -22,16 +19,28 @@
      	</ul>
     </li>	 
 </ul>
+
 <h1>Cadastro de Usuário</h1>
-
-<br><br><br><br>
-
 
 
 <form id="cadastrar" action="../php/insert_user.php" method="post">
 	<fieldset>
 
 		<legend>Dados necessários</legend>
+
+		<br>
+
+		<legend>Dados para o Sistema</legend>
+
+		<label for="usuario">Usuário:
+			<input type="text" name="usuario" id="usuario">
+			<br>
+		</label>
+
+		<label for="senha">Senha:
+			<input type="password" name="senha" id="senha">
+			<br>
+		</label>
 
 		<br>
 
@@ -71,13 +80,18 @@
 			<br>
 		</label>
 
-		<label for="complement">Complemento:
+		<label for="complemento">Complemento:
 			<input type="text" name="complemento" id="complemento">
 			<br>
 		</label>
 
 		<label for="bairro">Bairro:
 			<input type="text" name="bairro" id="bairro">
+			<br>
+		</label>
+
+		<label for="numero">Número:
+			<input type="text" name="numero" id="numero">
 			<br>
 		</label>
 
@@ -96,24 +110,6 @@
 			<br>
 		</label>
 
-		<br>
-
-		<legend>Dados para o Sistema</legend>
-
-		<label for="usuario">Usuário:
-			<input type="text" name="usuario" id="usuario">
-			<br>
-		</label>
-
-		<label for="senha">Senha:
-			<input type="password" name="senha" id="senha">
-			<br>
-		</label>
-
-
-
-
-
 		<br><br>
 		<button id="enviar">Enviar</button>
 
@@ -122,7 +118,6 @@
 
 </form>
 
-	<span id = "resultado"></span>
 	<script src="http://code.jquery.com/jquery-2.0.0.js"></script>
 	<script type="text/javascript" language="javascript" src="../scripts/ajaxinsert.js"></script>
 

@@ -5,34 +5,54 @@ h1 {
     font-weight: bold;
 }
 
+fieldset, legend,
+input[type='text'],
+input[type='password'] {
+
+	border: 2px solid black;
+	margin: auto;
+
+}
 
 fieldset {
-
 	width: 400px;
 	margin: 50px auto;
 	background-color: rgba(167, 167, 167, 1);
 }
 
-legend {
-
-	border: 3px solid black;
+legend, 
+input[type='submit'] {
 	font-weight: bold;
 	background: black;
 	color: #FFF;
 	text-transform: uppercase;
 	text-align: center;
+	margin: auto;
+}
+
+legend {
 	padding: 2px 50px;
+
 }
 
 label {
-
 	font-weight: bold;
-	
+	margin-bottom: 10px;
 }
 
-input{
-
-		width: 96%;
+input[type='text'],
+input[type='password'] {
+	width: 95%;
 	height: 20px;
 	background-color: rgba(215, 215, 215, 1);
+}
+
+input[type='text']:hover,
+input[type='password']:hover {
+	background: #FFF;
+}
+
+input[type='text']:focus,
+input[type='password']:focus {
+	border: 2px solid gray;
 }

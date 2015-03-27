@@ -2,20 +2,22 @@
 
 include_once('../config/conexao_remoto.php');
 
-$nome = $_POST['nome'];
 $usuario = $_POST['usuario'];
 $senha = $_POST['senha'];
-$email = $_POST['email'];
+$nome = $_POST['nome'];
 $cpf = $_POST['cpf'];
+$telefone = $_POST['telefone'];
+$celular = $_POST['celular'];
+$email = $_POST['email'];
 $endereco = $_POST['endereco'];
-$numero = $_POST['numero'];
 $complemento = $_POST['complemento'];
 $bairro = $_POST['bairro'];
+$numero = $_POST['numero'];
 $cep = $_POST['cep'];
 $cidade = $_POST['cidade'];
 $estado = $_POST['estado'];
-$telefone = $_POST['telefone'];
-$celular = $_POST['celular'];
+
+
         
 if (!($nome) || !($usuario) || !($senha) || !($email) || !($cpf)
 	|| !($endereco) || !($numero) || !($complemento) || !($bairro) || !($cep)
