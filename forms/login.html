@@ -7,9 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/loginForm.css">
 	<script src="http://code.jquery.com/jquery-2.0.0.js"></script>
 </head>
-<body>xx
-
-
+<body>
 
 <ul class="menuDropDown">
 	<li><a href="../index.html">Inicio</a></li>
@@ -22,29 +20,31 @@
     </li>	 
 </ul>
 
-<h1>Áea do Usuário</h1>
-<h2 id-"erroLog">Usuário e/ou Senha inválidos</h2>
-<form id ="formLogin">
+<br><h1>Área do Usuário</h1>
+<form id = "logar" action="../php/login_user.php" method="post">
 
 	<fieldset>
 	
 		<legend>Dados login</legend>
 
-		<label for="username">Usuário:
+		<label for="usuario">Usuário:
 		<br>
-		<input type="text" name="username" id="username">
+		<input type="text" name="usuario" id="usuario">
 		</label>
 		<br><br>
-		<label for="password">Senha:
+		<label for="senha">Senha:
 		<br>
-		<input type="password" name="password" id="password">
+		<input type="password" name="senha" id="senha">
 		</label>
 		<br><br>
-		<button id="Entrar">Entrar</button>
+		<button id="submit">Entrar</button>
 
 	</fieldset>
 
 </form>
+	<span id = "resultado"></span>
+	<script src="http://code.jquery.com/jquery-2.0.0.js"></script>
+	<script type="text/javascript" language="javascript" src="../scripts/ajaxlogin.js"></script>
 
 </body>
 </html>

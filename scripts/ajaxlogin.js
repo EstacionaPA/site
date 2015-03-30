@@ -1,20 +1,21 @@
-$(document).ready(function(){
-	$('#errolog').hide(); //Esconde o elemento com id errolog
-	$('#formLogin').submit(function(){ 	//Ao submeter formulário
-		var login=$('#username').val();	//Pega valor do campo email
-		var senha=$('#password').val();	//Pega valor do campo senha
-		$.ajax({			//Função AJAX
-			url:"../php/login_user.php",			//Arquivo php
-			type:"post",				//Método de envio
-			data: "login="+login+"&senha="+senha,	//Dados
-   			success: function (result){			//Sucesso no AJAX
-                		if(result==1){						
-                			location.href='restrito.php'	//Redireciona
-                		}else{
-                			$('#errolog').show();		//Informa o erro
-                		}
-            		}
-		})
-		return false;	//Evita que a página seja atualizada
-	})
-})
+//coleta as informacoes do formulario de login
+
+$("button#submit").click( function() {
+
+//se usuario e senha em brancos retorna a mensagem 
+  if( $("#usuario").val() == "" || $("#senha").val() == "" )
+    $("span#resultado").html("Usuário e senha obrigatórios");
+  else
+  	//chama o formulario de id logar, e executa a sql do action do form o login_user.php
+
+    $.post( $("#logar").attr("action"),
+	        $("#logar :input").serializeArray(),
+			function(data) {
+			  $("span#resultado").html(data);
+			});
+ 
+	$("#logar").submit( function() {
+	   return false;	
+	});
+ 
+});
