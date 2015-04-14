@@ -4,7 +4,8 @@ $("button#submit").click( function() {
 
 //se usuario e senha em brancos retorna a mensagem 
   if( $("#usuario").val() == "" || $("#senha").val() == "" )
-    $("span#resultado").html("Usuário e senha obrigatórios");
+    $("span#resultado").add(alert("Usuario e Senha em Branco"));
+	
   else
   	//chama o formulario de id logar, e executa a sql do action do form o login_user.php
 
@@ -15,6 +16,7 @@ $("button#submit").click( function() {
 			});
  
 	$("#logar").submit( function() {
+
 	   return false;	
 	});
  

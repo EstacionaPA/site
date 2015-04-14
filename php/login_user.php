@@ -2,9 +2,17 @@
 
  include_once('../config/conexao_remoto.php');
 
+	//Inicia Sessão
+	session_start();
+	//Captura usuário e senha passados pela função do Jquery por POST
+	$usuario = isset($_POST['usuario']) ? $_POST['usuario'] : null;
+	$senha = isset($_POST['senha']) ? $_POST['senha'] : null;
+
  		//puxa do login.html o usuario e senha inseridos
 		$usuario = $_POST["usuario"];
 		$senha = $_POST["senha"];
+
+
  
         //Executa o select para buscar no banco se existe o usuario e a senha inseridos
 		$sql = "SELECT count(*) FROM pessoas WHERE(
@@ -17,9 +25,13 @@
 		$row = mysql_fetch_array($res);
  		
 		//se existir o usuario, retornara uma coluna, ou seja > 0
-		if( $row[0] > 0 )
-		 echo "Login efetuado com sucesso";
+
+		if( $row[0] > 0 ){
+		 echo "<script> alert ('Login com Sucesso, você está sendo redirecionado'); </script>";
+			$_SESSION['usuario'] = $usuario;
+			echo "<script> document.location = 'http://localhost/estaciona/pages/about.html' </script>";
+		}
 		else
-		 echo "Usuário ou senha inválidos";
+		 echo "<script> alert ('Usuário ou senha inválidos'); </script>";
    			
 ?>
