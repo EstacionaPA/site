@@ -22,7 +22,8 @@ $estado = $_POST['estado'];
 if (!($nome) || !($usuario) || !($senha) || !($email) || !($cpf)
 	|| !($endereco) || !($numero) || !($complemento) || !($bairro) || !($cep)
 	|| !($cidade) || !($estado) || !($telefone) || !($celular)){
-    print "Preencha todos os campos!"; exit();
+    echo "<script> alert ('Preencha Todos os Campos!'); </script>";
+    exit();
 }
 //Abrindo Conexao com o banco de dados
 //$conexao = mysql_pconnect("localhost","root","snake007") or die (mysql_error());
@@ -34,9 +35,9 @@ $insert = mysql_query("insert into pessoas (nome ,usuario  ,senha  ,email  ,cpf 
 		,'{$numero}','{$complemento}','{$bairro}','{$cep}','{$cidade}','{$estado}','{$telefone}','{$celular}')");
 
 if($insert) {
-    print "Cadastro Realizado!";
+    echo "<script> alert ('Cadastro Realizado!'); </script>";
 }else {
-    print "Erro ao Cadastrar!";
+    echo "<script> alert ('Erro ao Cadastrar'); </script>";
 }
 
 ?>

@@ -32,6 +32,6 @@
 			echo "<script> document.location = 'http://localhost/estaciona/pages/about.html' </script>";
 		}
 		else
-		 echo "<script> alert ('Usuário ou senha inválidos'); </script>";
+		 echo "<script> alert ('Usuário ou Senha Inválidos'); </script>";
    			
 ?>
