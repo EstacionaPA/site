@@ -11,6 +11,7 @@
  		//puxa do login.html o usuario e senha inseridos
 		$usuario = $_POST["usuario"];
 		$senha = $_POST["senha"];
+		$criptografada = md5($senha);
 
 
  
@@ -18,7 +19,7 @@
 		$sql = "SELECT count(*) FROM pessoas WHERE(
 		        usuario ='$usuario' 
 				AND 
-				senha ='$senha')";
+				senha ='$criptografada')";
  			
  		//retorna a query
 	    $res = mysql_query($sql);

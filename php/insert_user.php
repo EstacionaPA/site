@@ -4,6 +4,7 @@ include_once('../config/conexao_remoto.php');
 
 $usuario = $_POST['usuario'];
 $senha = $_POST['senha'];
+$criptografada = md5($senha);
 $nome = $_POST['nome'];
 $cpf = $_POST['cpf'];
 $telefone = $_POST['telefone'];
@@ -31,7 +32,7 @@ if (!($nome) || !($usuario) || !($senha) || !($email) || !($cpf)
  
 $insert = mysql_query("insert into pessoas (nome ,usuario  ,senha  ,email  ,cpf ,endereco  ,
 	numero  ,complemento  ,bairro  ,cep  ,cidade  ,estado ,telefone  ,celular) 
-	values ('{$nome}','{$usuario}','{$senha}','{$email}','{$cpf}','{$endereco}'
+	values ('{$nome}','{$usuario}','{$criptografada}','{$email}','{$cpf}','{$endereco}'
 		,'{$numero}','{$complemento}','{$bairro}','{$cep}','{$cidade}','{$estado}','{$telefone}','{$celular}')");
 
 if($insert) {
