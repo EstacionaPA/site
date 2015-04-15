@@ -1,6 +1,6 @@
 <?php
 
- include_once('../config/conexao_local.php');
+ include_once('../config/conexao_remoto.php');
 
  
  $email = isset($_POST['email']) ? $_POST['email'] : null;
