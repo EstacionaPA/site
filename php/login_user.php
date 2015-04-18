@@ -1,6 +1,6 @@
 <?php
 
- include_once('../config/conexao_remoto.php');
+include_once('modo_acesso.php');
 
 	//Inicia Sessão
 	session_start();
@@ -30,7 +30,9 @@
 		if( $row[0] > 0 ){
 		 echo "<script> alert ('Login com Sucesso, você está sendo redirecionado'); </script>";
 			$_SESSION['usuario'] = $usuario;
-			echo "<script> document.location = 'http://localhost/estaciona/pages/about.html' </script>";
+            fclose('location: ../forms/login.html');
+            header('location: ../login/loginAdmin.php');
+			//echo "<script> document.location = 'http://localhost/estaciona/pages/loginAdmin.php' </script>";
 		}
 		else
 		 echo "<script> alert ('Usuário ou Senha Inválidos'); </script>";

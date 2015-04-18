@@ -1,6 +1,6 @@
 <?php 
 
-include_once('../config/conexao_remoto.php');
+include_once('modo_acesso.php');
 
 $usuario = $_POST['usuario'];
 $senha = $_POST['senha'];

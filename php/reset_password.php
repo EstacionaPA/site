@@ -1,6 +1,6 @@
 <?php
 
- include_once('../config/conexao_remoto.php');
+include_once('modo_acesso.php');
 
  
  $email = isset($_POST['email']) ? $_POST['email'] : null;
