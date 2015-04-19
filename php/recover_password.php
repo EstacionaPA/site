@@ -1,5 +1,5 @@
 <?php
-include_once('../config/conexao_local.php');
+include_once('modo_acesso.php');
 if(isset($_GET['action']))
 {        
    if($_GET['action']=="reset")
