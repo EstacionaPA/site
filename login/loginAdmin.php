@@ -4,11 +4,10 @@
 	<meta charset="utf-8">
 	<title>Estaciona PA</title>
 	<link rel="stylesheet" type="text/css" href="../css/login_admin.css">
+	<link rel="stylesheet" type="text/css" href="../css/empresa.css">
     
 </head>
 <body>
-<style type="text/css">@import url("../css/empresa.css")</style>
-
 
 <div class="backGround">
     <ul class="menuDropDown">
@@ -16,7 +15,7 @@
         <li><a href="../index.html">Cadastrar Funcionarios</a></li>
         <li><a href="about.html">Gerar Relatório</a></li>
         <li><a href="about.html">Realizar Check-in</a></li>
-        <li><a href="#"> <?php include ('../php/name_user.php');?></a>
+        <li><a href="#"> <?php include_once ('../php/name_user.php');?></a>
         </li>	 
     </ul>
 </div>

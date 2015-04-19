@@ -30,9 +30,9 @@ include_once('modo_acesso.php');
 		if( $row[0] > 0 ){
 		 echo "<script> alert ('Login com Sucesso, você está sendo redirecionado'); </script>";
 			$_SESSION['usuario'] = $usuario;
-            fclose('location: ../forms/login.html');
-            header('location: ../login/loginAdmin.php');
-			//echo "<script> document.location = 'http://localhost/estaciona/pages/loginAdmin.php' </script>";
+            //fclose('location: ../forms/login.html');
+            //header('location: ../login/loginAdmin.php');
+			echo "<script> document.location = 'http://localhost/estaciona/login/loginAdmin.php' </script>";
 		}
 		else
 		 echo "<script> alert ('Usuário ou Senha Inválidos'); </script>";
