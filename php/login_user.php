@@ -32,7 +32,7 @@ include_once('modo_acesso.php');
 			$_SESSION['usuario'] = $usuario;
             //fclose('location: ../forms/login.html');
             //header('location: ../login/loginAdmin.php');
-			echo "<script> document.location = 'http://http://estacionapa.com/login/loginAdmin.php' </script>";
+			echo "<script> document.location = 'http://estacionapa.com/login/loginAdmin.php' </script>";
 		}
 		else
 		 echo "<script> alert ('Usuário ou Senha Inválidos'); </script>";
