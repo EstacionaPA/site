@@ -17,6 +17,7 @@ $numero = $_POST['numero'];
 $cep = $_POST['cep'];
 $cidade = $_POST['cidade'];
 $estado = $_POST['estado'];
+$acesso = 'c';
 
 
         
@@ -31,9 +32,9 @@ if (!($nome) || !($usuario) || !($senha) || !($email) || !($cpf)
 //$banco = mysql_select_db("projeto");
  
 $insert = mysql_query("insert into pessoas (nome ,usuario  ,senha  ,email  ,cpf ,endereco  ,
-	numero  ,complemento  ,bairro  ,cep  ,cidade  ,estado ,telefone  ,celular) 
+	numero  ,complemento  ,bairro  ,cep  ,cidade  ,estado ,telefone  ,celular  ,acesso) 
 	values ('{$nome}','{$usuario}','{$criptografada}','{$email}','{$cpf}','{$endereco}'
-		,'{$numero}','{$complemento}','{$bairro}','{$cep}','{$cidade}','{$estado}','{$telefone}','{$celular}')");
+		,'{$numero}','{$complemento}','{$bairro}','{$cep}','{$cidade}','{$estado}','{$telefone}','{$celular}','{$acesso}')");
 
 if($insert) {
     echo "<script> alert ('Cadastro Realizado!'); </script>";

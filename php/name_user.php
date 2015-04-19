@@ -1,4 +1,4 @@
-	<?php
+<?php
 
 session_start();
 
@@ -9,9 +9,9 @@ $usuario = $_SESSION['usuario'];
 
 //Realiza consulta
 $sql = mysql_query("SELECT nome FROM pessoas 
-        WHERE usuario ='$usuario'");
+                    WHERE usuario ='$usuario'");
 
-//Retira o resultado da consulta na primeira linha "0"
+//Retira o resultado da consulta da primeira linha "0" da consulta
 $result = mysql_result($sql, 0);
 
 //Retira a posição do primeiro espaço
