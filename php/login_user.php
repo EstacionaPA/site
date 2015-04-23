@@ -4,6 +4,7 @@ include_once('modo_acesso.php');
 
 	//Inicia Sessão
 	session_start();
+
 	//Captura usuário e senha passados pela função do Jquery por POST
 	$usuario = isset($_POST['usuario']) ? $_POST['usuario'] : null;
 	$senha = isset($_POST['senha']) ? $_POST['senha'] : null;
@@ -37,34 +38,22 @@ include_once('modo_acesso.php');
 
     if( $row[0] > 0 )
     {   
-        
-        
-    
+
         echo "<script> alert ('Login com Sucesso, você está sendo redirecionado'); </script>";
         
         $_SESSION['usuario'] = $usuario;
         
-        if ($stringResult == "a") 
-        {
-            
+        if ($stringResult == "a")   
             echo "<script> document.location = '../login/login_admin.php' </script>"; 
             
-        }
-
-        elseif ($stringResult == "f")
-        {
+        elseif ($stringResult == "f") 
             echo "<script> document.location = '../login/login_func.php' </script>";
-        }
     
-        else 
-        {
-            echo "<script> document.location = '../login/login_client.php' </script>";
-            
-        }
-        
+        else  echo "<script> document.location = '../login/login_client.php' </script>";      
         
     }
-		else
+
+    else
 		 echo "<script> alert ('Usuário ou Senha Inválidos'); </script>";
    			
 ?>

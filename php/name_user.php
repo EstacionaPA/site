@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 include_once('modo_acesso.php');
 
 //Busca usuário na seção

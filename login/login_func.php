@@ -9,6 +9,7 @@
 <body>
 <style type="text/css">@import url("../css/empresa.css")</style>
 
+<?php include ('../php/session_test.php');?>
 
 <div class="backGround">
     <ul class="menuDropDown">
@@ -17,7 +18,7 @@
         <li><a href="about.html">Realizar Check-in</a></li>
         <li><a href="#"> <?php include ('../php/name_user.php');?></a>
             <ul>
-                <li><a href="">Sair</a></li>
+                <li><a href="../php/exiting.php">Sair</a></li>
             </ul>
         </li>	 
     </ul>
