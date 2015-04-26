@@ -2,8 +2,9 @@
 
 include_once('modo_acesso.php');
 
-//Busca usuário na seção
-$usuario = $_SESSION['usuario'];
+session_start();
+
+$usuario = $_COOKIE["loginIn"];
 
 //Realiza consulta
 $sql = mysql_query("SELECT nome FROM pessoas 

@@ -9,7 +9,7 @@
 <body>
 <style type="text/css">@import url("../css/empresa.css")</style>
 
-<?php include ('../php/session_test.php');?>
+<?php include ('../php/cookie_test.php');?>
 
 <div class="backGround">
     <ul class="menuDropDown">

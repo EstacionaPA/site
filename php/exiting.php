@@ -1,11 +1,8 @@
 <?php
 
-session_start();
+setcookie('loginIn', '', time() - 3600, '/');
+unset($_COOKIE['loginIn']);
 
-session_unset();
-
-session_destroy();
-
-echo "<script> document.location = '../index.html' </script>"
+echo "<script> document.location = '../index.html' </script>";
 
 ?>
