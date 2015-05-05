@@ -1,14 +1,12 @@
 <?php
 
 include_once('modo_acesso.php');
-
-session_start();
+include_once('db_manipuling.php');
 
 $usuario = $_COOKIE["loginIn"];
 
 //Realiza consulta
-$sql = mysql_query("SELECT nome FROM pessoas 
-                    WHERE usuario ='$usuario'");
+$sql = mysql_query(resquestName($usuario));
 
 //Retira o resultado da consulta da primeira linha "0" da consulta
 $result = mysql_result($sql, 0);

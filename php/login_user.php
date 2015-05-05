@@ -1,6 +1,7 @@
 <?php
 
 include_once('modo_acesso.php');
+include_once('db_manipuling.php');
 
 	//Inicia Sessão
 	//Captura usuário e senha passados pela função do Jquery por POST
@@ -13,15 +14,10 @@ include_once('modo_acesso.php');
     $criptografada = md5($senha);
 
     //Executa o select para buscar no banco se existe o usuario e a senha inseridos
-    $sqlUser = "SELECT count(*) FROM pessoas 
-                  WHERE( usuario ='$usuario' 
-                            AND 
-                         senha ='$criptografada'
-                       )";
+    $sqlUser = requestUser($usuario, $criptografada);
     
     //Executa a consulta para buscar o acesso do usuario
-    $sqlAccess = "SELECT acesso FROM pessoas
-                  WHERE usuario = '$usuario'";
+    $sqlAccess = requestAccess($usuario);
                   
                     
     $resultUser = mysql_query($sqlUser);

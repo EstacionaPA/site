@@ -3,14 +3,18 @@ h1 {
 	text-align: center;
     font-size: 40px;
     font-weight: bold;
-    padding: 0px;
 }
 
-fieldset, legend ,
+
+fieldset, legend,
 input[type='text'],
 input[type='password'],
-input[type='submit'] {
+.menuAcesso,
+input[type='date']{
+
 	border: 2px solid black;
+	margin: auto;
+
 }
 
 fieldset {
@@ -20,12 +24,13 @@ fieldset {
 }
 
 legend, 
-input[type='submit'] {
+input[type='submit']{
 	font-weight: bold;
 	background: black;
 	color: #FFF;
 	text-transform: uppercase;
 	text-align: center;
+	margin: auto;
 }
 
 legend {
@@ -39,26 +44,32 @@ label {
 }
 
 input[type='text'],
-input[type='password'] {
-	width: 96%;
+input[type='password'],
+input[type='date']{
+	width: 95%;
 	height: 20px;
 	background-color: rgba(215, 215, 215, 1);
 }
 
+.menuAcesso {
+    
+    width: 96%;
+    height: 25px;
+    background-color: rgba(215, 215, 215, 1);
+    margin-bottom: 15px;
+    
+}
+
 input[type='text']:hover,
-input[type='password']:hover {
+input[type='password']:hover,
+.menuAcesso:hover,
+input[type='date']:hover{
 	background: #FFF;
 }
 
 input[type='text']:focus,
-input[type='password']:focus {
+input[type='password']:focus,
+.menuAcesso:focus,
+input[type='date']:focus{
 	border: 2px solid gray;
-}
-
-input[type='submit'] {
-	background-color: black;
-	width: 100px;
-	margin: 0 auto;
-	display: block;
-	float: right;
 }

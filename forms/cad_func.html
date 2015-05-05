@@ -5,6 +5,7 @@
 	<title>Estaciona PA</title>
 	<link rel="stylesheet" type="text/css" href="../css/central.css">
 	<link rel="stylesheet" type="text/css" href="../css/central_form.css">
+	<link rel="stylesheet" type="text/css" href="../css/login_admin.css">
 	
 </head>
 <body>
@@ -12,11 +13,12 @@
 <div class="backGround">
     <ul class="menuDropDown">
         <li><a href="../index.html">Inicio</a></li>
-        <li><a href="../pages/about.html">Sobre a Empresa</a></li>
-        <li><a href="#">Minha Conta</a>
+        <li><a href="cad_func.html">Cadastrar Funcionarios</a></li>
+        <li><a href="relatorio.html">Gerar Relatório</a></li>
+        <li><a href="checkin.html">Realizar Check-in</a></li>
+        <li><a href="#"> <?php include ('../php/name_user.php');?></a>
             <ul>
-                <li><a href="login.html">Entrar</a></li>
-                <li><a href="cadastrar.html">Cadastrar-se</a>
+                <li><a href="../php/exiting.php">Sair</a></li>
             </ul>
         </li>	 
     </ul>
@@ -25,7 +27,7 @@
 <h1>Cadastro de Usuário</h1>
 
 
-<form id="cadastrar" action="../php/insert_user.php" method="post">
+<form id="cadastrar" action="" method="post">
 	<fieldset>
 
 		<legend>Dados necessários</legend>
@@ -42,6 +44,14 @@
 		<label for="senha">Senha:
 			<input type="password" name="senha" id="senha">
 			<br>
+		</label>
+		
+		<label for="acesso">Acesso:
+		    <select name="menuAcesso" class="menuAcesso">
+		        <option value="0">(Selecione um)</option>
+		        <option value="1">Administrador</option>
+		        <option value="2">Funcionário</option>
+		    </select>
 		</label>
 
 		<br>
@@ -121,8 +131,7 @@
 </form>
 
 	<span id = "resultado"></span>
-	<script src="http://code.jquery.com/jquery-2.0.0.js"></script>
-	<script type="text/javascript" language="javascript" src="../scripts/ajaxinsert.js"></script>
+	<script type="text/javascript" language="javascript" src=""></script>
 
 	
 

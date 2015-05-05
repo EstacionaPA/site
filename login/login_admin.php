@@ -13,10 +13,10 @@
 <div class="backGround">
     <ul class="menuDropDown">
         <li><a href="../index.html">Inicio</a></li>
-        <li><a href="../index.html">Cadastrar Funcionarios</a></li>
-        <li><a href="about.html">Gerar Relatório</a></li>
-        <li><a href="about.html">Realizar Check-in</a></li>
-        <li><a href="#"> <?php include ('../php/name_user.php');?></a>
+        <li><a href="../forms/cad_func.html">Cadastrar Funcionarios</a></li>
+        <li><a href="../forms/relatorio.html">Gerar Relatório</a></li>
+        <li><a href="../forms/checkin.html">Realizar Check-in</a></li>
+        <li><a href="#"> <?php include ('../php/name_user.php'); ?></a>
             <ul>
                 <li><a href="../php/exiting.php">Sair</a></li>
             </ul>
