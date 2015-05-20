@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Estaciona PA</title>
+	<link rel="stylesheet" type="text/css" href="../../../css/forms/central_form.css">
+	<link rel="stylesheet" type="text/css" href="../../../css/layout/central_layout.css">
+</head>
+<body>
+
+<nav class="menu">
+    <ul class="itemMenu">
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a>Cadastrar Funcionarios</a></li>
+        <li><a href="../functions/relatorio.html">Gerar Relatório</a></li>
+        <li><a href="../functions/checkin.html">Realizar Check-in</a></li>
+        <li><a href="../../../php/login/valid_login.php"> IMPLEMENTAR</a>
+            <ul>
+                <li><a href="../../../php/operation/exiting.php">Sair</a></li>
+            </ul>
+        </li>	 
+    </ul>
+</nav>
+
+<h1>Cadastro de Usuário</h1>
+
+
+<form id="cadastrar">
+	<fieldset>
+
+		<legend>Dados necessários</legend>
+
+		<legend>Dados para o Sistema</legend>
+
+		<label for="usuario">Usuário:
+			<input type="text" name="usuario" id="usuario">
+		</label>
+
+		<label for="senha">Senha:
+			<input type="password" name="senha" id="senha">
+		</label>
+		
+		<label for="acesso">Acesso:
+		    <select name="menuAcesso" class="menuAcesso">
+		        <option value="0">(Selecione um)</option>
+		        <option value="1">Administrador</option>
+		        <option value="2">Funcionário</option>
+		    </select>
+		</label>
+		
+		<legend>Dados pessoais</legend>
+
+		<label for="nome">Nome Completo:
+			<input type="text" name="nome" id="nome">
+		</label>
+
+		<label for="cpf">Cpf:
+			<input type="text" name="cpf" id="cpf">
+		</label>
+
+		<label for="telefone">Telefone:			
+			<input type="text" name="telefone" id="telefone">
+		</label>
+
+		<label for="celular">Celular:
+			<input type="text" name="celular" id="celular">
+			<br>
+		</label>
+
+		<label for="email">Email:
+			<input type="text" name="email" id="email">
+		</label>
+
+		<br>	
+
+		<legend>Dados geográficos</legend>
+
+		<label for="endereco">Endereço:
+			<input type="text" name="endereco" id="endereco">
+		</label>
+
+		<label for="complemento">Complemento:
+			<input type="text" name="complemento" id="complemento">
+		</label>
+
+		<label for="bairro">Bairro:
+			<input type="text" name="bairro" id="bairro">
+		</label>
+
+		<label for="numero">Número:
+			<input type="text" name="numero" id="numero">
+			<br>
+		</label>
+
+		<label for="cep">Cep:
+			<input type="text" name="cep" id="cep">	 
+		</label>
+
+		<label for="cidade">Cidade:
+			<input type="text" name="cidade" id="cidade">
+		</label>
+
+		<label for="estado">Estado:
+			<input type="text" name="estado" id="estado">
+		</label>
+
+		<button id="submit">Enviar</button>
+
+	</fieldset>
+
+
+</form>
+
+<script type="text/javascript" language="javascript" src="../../../scripts/js/function/insert_person.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+</body>
+
+</html>

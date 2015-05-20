@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Estaciona PA</title>
+	<link rel="stylesheet" type="text/css" href="../../../css/forms/central_form.css">
+	<link rel="stylesheet" type="text/css" href="../../../css/layout/central_layout.css">
+</head>
+<body>
+
+<nav class="menu">
+    <ul class="itemMenu">
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../cad_forms/cad_func.html">Cadastrar Funcionarios</a></li>
+        <li><a>Gerar Relatório</a></li>
+        <li><a href="checkin.html">Realizar Check-in</a></li>
+        <li><a href="../../../php/login/valid_login.php"> IMPLEMENTAR</a>
+            <ul>
+                <li><a href="../../../php/operation/exiting.php">Sair</a></li>
+            </ul>
+        </li>	 
+    </ul>
+</nav>
+
+<br><h1>Gerar Relatório</h1>
+<form id="gerarRelatorio">
+
+	<fieldset>
+	
+		<legend>Datas</legend>
+
+		<label for="dataIni">Data Inicio:
+		  <input type="date" name="dataIni">
+		</label>
+
+		<label for="dataFim">Data Fim:
+		    <input type="date" name="dataFim">
+		</label>
+		
+		<button id="submit">Gerar Relatorio</button>
+
+	</fieldset>
+
+</form>
+	<span id = "resultado"></span>
+	
+	<script type="text/javascript" language="javascript" src=""></script>
+
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="../../../scripts/js/api/calender.js"></script>
+</html>

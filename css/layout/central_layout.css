@@ -1,0 +1,113 @@
+html {
+
+	background:url("../../img/backGround.png") no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+h1 {
+
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    padding: 50px;
+    margin: 0;
+
+}
+
+.layout{
+    border: 5px solid;
+    border-color: gray;
+    
+    margin: 5px;
+    padding: 25px;
+    border-radius: 25px;
+    box-shadow: 0.7px 0.7px 0.7px 0.7px;
+    
+    font-size: 30px;
+    
+    background-color: #f0f0f0;
+    
+    
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+}
+
+.menu ul{
+	list-style:none;
+	position:relative;
+	float:left;
+	width: 100%;
+    height: 100px;
+	padding:0;
+    margin: 0;
+}
+
+.menu ul a{
+	display:block;
+	color:#000000;
+    line-height:32px;
+    background-color: darkgray;
+    
+    margin: 0px 1px 0px 1px;
+    padding:0 15px;
+    
+    border: 2px solid;
+    border-radius: 15px;
+    border-color: black;
+    
+	text-decoration:none;
+	font-weight:bold;
+	font-size:25px;
+	font-family: "Comic Sans", Comic Sans MS, cursive;
+    transition: background-color 0.2s ease-out;
+}
+
+.menu ul a:hover{
+    background-color: green;
+    color: #f4f1f1;
+}
+
+.menu ul li{
+	position:relative;
+	float:left;
+    
+	margin:0;
+	padding:0;
+}
+
+.menu ul li.itemMenu{
+	background:#ddd
+}
+
+.menu ul li:hover{
+	border-color: #ffe7e7;
+}
+
+.menu ul ul{
+	display:none;
+	position:absolute;
+	top:100%;
+	left:0;
+	padding:0
+}
+
+.menu ul ul li{
+	float:none;
+	width:200px
+}
+
+.menu ul ul a{
+	line-height:32px;
+}
+
+.menu ul ul ul{
+	top:0;
+	left:100%
+}
+
+.menu ul li:hover > ul{
+	display:block
+}
