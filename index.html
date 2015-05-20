@@ -1,46 +1,36 @@
 <!DOCTYPE html>
+
 <html>
 <head>
-
 	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/layout/central_layout.css">
+	<link rel="stylesheet" type="text/css" href="css/pages/index.css">
+    
 	<title>Estaciona PA</title>
-	<link rel="stylesheet" type="text/css" href="css/central.css">
-	<script src="http://code.jquery.com/jquery-2.0.0.js"></script>
-	<script src="http://malsup.github.io/jquery.cycle.all.js"></script>
-	<script src="scripts/script.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> 
-
 </head>
+
 <body>
-<style type="text/css">@import	url("css/inicio.css")</style>
+    <nav class="menu">
+        <ul class="itemMenu">
+            <li><a>Inicio</a></li>
+            <li><a href="html/pages/about.html">Sobre a Empresa</a></li>
+            <li><a href="php/login/valid_login.php">Minha Conta</a>
+                <ul>
+                    <li><a href="html/operation/login/form_login.html">Entrar</a></li>
+                    <li><a href="html/operation/cad_forms/cad_client.html">Cadastrar-se</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 
-<div class="backGround">
-    <ul class="menuDropDown">
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="pages/about.html">Sobre a Empresa</a></li>
-        <li><a href="#">Minha Conta</a>
-            <ul>
-                <li><a href="forms/login.html">Entrar</a></li>
-                <li><a href="forms/cadastrar.html">Cadastrar-se</a>
-            </ul>
-        </li>	 
-    </ul>
-</div>
+    <h1>Bem vindo ao Estaciona PA</h1>
 
-<h1>Bem vindo ao estaciona PA</h1>
-
-<div class="layout">
-
-	<div id="slide">
-		<img src="https://raw.githubusercontent.com/EstacionaPA/site/master/img/rollImage3.jpg" >
-		<img src="https://raw.githubusercontent.com/EstacionaPA/site/master/img/rollImage4.jpg" >
-	</div>
-
-	<p>
-		Olá, bem vindos ao site do <span class="FormataçãoFonteVermelha">Estaciona PA</span>. Site que está para te ajudar escontrar oque nenhum outro estacionamento pode lhe proporcionar: conforto
-	</p>
-
-</div>
-
+    <div class="layout">
+        <img src="img/slide_show/rollImage1.jpg" id="img1" alt="Comprometimento">
+        <p>
+                    Olá, bem vindos ao site do <span class="FormataçãoFonteVermelha">Estaciona PA</span>. Site que está para te ajudar escontrar oque nenhum outro estacionamento pode lhe proporcionar: conforto!
+        </p>
+    </div>
 </body>
+
 </html>
