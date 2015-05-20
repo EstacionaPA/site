@@ -11,7 +11,6 @@ var controlerLogin = {
         form.addEventListener('submit', function (event) {
                                             controlerLogin.sendValues();
                                             event.preventDefault();
-                                            document.location = '../../../php/login/valid_login.php';
                                         }
                              )
     },
@@ -33,6 +32,7 @@ var controlerLogin = {
         
         if(data==1){
             alert('Login realizado com sucesso!');
+            document.location = '../../../php/login/valid_login.php';
         }
 
         else if(data==2)
