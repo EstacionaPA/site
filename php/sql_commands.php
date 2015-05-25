@@ -1,6 +1,7 @@
 <?php
 
-include_once('../mode_access.php');
+include_once('../../config/bd_connection/conexao_remoto.php');
+
 
 function requestUser($usuario, $senhaCriptografada) 
 {
@@ -15,8 +16,8 @@ function requestUser($usuario, $senhaCriptografada)
     $resultUser = mysql_query($user);
     $row = mysql_fetch_array($resultUser);
 
-    if($row[0] > 0) return 1;
-    else return 2;
+    if($row[0] > 0) return "existe";
+    else return "no";
 
 }
 
@@ -66,5 +67,36 @@ function resquestName($usuario) {
     
 }
 
+function updateUser($user, $column, $valueColumn){
+    
+    $update = "UPDATE pessoas SET " . $column . " = '$valueColumn' WHERE usuario = '$user';";
+    $valid = mysql_query($update);
 
+    return $valid;
+}
+
+function checkUser($user){
+        
+    $checkUser = "SELECT count(*) FROM pessoas 
+              WHERE usuario = '$user'";
+
+    $resultUser = mysql_query($checkUser);
+    $row = mysql_fetch_array($resultUser);
+    
+    if($row[0] > 0) return "existe";
+    else return "nao existe";
+}
+
+function deletUser($user){
+    
+    $delet = "DELETE FROM pessoas WHERE usuario = '$user';";
+    
+    $valid = mysql_query($delet);
+    
+    if($valid==1)
+        return "ok";
+    else
+        return mysql_error();
+ 
+}
 ?>

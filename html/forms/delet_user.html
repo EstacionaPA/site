@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Deletar Usuários</title>
+    <link rel="stylesheet" type="text/css" href="../../css/forms/central_form.css">
+	<link rel="stylesheet" type="text/css" href="../../css/layout/central_layout.css">
+</head>
+<body>
+   
+<nav class="menu">
+    <ul class="itemMenu">
+        <li><a href="../../index.html">Inicio</a></li>
+        <li><a>Administração</a>
+            <ul>
+                <li><a href="cad_users.html">Cadastrar Usuarios</a></li>
+                <li><a href="edit_users.html">Editar Usuarios</a></li>
+                <li><a>Excluir Usuario</a></li>
+            </ul>
+        </li>
+        <li><a>Relatórios</a>
+            <ul>
+                <li><a href="../forms/relatorio.html">Relatorio 1</a></li>
+            </ul>
+        </li>
+        <li><a href="checkin_admin.html">Realizar Check-in</a></li>
+        <li><a href="../../php/login/valid_access.php"> IMPLEMENTAR</a>
+            <ul>
+                <li><a href="../../php/operation/exiting.php">Sair</a></li>
+            </ul>
+        </li>	 
+    </ul>
+</nav>
+    
+    <h1>Excluir Usuarios</h1>
+
+    <form id="editar">
+        <fieldset>
+            <legend>Dados Necessários</legend>
+
+            <label for="usuario">Usuario:</label>
+            <input type="text" name="usuario" id="usuario">
+            
+            <button id="submit">Enviar</button>
+
+        </fieldset>
+    </form>
+    
+</body>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../../scripts/js/function/delet_user.js"></script>
+
+</html>

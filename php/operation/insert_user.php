@@ -1,9 +1,10 @@
 <?php 
 
-include_once('sql_central.php');
+include_once('../sql_commands.php');
 
 $nome = $_POST['nome'];
 $usuario = $_POST['usuario'];
+$acesso = $_POST['access'];
 $senha = $_POST['senha'];
 $email = $_POST['email'];
 $cpf = $_POST['cpf'];
@@ -14,15 +15,14 @@ $bairro = $_POST['bairro'];
 $cep = $_POST['cep'];
 $cidade = $_POST['cidade'];
 $estado = $_POST['estado'];
-$acesso = 'c';
 $telefone = $_POST['telefone'];
 $celular = $_POST['celular'];
 
-if (!($nome) || !($usuario) || !($senha) || !($email) || !($cpf)
+if (!($nome) || !($usuario) || !($senha) || $acesso == 'n' || !($email) || !($cpf)
 	|| !($endereco) || !($numero) || !($complemento) || !($bairro) || !($cep)
 	|| !($cidade) || !($estado) || !($telefone) || !($celular))
     {
-        echo 2;
+        echo "nullFields";
         return;
 }
  
@@ -31,8 +31,8 @@ $insert = insertUsers($nome, $usuario, md5($senha), $email,
                     $cidade, $estado, $telefone, $celular, $acesso);
 
 if($insert) 
-    echo '1';
+    echo 'success';
 else 
-    echo '10';
+    echo 'other';
 
 ?>

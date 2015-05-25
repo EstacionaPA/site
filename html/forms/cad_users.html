@@ -3,20 +3,30 @@
 <head>
 	<meta charset="utf-8">
 	<title>Estaciona PA</title>
-	<link rel="stylesheet" type="text/css" href="../../../css/forms/central_form.css">
-	<link rel="stylesheet" type="text/css" href="../../../css/layout/central_layout.css">
+	<link rel="stylesheet" type="text/css" href="../../css/forms/central_form.css">
+	<link rel="stylesheet" type="text/css" href="../../css/layout/central_layout.css">
 </head>
 <body>
 
 <nav class="menu">
     <ul class="itemMenu">
-        <li><a href="../../../index.html">Inicio</a></li>
-        <li><a>Cadastrar Funcionarios</a></li>
-        <li><a href="../functions/relatorio.html">Gerar Relatório</a></li>
-        <li><a href="../functions/checkin.html">Realizar Check-in</a></li>
-        <li><a href="../../../php/login/valid_login.php"> IMPLEMENTAR</a>
+        <li><a href="../../index.html">Inicio</a></li>
+        <li><a>Administração</a>
             <ul>
-                <li><a href="../../../php/operation/exiting.php">Sair</a></li>
+                <li><a>Cadastrar Usuarios</a></li>
+                <li><a href="edit_users.html">Editar Usuarios</a></li>
+                <li><a href="delet_user.html">Excluir Usuario</a></li>
+            </ul>
+        </li>
+        <li><a>Relatórios</a>
+            <ul>
+                <li><a href="../forms/relatorio.html">Relatorio 1</a></li>
+            </ul>
+        </li>
+        <li><a href="checkin.html">Realizar Check-in</a></li>
+        <li><a href="../../php/login/valid_access.php"> IMPLEMENTAR</a>
+            <ul>
+                <li><a href="../../php/operation/exiting.php">Sair</a></li>
             </ul>
         </li>	 
     </ul>
@@ -41,10 +51,11 @@
 		</label>
 		
 		<label for="acesso">Acesso:
-		    <select name="menuAcesso" class="menuAcesso">
-		        <option value="0">(Selecione um)</option>
-		        <option value="1">Administrador</option>
-		        <option value="2">Funcionário</option>
+		    <select name="acesso" id="acesso">
+		        <option value="n">(Selecione um)</option>
+		        <option value="a">Administrador</option>
+		        <option value="f">Funcionário</option>
+		        <option value="c">Cliente</option>
 		    </select>
 		</label>
 		
@@ -69,9 +80,7 @@
 
 		<label for="email">Email:
 			<input type="text" name="email" id="email">
-		</label>
-
-		<br>	
+		</label>	
 
 		<legend>Dados geográficos</legend>
 
@@ -110,9 +119,9 @@
 
 
 </form>
-
-<script type="text/javascript" language="javascript" src="../../../scripts/js/function/insert_person.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" language="javascript" src="../../scripts/js/function/insert_users.js"></script>
+
 
 </body>
 

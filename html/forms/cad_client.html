@@ -3,9 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>Estaciona PA</title>
-	<link rel="stylesheet" type="text/css" href="../../../css/layout/central_layout.css">
-	<link rel="stylesheet" type="text/css" href="../../../css/forms/central_form.css">
-	
+	<link rel="stylesheet" type="text/css" href="../../css/forms/central_form.css">
+	<link rel="stylesheet" type="text/css" href="../../css/layout/central_layout.css">
 </head>
 <body>
 
@@ -13,10 +12,9 @@
     <ul class="itemMenu">
         <li><a href="../../../index.html">Inicio</a></li>
         <li><a href="../../pages/about.html">Sobre a Empresa</a></li>
-        <li><a href="../../../php/login/valid_login.php">Minha Conta</a>
+        <li><a href="../../php/login/valid_access.php" id="nameLogin">Minha Conta</a>
             <ul>
-                <li><a href="../login/form_login.html">Entrar</a></li>
-                <li><a>Cadastrar-se</a>
+                <li><a href="../cad_forms/cad_client.html">Cadastrar-se</a>
             </ul>
         </li>	 
     </ul>
@@ -24,7 +22,8 @@
 
 <h1>Cadastro de Usuário</h1>
 
-<form id="cadastrar" action="../php/insert_user.php" method="post">
+
+<form id="cadastrar">
 	<fieldset>
 
 		<legend>Dados necessários</legend>
@@ -38,7 +37,7 @@
 		<label for="senha">Senha:
 			<input type="password" name="senha" id="senha">
 		</label>
-
+		
 		<legend>Dados pessoais</legend>
 
 		<label for="nome">Nome Completo:
@@ -55,11 +54,14 @@
 
 		<label for="celular">Celular:
 			<input type="text" name="celular" id="celular">
+			<br>
 		</label>
 
 		<label for="email">Email:
 			<input type="text" name="email" id="email">
-		</label>	
+		</label>
+
+		<br>	
 
 		<legend>Dados geográficos</legend>
 
@@ -77,6 +79,7 @@
 
 		<label for="numero">Número:
 			<input type="text" name="numero" id="numero">
+			<br>
 		</label>
 
 		<label for="cep">Cep:
@@ -90,19 +93,16 @@
 		<label for="estado">Estado:
 			<input type="text" name="estado" id="estado">
 		</label>
-		
-		<button id="enviar">Enviar</button>
+
+		<button id="submit">Enviar</button>
 
 	</fieldset>
 
 
 </form>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" language="javascript" src="../../scripts/js/function/insert_client.js"></script>
 
-	<span id = "resultado"></span>
-	<script src="http://code.jquery.com/jquery-2.0.0.js"></script>
-	<script type="text/javascript" language="javascript" src="../scripts/ajaxinsert.js"></script>
-
-	
 
 </body>
 

@@ -50,8 +50,9 @@ h1 {
 	color:#000000;
     line-height:32px;
     background-color: darkgray;
+    width: 200px;
     
-    margin: 0px 1px 0px 1px;
+    margin: 0px 10px 0px 10px;
     padding:0 15px;
     
     border: 2px solid;
@@ -60,8 +61,7 @@ h1 {
     
 	text-decoration:none;
 	font-weight:bold;
-	font-size:25px;
-	font-family: "Comic Sans", Comic Sans MS, cursive;
+	font-size:23px;
     transition: background-color 0.2s ease-out;
 }
 
@@ -91,7 +91,8 @@ h1 {
 	position:absolute;
 	top:100%;
 	left:0;
-	padding:0
+	padding:0;
+    transition: display 0.5s;
 }
 
 .menu ul ul li{
@@ -109,5 +110,14 @@ h1 {
 }
 
 .menu ul li:hover > ul{
-	display:block
+    display:block;
+    position: relative;
+    left: 10px;
+}
+
+button{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: 38%;
+    margin-right: auto;
 }

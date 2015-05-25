@@ -20,7 +20,7 @@ var controlerLogin = {
         var user = document.getElementById('usuario').value;
         var pass = document.getElementById('senha').value;
         
-        var data = $.post('../../../php/login/login_user.php',
+        var data = $.post('../../php/login/valid_login.php',
                    {user:user, pass: pass},
                    function(data) {
                        controlerLogin.report(data);
@@ -30,15 +30,15 @@ var controlerLogin = {
     
     report: function (data) {
         
-        if(data==1){
+        if(data=='success'){
             alert('Login realizado com sucesso!');
-            document.location = '../../../php/login/valid_login.php';
+            document.location = '../../php/login/valid_access.php';
         }
 
-        else if(data==2)
+        else if(data=='!user!pass')
             alert('Login e/ou senha inválidos!');
 
-        else if(data==3)
+        else if(data=='nullFields')
             alert('Preencha todos os campos!');
 
         else    

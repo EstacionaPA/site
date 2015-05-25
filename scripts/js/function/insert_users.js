@@ -10,7 +10,6 @@ var cadPerson = {
         
         form.addEventListener('submit', function (event) {
                                             var data = cadPerson.sendValues();
-                                            cadPerson.showResult(data);
                                             event.preventDefault();
                                             
                                         }
@@ -25,6 +24,8 @@ var cadPerson = {
         var usuarioPost = usuario.val(); 
         var senha = $("#senha");
         var senhaPost = senha.val(); 
+        var access = $("#acesso");
+        var accessPost = access.val();
         var email = $("#email");
         var emailPost = email.val(); 
         var cpf = $("#cpf");
@@ -48,8 +49,8 @@ var cadPerson = {
         var celular = $("#celular");
         var celularPost = celular.val(); 
              
-        $.post("../../../php/operation/insert_user.php", {
-            nome: nomePost, usuario: usuarioPost, senha: senhaPost, 
+        $.post("../../php/operation/insert_user.php", {
+            nome: nomePost, usuario: usuarioPost, senha: senhaPost, access: accessPost,
             email: emailPost, cpf: cpfPost, endereco: enderecoPost, 
             numero: numeroPost, complemento: complementoPost, bairro: bairroPost, 
             cep: cepPost, cidade: cidadePost, estado: estadoPost, telefone: telefonePost,
@@ -57,15 +58,15 @@ var cadPerson = {
         },
                
         function(data){
-            return data;  
+            cadPerson.showResult(data);  
          });
     },
     
     showResult: function (data) {
         
-        if(data == '1') 
+        if(data == 'success') 
             alert('Cadastro Realizado com sucesso!');
-        else if(data == '2')
+        else if(data == 'nullFields')
             alert('Preencha todos os campos!');
         else
             alert('Não possível realizar o cadastro! Contacte o administrador.'); 
