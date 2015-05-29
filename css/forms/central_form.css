@@ -47,6 +47,11 @@ button{
     border-color: black;
     margin-right: 10px;
     font-weight: bold;
+
+    margin-top: 10px;
+    margin-left: 43%;
+    margin-right: auto;
+
 }
 
 button:hover{

@@ -2,6 +2,7 @@
 
 include_once('../sql_commands.php');
 
+//Validação
 if(isset($_POST["user"]) && $_POST["user"] != ""){
     
     $user = $_POST["user"];
@@ -10,6 +11,7 @@ if(isset($_POST["user"]) && $_POST["user"] != ""){
     
     if($check == "existe"){
         
+        //Requisita o deletar de um usuário
         $delet = deletUser($user);
         
         if($delet == "ok"){

@@ -41,8 +41,10 @@ for($i = 1; $i < 22; $i = $i + 2) {
         if($check == "existe")
             $valid = updateUser($vetData[0], $vetData[$i], $vetData[$i+1]);
 
-        else
-            $valid = "4";
+        else{
+            echo "!user";
+            return;
+        }
     }
 }
 
@@ -52,9 +54,6 @@ if($valid==1)
 
 else if($valid == "3")
     echo "nullFields";
-    
-else if($valid == "4")
-    echo "!user";
     
 else
     echo $valid;

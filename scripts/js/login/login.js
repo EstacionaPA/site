@@ -32,6 +32,7 @@ var controlerLogin = {
         
         if(data=='success'){
             alert('Login realizado com sucesso!');
+            //Só sera realizado a validação de acesso após ser validado login
             document.location = '../../php/login/valid_access.php';
         }
 

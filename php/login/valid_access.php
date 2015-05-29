@@ -7,7 +7,10 @@ $doc = new DOMDocument();
 
 if(isset($_SESSION['login']) ){
     
+    //Requisita Acesso
     $access = requestAccess($_SESSION['login']);
+    
+    //Faz a separação
     accessNow($access);
     
     /* IMPLEMENTAR

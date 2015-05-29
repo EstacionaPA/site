@@ -2,7 +2,7 @@
 
 include_once('../../config/bd_connection/conexao_remoto.php');
 
-
+//Realiza a confirmação se usuário e senhas estão válidos
 function requestUser($usuario, $senhaCriptografada) 
 {
     
@@ -12,15 +12,20 @@ function requestUser($usuario, $senhaCriptografada)
               WHERE( usuario ='$usuario' 
                         AND 
                      senha ='$senhaCriptografada')";
-
+    
+    //envia o comando ao SQL
     $resultUser = mysql_query($user);
+    
+    //transforma a retorno da consulta em um array
     $row = mysql_fetch_array($resultUser);
 
+    //se existir a primeira posição do array
     if($row[0] > 0) return "existe";
     else return "no";
 
 }
 
+//Registra os dados de cadastro de um novo usuário
 function insertUsers($nome, $usuario, $criptografada, $email, 
                     $cpf, $end, $num, $comp, $bairro, $cep, 
                     $cidade, $estado, $tel, $cel, $acesso) {
@@ -46,6 +51,7 @@ function insertUsers($nome, $usuario, $criptografada, $email,
         return '10';
 }
 
+//Requisita o nível de acesso de um determinado usuário
 function requestAccess($usuario) {
     
     $access = "SELECT acesso FROM pessoas
@@ -58,15 +64,20 @@ function requestAccess($usuario) {
     
 }
 
-function resquestName($usuario) {
+//Requisita o nome de um determinado usuário
+function requestName($usuario) {
     
-    $name = "SELECT nome FROM pessoas 
+    $sql = "SELECT nome, celular, endereco FROM pessoas 
                     WHERE usuario ='$usuario'";
     
-    return $name;
+    $nome = mysql_query($sql);
+    $nomeResult = mysql_result($nome, 0, 0);
+    
+    return $nomeResult . mysql_error();
     
 }
 
+//Registra os dados de um usuário alterados pelo admin
 function updateUser($user, $column, $valueColumn){
     
     $update = "UPDATE pessoas SET " . $column . " = '$valueColumn' WHERE usuario = '$user';";
@@ -75,28 +86,53 @@ function updateUser($user, $column, $valueColumn){
     return $valid;
 }
 
+//Checa se somente o usuário existe
 function checkUser($user){
         
-    $checkUser = "SELECT count(*) FROM pessoas 
+    $sql = "SELECT count(*) FROM pessoas 
               WHERE usuario = '$user'";
 
-    $resultUser = mysql_query($checkUser);
+    $resultUser = mysql_query($sql);
     $row = mysql_fetch_array($resultUser);
     
+    //
     if($row[0] > 0) return "existe";
     else return "nao existe";
 }
 
+//Função de deletar um determinado usuário
 function deletUser($user){
     
-    $delet = "DELETE FROM pessoas WHERE usuario = '$user';";
+    $sql = "DELETE FROM pessoas WHERE usuario = '$user';";
     
-    $valid = mysql_query($delet);
     
-    if($valid==1)
+    $delet = mysql_query($sql);
+    
+    if($delet==1)
         return "ok";
     else
         return mysql_error();
  
 }
+
+//Realiza a consulta de informações de um determinado usuário
+function relatInfUser($name){
+    
+    $sql =   
+        "select p.nome, p.celular, p.cidade, c.placa, ma.nome as marca, 
+                mo.nome as modelo
+        from carro  c
+        join pessoas p on c.pessoas_id = p.id
+        join marca ma on ma.id = c.marca_id
+        join modelo mo on mo.id = c.modelo_id
+        where p.nome like '%$name%';";
+        
+        
+        $relatInfUser = mysql_query($sql);
+        $result = mysql_fetch_array($relatInfUser);
+    
+        return $result;
+}
+
+
 ?>
