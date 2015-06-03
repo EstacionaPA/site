@@ -9,10 +9,7 @@ var gerarRelatorio = {
         var form = document.getElementById('gerarRelatorio');
         
         form.addEventListener('submit', function (event) {
-<<<<<<< HEAD
             gerarRelatorio.cleanTable();
-=======
->>>>>>> 49f0e2e095a930cf7a893072ec7c09c8c2fe7281
             gerarRelatorio.sendValues();
             event.preventDefault();
         });
@@ -27,17 +24,16 @@ var gerarRelatorio = {
         $.post('../../php/operation/relat_inf_user.php',
             //Envia informações
             {name: name},
-<<<<<<< HEAD
+               
             //Retorno do PHP
             function(value){
                 var verify = gerarRelatorio.verify(value);
-=======
+
                
             //Retorno do PHP
             function(value){
                 var verify = gerarRelatorio.verify(value);
                 
->>>>>>> 49f0e2e095a930cf7a893072ec7c09c8c2fe7281
                 if(verify == "gerarRelat")
                     gerarRelatorio.gerarRelat(value);
             });
@@ -46,7 +42,6 @@ var gerarRelatorio = {
     gerarRelat: function (value) {
         
         //Busca no HTML o id
-<<<<<<< HEAD
         var table = $('#relat');
         var l=0;
         var r=0;
@@ -81,7 +76,7 @@ var gerarRelatorio = {
             
             //Para pegar o restante das informações no array (1-6 / 7-12 / etc)
             colMax = colMax + 6;
-=======
+
         var tr = $('#relat');
         var i=0;
         //seta um novo array
@@ -109,18 +104,18 @@ var gerarRelatorio = {
             
             
             tr.append(td);
->>>>>>> 49f0e2e095a930cf7a893072ec7c09c8c2fe7281
+
         }
         
     },
     
     verify: function (value){
     
-<<<<<<< HEAD
+
         if(value == "")
-=======
+
         if(value == "noData")
->>>>>>> 49f0e2e095a930cf7a893072ec7c09c8c2fe7281
+
             alert("Sem dados para esta pesquisa!");
         
         else if(value != "noUserDateFields"){
@@ -128,7 +123,7 @@ var gerarRelatorio = {
         }
         
         else
-<<<<<<< HEAD
+
             alert("Informe um usuario!");
     },
     
@@ -142,9 +137,9 @@ var gerarRelatorio = {
             $('.relat_list' + l).remove();
             l++;
         }
-=======
+
             alert("Preencha todos os campos!");
->>>>>>> 49f0e2e095a930cf7a893072ec7c09c8c2fe7281
+
     }
 }
 
