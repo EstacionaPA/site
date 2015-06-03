@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
+include_once('../../config/bd_connection/conexao_local.php');
+=======
 include_once('../../config/bd_connection/conexao_remoto.php');
+>>>>>>> 49f0e2e095a930cf7a893072ec7c09c8c2fe7281
 
 //Realiza a confirmação se usuário e senhas estão válidos
 function requestUser($usuario, $senhaCriptografada) 
@@ -100,12 +104,60 @@ function checkUser($user){
     else return "nao existe";
 }
 
+<<<<<<< HEAD
+//Função para checar PLACA
+function checkPlaca($placa){
+    
+    $sql = "SELECT count(*) FROM carro
+              WHERE placa = '$placa'";
+
+    $result = mysql_query($sql);
+    $row = mysql_fetch_array($result);
+    
+    //
+    if($row[0] > 0) return "existe";
+    else return "nao existe";
+    
+}
+
+//Função para checar a marca
+function checkMarca($marca){
+    $sql = "SELECT count(*) FROM marca
+              WHERE nome = '$marca'";
+
+    $result = mysql_query($sql);
+    $row = mysql_fetch_array($result);
+    
+    //
+    if($row[0] > 0) return "existe";
+    else return "nao existe";
+}
+
+//Função para checar o modelo
+function checkModelo($mod){
+    $sql = "SELECT count(*) FROM modelo
+              WHERE nome = '$mod'";
+
+    $result = mysql_query($sql);
+    $row = mysql_fetch_array($result);
+    
+    //
+    if($row[0] > 0) return "existe";
+    else return "nao existe";
+}
+
+=======
+>>>>>>> 49f0e2e095a930cf7a893072ec7c09c8c2fe7281
 //Função de deletar um determinado usuário
 function deletUser($user){
     
     $sql = "DELETE FROM pessoas WHERE usuario = '$user';";
+<<<<<<< HEAD
+     
+=======
     
     
+>>>>>>> 49f0e2e095a930cf7a893072ec7c09c8c2fe7281
     $delet = mysql_query($sql);
     
     if($delet==1)
@@ -127,6 +179,25 @@ function relatInfUser($name){
         join modelo mo on mo.id = c.modelo_id
         where p.nome like '%$name%';";
         
+<<<<<<< HEAD
+        $relatInfUser = mysql_query($sql);
+    
+        return $relatInfUser;
+}
+
+function registerCar($user, $placa, $marca, $mod){
+    
+    $sql = "INSERT INTO carro
+            (placa, marca_id, pessoas_id, modelo_id)
+            values
+            ('{$placa}', '{$marca}', '{$user}', '{$mod}')";
+        
+    $insert = mysql_query($sql);
+    return $insert . mysql_error();
+}
+    
+
+=======
         
         $relatInfUser = mysql_query($sql);
         $result = mysql_fetch_array($relatInfUser);
@@ -134,5 +205,6 @@ function relatInfUser($name){
         return $result;
 }
 
+>>>>>>> 49f0e2e095a930cf7a893072ec7c09c8c2fe7281
 
 ?>

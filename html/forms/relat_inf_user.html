@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Estaciona PA</title>
+	<link rel="stylesheet" type="text/css" href="../../css/forms/central_form.css">
+	<link rel="stylesheet" type="text/css" href="../../css/layout/central_layout.css">
+	<link rel="stylesheet" type="text/css" href="../../css/relats/relat_inf_user_table.css">
+</head>
+<body>
+
+<nav class="menu">
+    <ul class="itemMenu">
+        <li><a href="../../index.html">Inicio</a></li>
+        <li><a>Administração</a>
+            <ul>
+                <li><a href="cad_users.html">Cadastrar Usuarios</a></li>
+                <li><a href="edit_users.html">Editar Usuarios</a></li>
+                <li><a href="delet_user.html">Excluir Usuario</a></li>
+            </ul>
+        </li>
+        <li><a>Relatórios</a>
+            <ul>
+                <li><a>Relatorio 1</a></li>
+            </ul>
+        </li>
+        <li><a href="checkin.html">Realizar Check-in</a></li>
+        <li><a href="../../php/login/valid_access.php"> IMPLEMENTAR</a>
+            <ul>
+                <li><a href="../../php/operation/exiting.php">Sair</a></li>
+            </ul>
+        </li>	 
+    </ul>
+</nav>
+
+
+<h1>Gerar Relatório de Inf. de Usuários</h1>
+
+
+<form id="gerarRelatorio">
+
+	<fieldset>
+	
+		<legend>Datas</legend>
+
+		<label for="name">Nome do usuario:</label>
+		  <input type="text" name="name" id="name">
+		
+		<div>
+		    <button id="submit">Gerar</button>
+		    
+		</div>
+
+	</fieldset>
+
+</form>
+
+<table id="relat">
+    <tr>
+        <th>Nome</th>
+        <th>Celular</th>
+        <th>Cidade</th>
+        <th>Placa</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+    </tr>
+</table>
+
+</body>
+<script src="../../scripts/js/jquery-2.1.4.js"></script>
+<script src="../../scripts/js/function/relat_inf_user.js"></script>
+</html>

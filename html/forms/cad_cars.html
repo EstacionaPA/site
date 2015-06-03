@@ -4,6 +4,8 @@
 	<meta charset="utf-8">
 	<title>Estaciona PA</title>
 	<link rel="stylesheet" type="text/css" href="../../css/layout/central_layout.css"> 
+	<link rel="stylesheet" type="text/css" href="../../css/forms/central_form.css"> 
+	<link rel="stylesheet" type="text/css" href="../../css/forms/cad_cars.css"> 
 </head>
 
 <body>
@@ -13,33 +15,19 @@
         <li><a href="../../index.html">Inicio</a></li>
         <li><a>Administração</a>
             <ul>
-<<<<<<< HEAD
-                <li><a href="../forms/cad_users.html">Cadastros</a>
-                    <ul>
-                        <li><a href="../forms/cad_users.html">Usuarios</a></li>
-                        <li><a href="../forms/cad_users.html">Marca</a></li>
-                        <li><a href="../forms/cad_users.html">Modelo</a></li>
-                        <li><a href="../forms/cad_cars.html">Veículos</a></li>
-                    </ul>
-                </li>
-=======
                 <li><a href="../forms/cad_users.html">Cadastrar Usuarios</a></li>
->>>>>>> 49f0e2e095a930cf7a893072ec7c09c8c2fe7281
+                <li><a href="../forms/cad_cars.html">Cadastrar Veículos</a></li>
                 <li><a href="../forms/edit_users.html">Editar Usuarios</a></li>
                 <li><a href="../forms/delet_user.html">Excluir Usuario</a></li>
             </ul>
         </li>
         <li><a>Relatórios</a>
             <ul>
-<<<<<<< HEAD
                 <li><a href="../forms/relat_inf_user.html">Inf. Usuarios</a></li>
                 <li><a>Histórico</a></li>
                 <li><a>Carros x Placa</a></li>
                 <li><a>Reserva x Veículos</a></li>
                 <li><a>QTD. Reservas</a></li>
-=======
-                <li><a href="../forms/relatorio.html">Relatorio 1</a></li>
->>>>>>> 49f0e2e095a930cf7a893072ec7c09c8c2fe7281
             </ul>
         </li>
         <li><a href="../forms/checkin.html">Realizar Check-in</a></li>
@@ -51,13 +39,37 @@
     </ul>
 </nav>
 
-<h1>Área de Usuário</h1>
+<h1>Cadastro de Carros de um cliente</h1>
 
-<div class="layout">
-</div>
+<form id="cadCar">
 
+	<fieldset>
+	
+        <legend>Dados login</legend>
+        
+		<label for="usuario">Usuário:</label>
+		<input type="text" name="usuario" id="usuario">
+		
+		<label for="placa">Placa do Carro:</label>
+		<input type="text" name="placa" id="placa">
+		
+		<label for="marca">Marca:</label>
+        <input type="text" name="marca" id="marca" href="">
+		
+		<label for="modelo">Modelo:</label>
+		<input type="text" name="modelo" id="modelo">
+		
+		
+		<button id="submit">Entrar</button>
+		
+	</fieldset>
+
+</form>
 </body>
 
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="../../scripts/js/function/cad_cars.js"></script>
 
 
 </html>
