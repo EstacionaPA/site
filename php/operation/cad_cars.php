@@ -8,36 +8,45 @@ if($_POST["user"] == "" || $_POST["placa"] == "" ||
         return;
 }
 
-$user = $_POST["user"];
-$placa = $_POST["placa"];
-$marca = $_POST["marca"];
-$mod = $_POST["mod"];
+$postUser = $_POST["user"];
+$postPlaca = $_POST["placa"];
+$postMarca = $_POST["marca"];
+$postMod = $_POST["mod"];
 
-if(1){
-    if(checkPlaca($placa) == "nao existe"){
-        if(checkMarca($marca) == "existe"){
-            if(checkModelo($mod) == "existe"){
-                $valid = registerCar(1, $placa, 2, 2);
-                if($valid) echo $valid;
-                else echo $valid;
-                return;
+$validUser = checkUser($postUser);
+$validMarca = checkMarca($postMarca);
+$validModelo = checkModelo($postMod);
+$validPlaca = checkPlaca($postPlaca);
+    
+if($validUser == "existe"){
+    if($validMarca == "existe"){
+        if($validModelo == "existe"){
+            if($validPlaca == "nao existe"){
                 
+                $user= requestIDUser($postUser);
+                $modelo = requestIDModelo($postMod);
+                $marca = requestIDMarca($postMarca);
+
+                $valid = insertCar($user, $postPlaca, $marca, $modelo);
+                
+                if($valid) echo "added";
+                else echo $valid;
             }
             
             else{
-                echo "!modelo";
+                echo "placa";
                 return;
             }
         }
         
         else{
-            echo "!marca";
+            echo "!modelo";
             return;
         }
     }
-    
+        
     else{
-        echo "placa";
+        echo "!marca";
         return;
     }
 }

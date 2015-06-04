@@ -17,15 +17,6 @@ if(isset($_POST["name"])){
             foreach($row as $cell)
                 echo $cell .  ";";
         
-        if(!$array){
-            echo "noData" ;
-            return;
-        }
-        
-        //gera a informação para o javascript
-        for($i = 0; $i < 6; $i++)
-            echo $array[$i] .";";
-        
         return;
     }
     echo "noUserDateFields";

@@ -54,10 +54,6 @@ h1 {
     
     margin: 0px 0px 0px 5px;
     padding: 0px 5px 0px 5px;
-
-    margin: 0px 10px 0px 10px;
-    padding:0 15px;
-
     
     border: 2px solid;
     border-radius: 15px;
@@ -66,7 +62,6 @@ h1 {
 	text-decoration:none;
 	font-weight:bold;
 	font-size:23px;
-
     text-align: center;
     transition: background-color 0.2s ease-out;
 }
@@ -84,19 +79,9 @@ h1 {
 	padding:0;
 }
 
-
 .menu ul li:hover{
 	border-color: #ffe7e7;
-}
     
-
-.menu ul li.itemMenu{
-	background:#ddd
-}
-
-.menu ul li:hover{
-	border-color: #ffe7e7;
-
 }
 
 .menu ul ul{
@@ -111,7 +96,6 @@ h1 {
 .menu ul ul li{
 	float:none;
 	width:96%;
-	width:200px
 }
 
 .menu ul ul a{
@@ -121,17 +105,13 @@ h1 {
 .menu ul ul ul{
 	top:0;
 	left:100%;
-	left:100%
 }
 
 .menu ul li:hover > ul{
     display:block;
     padding-top: 1px;
     margin-left: 4px;
-    position: relative;
-    left: 10px;
-    left: 10px;
-    left: 10px;
+    
 }
 
 

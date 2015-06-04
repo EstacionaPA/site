@@ -18,7 +18,7 @@ if($user == '' || $pass == ''){
 }
 
 //Requisita validação de usuário e senha
-$validation = requestUser($user, md5($pass));
+$validation = checkUserPass($user, md5($pass));
 
 if($validation == "existe"){
     session_start();

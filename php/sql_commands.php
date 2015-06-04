@@ -1,31 +1,100 @@
 <?php
 
-include_once('../../config/bd_connection/conexao_remoto.php');
+include_once('../../config/bd_connection/conexao_local.php');
 
-//Realiza a confirmação se usuário e senhas estão válidos
-function requestUser($usuario, $senhaCriptografada) 
-{
-    
-    if($usuario == '' || $senhaCriptografada == '') return false;
-    
-    $user = "SELECT count(*) FROM pessoas 
-              WHERE( usuario ='$usuario' 
-                        AND 
-                     senha ='$senhaCriptografada')";
-    
-    //envia o comando ao SQL
-    $resultUser = mysql_query($user);
-    
-    //transforma a retorno da consulta em um array
-    $row = mysql_fetch_array($resultUser);
+//------------------------REQUISIÇÕES--------------------------
 
-    //se existir a primeira posição do array
-    if($row[0] > 0) return "existe";
-    else return "no";
-
+//Requisita o nível de acesso de um determinado usuário
+function requestAccess($usuario) {
+    
+    $sql = "SELECT acesso FROM pessoas
+                  WHERE usuario = '$usuario'";
+    
+    $query = mysql_query($sql);
+    $result = mysql_result($query, 0);
+    
+    return $result;
+    
 }
 
-//Registra os dados de cadastro de um novo usuário
+//Requisita o ID do usuario
+function requestIDUser($user){
+    
+    $sql = "SELECT id FROM pessoas
+            WHERE usuario = '$user';";
+    
+    $query = mysql_query($sql);
+    $result = mysql_result($query, 0);
+    
+    return $result;
+    
+}
+
+//Requisita o ID da marca
+function requestIDMarca($marca){
+    
+    $sql = "SELECT id FROM marca
+            WHERE nome = '$marca';";
+    
+    $query = mysql_query($sql);
+    $result = mysql_result($query, 0);
+    
+    return $result;
+}
+
+//Requisita o ID do modelo
+function requestIDModelo($mod){
+    
+    $sql = "SELECT id FROM modelo
+            WHERE nome = '$mod';";
+    
+    $query = mysql_query($sql);
+    $result = mysql_result($query, 0);
+    
+    return $result;
+}
+
+//Requisita o nome de um determinado usuário
+function requestName($usuario) {
+    
+    $sql = "SELECT nome, celular, endereco FROM pessoas 
+                    WHERE usuario ='$usuario'";
+    
+    $nome = mysql_query($sql);
+    $nomeResult = mysql_result($nome, 0, 0);
+    
+    return $nomeResult ;
+    
+}
+
+//Requisita todas as marcas de carros existentes no banco de dados
+function requestMark(){
+    
+    $sql = "SELECT nome FROM marca
+            ORDER BY nome;";
+    
+    $query = mysql_query($sql);
+    return $query;    
+    
+}
+
+//Requisita todos os modelos de carros existentes no banco de dados
+function requestModel($markValue){
+    
+    $idMark = requestIDMarca($markValue);
+    
+    $sql = "SELECT nome FROM modelo
+            WHERE marca_id = $idMark
+            ORDER BY nome;";
+    
+    $query = mysql_query($sql);
+    return $query;
+    
+}
+
+//--------------------------INSERTS--------------------------
+
+//Registra os dados de cadastro de um usuário
 function insertUsers($nome, $usuario, $criptografada, $email, 
                     $cpf, $end, $num, $comp, $bairro, $cep, 
                     $cidade, $estado, $tel, $cel, $acesso) {
@@ -51,31 +120,19 @@ function insertUsers($nome, $usuario, $criptografada, $email,
         return '10';
 }
 
-//Requisita o nível de acesso de um determinado usuário
-function requestAccess($usuario) {
+//Requista os dados do cadastro de um carro
+function insertCar($user, $placa, $marca, $mod){
     
-    $access = "SELECT acesso FROM pessoas
-                  WHERE usuario = '$usuario'";
-    
-    $resultAccess = mysql_query($access);
-    $stringResult = mysql_result($resultAccess, 0);
-    
-    return $stringResult;
-    
+    $sql = "INSERT INTO carro
+            (placa, marca_id, pessoas_id, modelo_id)
+            values
+            ('{$placa}', '{$marca}', '{$user}', '{$mod}')";
+        
+    $insert = mysql_query($sql);
+    return $insert . mysql_error();
 }
-
-//Requisita o nome de um determinado usuário
-function requestName($usuario) {
     
-    $sql = "SELECT nome, celular, endereco FROM pessoas 
-                    WHERE usuario ='$usuario'";
-    
-    $nome = mysql_query($sql);
-    $nomeResult = mysql_result($nome, 0, 0);
-    
-    return $nomeResult . mysql_error();
-    
-}
+//--------------------------UPDATE--------------------------
 
 //Registra os dados de um usuário alterados pelo admin
 function updateUser($user, $column, $valueColumn){
@@ -85,6 +142,24 @@ function updateUser($user, $column, $valueColumn){
 
     return $valid;
 }
+
+//--------------------------DELETE --------------------------
+
+//Função de deletar um determinado usuário
+function deletUser($user){
+    
+    $sql = "DELETE FROM pessoas WHERE usuario = '$user';";
+     
+    $delet = mysql_query($sql);
+    
+    if($delet==1)
+        return "ok";
+    else
+        return mysql_error();
+ 
+}
+
+//--------------------------VALIDAÇÕES--------------------------
 
 //Checa se somente o usuário existe
 function checkUser($user){
@@ -109,7 +184,6 @@ function checkPlaca($placa){
     $result = mysql_query($sql);
     $row = mysql_fetch_array($result);
     
-    //
     if($row[0] > 0) return "existe";
     else return "nao existe";
     
@@ -141,19 +215,30 @@ function checkModelo($mod){
     else return "nao existe";
 }
 
-//Função de deletar um determinado usuário
-function deletUser($user){
+//Realiza a confirmação se usuário e senhas estão válidos
+function checkUserPass($usuario, $senhaCriptografada) 
+{
     
-    $sql = "DELETE FROM pessoas WHERE usuario = '$user';";
+    if($usuario == '' || $senhaCriptografada == '') return false;
+    
+    $user = "SELECT count(*) FROM pessoas 
+              WHERE( usuario ='$usuario' 
+                        AND 
+                     senha ='$senhaCriptografada')";
+    
+    //envia o comando ao SQL
+    $resultUser = mysql_query($user);
+    
+    //transforma a retorno da consulta em um array
+    $row = mysql_fetch_array($resultUser);
 
-    $delet = mysql_query($sql);
-    
-    if($delet==1)
-        return "ok";
-    else
-        return mysql_error();
- 
+    //se existir a primeira posição do array
+    if($row[0] > 0) return "existe";
+    else return "no";
+
 }
+
+//--------------------------RELATORIOS--------------
 
 //Realiza a consulta de informações de um determinado usuário
 function relatInfUser($name){
@@ -172,20 +257,5 @@ function relatInfUser($name){
         return $relatInfUser;
 }
 
-function registerCar($user, $placa, $marca, $mod){
-    
-    $sql = "INSERT INTO carro
-            (placa, marca_id, pessoas_id, modelo_id)
-            values
-            ('{$placa}', '{$marca}', '{$user}', '{$mod}')";
-        
-    $insert = mysql_query($sql);
-    return $insert . mysql_error();
-    
-    $relatInfUser = mysql_query($sql);
-    $result = mysql_fetch_array($relatInfUser);
-
-    return $result;
-}
 
 ?>

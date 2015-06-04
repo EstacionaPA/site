@@ -1,7 +1,7 @@
-var gerarRelatorio = {
+var RelatInfUserService = {
     
     init: function () {
-        gerarRelatorio.readPage();
+        RelatInfUserService.readPage();
     },
     
     readPage: function () {
@@ -9,8 +9,7 @@ var gerarRelatorio = {
         var form = document.getElementById('gerarRelatorio');
         
         form.addEventListener('submit', function (event) {
-            gerarRelatorio.cleanTable();
-            gerarRelatorio.sendValues();
+            RelatInfUserService.sendValues();
             event.preventDefault();
         });
     },
@@ -24,18 +23,10 @@ var gerarRelatorio = {
         $.post('../../php/operation/relat_inf_user.php',
             //Envia informações
             {name: name},
-               
             //Retorno do PHP
             function(value){
-                var verify = gerarRelatorio.verify(value);
-
-               
-            //Retorno do PHP
-            function(value){
-                var verify = gerarRelatorio.verify(value);
-                
-                if(verify == "gerarRelat")
-                    gerarRelatorio.gerarRelat(value);
+                RelatInfUserService.cleanTable();
+                RelatInfUserService.verify(value);
             });
     },
     
@@ -76,54 +67,19 @@ var gerarRelatorio = {
             
             //Para pegar o restante das informações no array (1-6 / 7-12 / etc)
             colMax = colMax + 6;
-
-        var tr = $('#relat');
-        var i=0;
-        //seta um novo array
-        var relat = new Array();
-        
-        //Se caso o relatório já estiver sido gero, apagar
-        if(document.getElementById('relat_list')){
-            for(i; i< 6; i++)
-                $('#relat_list').remove();
-        }
-        
-        //Retira os ";" do dado retornado e transforma em um array
-        relat = value.split(';');
-        
-        for(i=0; i<6; i++){
-            
-            //cria uma nova tag em html
-            var td = document.createElement('td');
-            
-            //percorrendo o array e colocando as informações
-            td.innerHTML = relat[i];
-            
-            //gera um nome de ID
-            td.id = 'relat_list';
-            
-            
-            tr.append(td);
-
         }
         
     },
     
     verify: function (value){
     
-
         if(value == "")
-
-        if(value == "noData")
-
             alert("Sem dados para esta pesquisa!");
         
-        else if(value != "noUserDateFields"){
-            return "gerarRelat";
-        }
+        else if(value != "noUserDateFields")
+            RelatInfUserService.gerarRelat(value);
         
         else
-
             alert("Informe um usuario!");
     },
     
@@ -137,10 +93,7 @@ var gerarRelatorio = {
             $('.relat_list' + l).remove();
             l++;
         }
-
-            alert("Preencha todos os campos!");
-
     }
 }
 
-gerarRelatorio.init(); 
+RelatInfUserService.init();
