@@ -44,6 +44,7 @@ var cadCarsService = {
                {request: 'mark'},
                function (stringMark) {
                     cadCarsService.createList(stringMark, 'marca', '');
+                    cadCarsService.writeFieldMarkOk();
                 }
         );
         
@@ -55,6 +56,7 @@ var cadCarsService = {
                {request: 'model', markValue: markValue},
                function (stringModel) {
                     cadCarsService.createList(stringModel, 'modelo', 'option');
+                    cadCarsService.writeFieldModelOk();
                 }
         );
     },

@@ -14,7 +14,7 @@ if(isset($_POST["name"])){
         //gera a informação para o javascript
         while($row = mysql_fetch_row($array))
             
-            foreach($row as $cell)
+        foreach($row as $cell)
                 echo $cell .  ";";
         
         return;
@@ -22,6 +22,6 @@ if(isset($_POST["name"])){
     echo "noUserDateFields";
 }
 else
-   echo "noUserDateFields";
+    echo "noUserDateFields";
 
 ?>

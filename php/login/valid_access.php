@@ -3,7 +3,6 @@
 include_once('../sql_commands.php');
 
 session_start();
-$doc = new DOMDocument();
 
 if(isset($_SESSION['login']) ){
     

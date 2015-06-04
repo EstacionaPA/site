@@ -1,21 +1,17 @@
 <?php
 
-include_once('modo_acesso.php');
-include_once('db_manipuling.php');
+include_once("../sql_commands.php");
 
-$usuario = $_SESSION["loginIn"];
+session_start();
 
-//Realiza consulta
-$sql = mysql_query(resquestName($usuario));
+if(isset($_SESSION["login"])){
+    
+    $usuario = requestName($_SESSION['login']);
+    echo $usuario;
 
-//Retira o resultado da consulta da primeira linha "0" da consulta
-$result = mysql_result($sql, 0);
+}
 
-//Retira a posição do primeiro espaço
-$posString = strpos($result, ' ');
-//Retira o primeiro nome (com a posição do primeiro espaço)
-$newString = substr($result, 0, $posString);
+else 
+    echo "Realizar login";
 
-print $newString;
-		
 ?>

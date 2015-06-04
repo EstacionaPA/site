@@ -2,7 +2,6 @@ var cadCarsContol = {
     
     init: function () {
         cadCarsService.findValuesMark();
-        cadCarsService.writeFieldMarkOk();
         cadCarsContol.readPage();   
     },
     
@@ -25,7 +24,6 @@ var cadCarsContol = {
             cadCarsService.writeFieldModelLoading();
             cadCarsService.cleanListOption();
             cadCarsService.findValuesModel(form.marca.value);
-            cadCarsService.writeFieldModelOk();
         });
     }
 };

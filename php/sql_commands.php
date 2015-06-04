@@ -1,6 +1,6 @@
 <?php
 
-include_once('../../config/bd_connection/conexao_remoto.php');
+include_once('../../config/bd_connection/conexao_local.php');
 
 //------------------------REQUISIÇÕES--------------------------
 
@@ -57,13 +57,13 @@ function requestIDModelo($mod){
 //Requisita o nome de um determinado usuário
 function requestName($usuario) {
     
-    $sql = "SELECT nome, celular, endereco FROM pessoas 
-                    WHERE usuario ='$usuario'";
+    $sql = "SELECT nome FROM pessoas 
+            WHERE usuario ='$usuario'";
+
+    $query = mysql_query($sql);
+    $result = mysql_result($query, 0);
     
-    $nome = mysql_query($sql);
-    $nomeResult = mysql_result($nome, 0, 0);
-    
-    return $nomeResult ;
+    return $result;
     
 }
 
