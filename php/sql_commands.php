@@ -1,6 +1,6 @@
 <?php
 
-include_once('../../config/bd_connection/conexao_local.php');
+include_once('../../config/bd_connection/conexao_remoto.php');
 
 //------------------------REQUISIÇÕES--------------------------
 
