@@ -107,7 +107,7 @@ var cadCarsService = {
     
     writeFieldModelLoading: function () {
         option = document.getElementById('optionModel');
-        option.textContent = '(CARREANDO...)';
+        option.textContent = '(CARREGANDO...)';
     },
     
     writeFieldModelOk: function () {
