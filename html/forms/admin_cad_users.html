@@ -71,55 +71,55 @@
 		<legend>Dados Pessoais</legend>
 
 		<label for="nome">Nome Completo:
-			<input type="text" name="nome" id="nome">
+			<input type="text" name="nome" id="nome" required>
 		</label>
 
 		<label for="cpf">Cpf:
-			<input type="text" name="cpf" id="cpf">
+			<input type="text" name="cpf" id="cpf" maxlength="11" required>
 		</label>
 
 		<label for="telefone">Telefone:			
-			<input type="text" name="telefone" id="telefone">
+			<input type="text" name="telefone" id="telefone" maxlength="10" required placeholder="XX99999999">
 		</label>
 
 		<label for="celular">Celular:
-			<input type="text" name="celular" id="celular">
+			<input type="text" name="celular" id="celular" maxlength="10" required placeholder="XX99999999">
 			<br>
 		</label>
 
 		<label for="email">Email:
-			<input type="text" name="email" id="email">
+			<input type="text" name="email" id="email" required>
 		</label>	
 
 		<legend>Dados Geográficos</legend>
 
 		<label for="endereco">Endereço:
-			<input type="text" name="endereco" id="endereco">
+			<input type="text" name="endereco" id="endereco" required>
 		</label>
 
 		<label for="complemento">Complemento:
-			<input type="text" name="complemento" id="complemento">
+			<input type="text" name="complemento" id="complemento" required>
 		</label>
 
 		<label for="bairro">Bairro:
-			<input type="text" name="bairro" id="bairro">
+			<input type="text" name="bairro" id="bairro" required>
 		</label>
 
 		<label for="numero">Número:
-			<input type="text" name="numero" id="numero">
+			<input type="text" name="numero" id="numero" required>
 			<br>
 		</label>
 
 		<label for="cep">Cep:
-			<input type="text" name="cep" id="cep">	 
+			<input type="text" name="cep" id="cep" maxlength="8" required placeholder="999999000">	 
 		</label>
 
 		<label for="cidade">Cidade:
-			<input type="text" name="cidade" id="cidade">
+			<input type="text" name="cidade" id="cidade" required>
 		</label>
 
 		<label for="estado">Estado:
-			<input type="text" name="estado" id="estado">
+			<input type="text" name="estado" id="estado" maxlength="2" required placeholder="XX">
 		</label>
 
 		<button id="submit">Confirmar</button>

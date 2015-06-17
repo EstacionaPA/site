@@ -8,8 +8,8 @@ if(!isset($_POST['user']) || !isset($_POST['pass'])){
     return 0;
 }
 
-$user = $_POST['user'];
-$pass = $_POST['pass'];
+$user = addslashes($_POST['user']);
+$pass = addslashes($_POST['pass']);
 
 //Valida se estão preenchidos
 if($user == '' || $pass == ''){

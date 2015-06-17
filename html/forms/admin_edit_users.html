@@ -50,7 +50,7 @@
             <legend>Dados do Sistema</legend>
 
             <label for="usuario">Usuario:</label>
-            <input type="text" name="usuario" id="usuario">
+            <input type="text" name="usuario" id="usuario" required>
 
             <label for="acesso">Acesso:
                 <select name="acesso" id="acesso">
@@ -64,11 +64,11 @@
             <legend>Outros Dados</legend>
             
             <label for="telefone">Telefone:			
-                <input type="text" name="telefone" id="telefone">
+                <input type="text" name="telefone" id="telefone" maxlength="10" placeholder="XX99999999">
             </label>
 
             <label for="celular">Celular:
-                <input type="text" name="celular" id="celular">
+                <input type="text" name="celular" id="celular" maxlength="10" placeholder="XX99999999">
                 <br>
             </label>
 
@@ -94,7 +94,7 @@
             </label>
 
             <label for="cep">Cep:
-                <input type="text" name="cep" id="cep">	 
+                <input type="text" name="cep" id="cep" maxlength="8" placeholder="999999000">	 
             </label>
 
             <label for="cidade">Cidade:
@@ -102,7 +102,7 @@
             </label>
 
             <label for="estado">Estado:
-                <input type="text" name="estado" id="estado">
+                <input type="text" name="estado" id="estado" maxlength="2" placeholder="XX">
             </label>
             
             <button id="submit">Enviar</button>
