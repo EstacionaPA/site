@@ -1,4 +1,4 @@
-var cadCarsContol = {
+var cadCarsControl = {
     
     init: function () {
         cadCarsService.findValuesMark();

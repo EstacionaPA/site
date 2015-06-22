@@ -4,7 +4,8 @@
 	<meta charset="utf-8">
 	<title>Estaciona PA</title>
 	<link rel="stylesheet" type="text/css" href="../../css/forms/central_form.css">
-	<link rel="stylesheet" type="text/css" href="../../css/layout/central_layout.css">	
+	<link rel="stylesheet" type="text/css" href="../../css/relats/relat_table.css">
+	<link rel="stylesheet" type="text/css" href="../../css/layout/central_layout.css">
 </head>
 <body>
 
@@ -27,12 +28,12 @@
             <ul>
                 <li><a href="../forms/admin_relat_inf_user.html">Inf. Usuarios</a></li>
                 <li><a>Histórico</a></li>
-                <li><a href="../forms/admin_relat_placaxcarro.html">Carros x Placa</a></li>
+                <li><a>Carros x Placa</a></li>
                 <li><a>Reserva x Veículos</a></li>
                 <li><a>QTD. Reservas</a></li>
             </ul>
         </li>
-        <li><a>Realizar Check-in</a></li>
+        <li><a href="../forms/admin_chekin.html">Realizar Check-in</a></li>
         <li><a href="../../php/login/valid_access.php" id="nameMenu" >(Checando login...)</a>
             <ul>
                 <li><a href="../../php/operation/exiting.php">Sair</a></li>
@@ -41,28 +42,41 @@
     </ul>
 </nav>
 
-<h1>Realizar Checkin</h1>
-<form id = "checkIn" action="" method="post">
+<h1>Cadastro de Usuário</h1>
 
+
+<form id="gerarRelatorio">
 	<fieldset>
-	
-		<legend>Comprovante</legend>
-    
-		<label for="numCheckIn">Número do Comprovante:
-		    <input type="text" name="numComp" id="numComp">
-		</label>
 
-		<button id="submit">Gerar Relatorio</button>
+		<legend>Dados Necessários</legend>
+
+		<label for="placa">Placa do Carro:</label>
+		<input type="text" name="placa" id="placaCarro" maxlength="7" required placeholder="XXX9999">
+		
+		<button id="submit">Confirmar</button>
 
 	</fieldset>
 
 </form>
 
-<script type="text/javascript" src="../../scripts/jquery-2.1.4.min.js"></script>
+<table id="relat">
+		    <tr>
+		        <th>Nome</th>
+		        <th>Celular</th>
+		        <th>Modelo do Carro</th>
+		        <th>Marca do carro</th>
+		    </tr>
+
+		</table>
+<script src="../../scripts/jquery-2.1.4.min.js"></script>
+<script src="../../scripts/js/function/relat_placaxcarro_service.js"></script>
+<script src="../../scripts/js/function/relat_placaxcarro_control.js"></script>
+<script src="../../scripts/js/function/relat_service.js"></script>
 <script src="../../scripts/js/literal_objetcts/root_path_l2.js"></script>
 <script src="../../scripts/js/menu/name_menu_service.js"></script>
 <script src="../../scripts/js/menu/name_menu_control.js"></script>
 
 
 </body>
+
 </html>

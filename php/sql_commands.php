@@ -258,4 +258,20 @@ function relatInfUser($name){
 }
 
 
+//Realiza a consulta de carros por placa
+function relatBordXCar($board){
+    
+    $sql = "SELECT p.nome, p.telefone, ma.nome, mo.nome
+            FROM carro c
+            JOIN pessoas p ON p.id = c.pessoas_id
+            JOIN modelo mo on mo.id = c.modelo_id
+            JOIN marca ma on ma.id = c.marca_id
+            WHERE c.placa = '$board';";
+    
+    $relatBoardXCar = mysql_query($sql);
+    
+    return $relatBoardXCar;
+        
+}
+
 ?>

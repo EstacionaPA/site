@@ -5,7 +5,7 @@
 	<title>Estaciona PA</title>
 	<link rel="stylesheet" type="text/css" href="../../css/forms/central_form.css">
 	<link rel="stylesheet" type="text/css" href="../../css/layout/central_layout.css">
-	<link rel="stylesheet" type="text/css" href="../../css/relats/relat_inf_user_table.css">
+	<link rel="stylesheet" type="text/css" href="../../css/relats/relat_table.css">
 </head>
 <body>
 
@@ -16,24 +16,24 @@
             <ul>
                 <li><a>Cadastros</a>
                     <ul>
-                        <li><a href="admin_cad_users.html">Usuarios</a></li>
-                        <li><a href="admin_cad_cars.html">Veículos</a></li>
+                        <li><a href="../forms/admin_cad_users.html">Usuários</a></li>
+                        <li><a href="../forms/admin_cad_cars.html">Veículos</a></li>
                     </ul>
                 </li>
-                <li><a href="admin_edit_users.html">Editar Usuarios</a></li>
-                <li><a href="admin_delet_user.html">Excluir Usuario</a></li>
+                <li><a href="../forms/admin_edit_users.html">Editar Usuários</a></li>
+                <li><a href="../forms/admin_delet_user.html">Excluir Usuários</a></li>
             </ul>
         </li>
         <li><a>Relatórios</a>
             <ul>
-                <li><a href="admin_relat_inf_user.html">Inf. Usuários</a></li>
-                <li><a href="">Histórico</a></li>
-                <li><a href="">Carros x Placas</a></li>
-                <li><a href="">Reserva x Veículos</a></li>
-                <li><a href="">Qtd. de Reservas</a></li>
+                <li><a>Inf. Usuarios</a></li>
+                <li><a>Histórico</a></li>
+                <li><a href="../forms/admin_relat_placaxcarro.html">Carros x Placa</a></li>
+                <li><a>Reserva x Veículos</a></li>
+                <li><a>QTD. Reservas</a></li>
             </ul>
         </li>
-        <li><a>Realizar Check-in</a></li>
+        <li><a href="../forms/admin_chekin.html">Realizar Check-in</a></li>
         <li><a href="../../php/login/valid_access.php" id="nameMenu" >(Checando login...)</a>
             <ul>
                 <li><a href="../../php/operation/exiting.php">Sair</a></li>
@@ -77,7 +77,8 @@
 
 </body>
 <script src="../../scripts/jquery-2.1.4.min.js"></script>
-<script src="../../scripts/js/function/relat_infuser_service.js"></script>
+<script src="../../scripts/js/function/relat_infuser.js"></script>
+<script src="../../scripts/js/function/relat_service.js"></script>
 <script src="../../scripts/js/literal_objetcts/root_path_l2.js"></script>
 <script src="../../scripts/js/menu/name_menu_service.js"></script>
 <script src="../../scripts/js/menu/name_menu_control.js"></script>
