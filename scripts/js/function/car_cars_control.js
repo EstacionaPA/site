@@ -2,7 +2,7 @@ var cadCarsControl = {
     
     init: function () {
         cadCarsService.findValuesMark();
-        cadCarsContol.readPage();   
+        cadCarsControl.readPage();   
     },
     
     readPage: function () {
@@ -26,7 +26,7 @@ var cadCarsControl = {
             cadCarsService.findValuesModel(form.marca.value);
         });
     }
-};
+}
 
-cadCarsContol.init();
+cadCarsControl.init();
     
