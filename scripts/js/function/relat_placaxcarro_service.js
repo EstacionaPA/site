@@ -12,7 +12,7 @@ var RelatPxCService = {
     sendValues: function (board) {
         
         //Realiza o método POST (JQuery)
-        $.post('../../php/operation/relat_boardxcar.php',
+        $.post('../../php/operation/relat_boardXcar.php',
             //Envia informações
             {board: board},
             //Retorno do PHP
