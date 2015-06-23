@@ -1,7 +1,6 @@
 <?php
     
 include("../sql_commands.php");
-include_once('../google/analyticstracking.php');
 
 $board = addslashes($_POST["board"]);
 $i=0;

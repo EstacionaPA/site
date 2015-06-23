@@ -1,7 +1,6 @@
 <?php 
 
 include_once('../sql_commands.php');
-include_once('../google/analyticstracking.php');
 
 $nome = $_POST['nome'];
 $usuario = $_POST['usuario'];

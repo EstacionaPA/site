@@ -1,7 +1,6 @@
 <?php
 
 include_once('../sql_commands.php');
-include_once('../google/analyticstracking.php');
 
 //Valida os $_POST
 if(!isset($_POST['user']) || !isset($_POST['pass'])){
