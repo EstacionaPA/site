@@ -1,6 +1,7 @@
 <?php
 
 include_once('../sql_commands.php');
+include_once('../google/analyticstracking.php');
 
 if($_POST["user"] == "" || $_POST["placa"] == "" || 
    $_POST["marca"] == "" || $_POST["mod"] == "") {

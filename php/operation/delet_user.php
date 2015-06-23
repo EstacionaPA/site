@@ -1,6 +1,7 @@
 <?php
 
 include_once('../sql_commands.php');
+include_once('../google/analyticstracking.php');
 
 //Validação
 if(isset($_POST["user"]) && $_POST["user"] != ""){
