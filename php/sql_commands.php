@@ -283,5 +283,5 @@ function relatgraf (){
     $relatgraf = mysql_query($sql);
         
     return $relatgraf;
-
+}
 ?>
