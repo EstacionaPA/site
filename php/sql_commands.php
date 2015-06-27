@@ -274,4 +274,14 @@ function relatBordXCar($board){
         
 }
 
+// Realiza a consulta de clientes por estado
+function relatgraf (){
+    $sql = "SELECT count(*), p.estado
+            FROM pessoas p
+            GROUP BY p.estado";
+        
+    $relatgraf = mysql_query($sql);
+        
+    return $relatgraf;
+
 ?>
