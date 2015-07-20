@@ -5,7 +5,8 @@
       <paths name="Estaciona PA">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/public_html" />
+            <mapping deploy="/public_html" local="$PROJECT_DIR$" web="/public_html" />
+            <mapping deploy="/public_html/html/pages" local="$PROJECT_DIR$/html/pages" web="/public_html/html/pages" />
           </mappings>
         </serverdata>
       </paths>
