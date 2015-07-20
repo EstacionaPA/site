@@ -5,8 +5,12 @@
       <paths name="Estaciona PA">
         <serverdata>
           <mappings>
-            <mapping deploy="/public_html" local="$PROJECT_DIR$" web="/public_html" />
-            <mapping deploy="/public_html/html/pages" local="$PROJECT_DIR$/html/pages" web="/public_html/html/pages" />
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/public_html/config" local="$PROJECT_DIR$/config" web="/public_html/config" />
+            <mapping deploy="/public_html/css" local="$PROJECT_DIR$/css" web="/public_html/css" />
+            <mapping deploy="/public_html/html" local="$PROJECT_DIR$/html" web="/public_html/html" />
+            <mapping deploy="/public_html/php" local="$PROJECT_DIR$/php" web="/public_html/php" />
+            <mapping deploy="/public_html/scripts" local="$PROJECT_DIR$/scripts" web="/public_html/scripts" />
           </mappings>
         </serverdata>
       </paths>
