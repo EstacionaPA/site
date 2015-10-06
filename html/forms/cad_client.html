@@ -87,11 +87,11 @@
 		</label>
 
 		<label for="cidade">Cidade:
-			<input type="text" name="cidade" id="cidade" required>
+			<input type="text" name="cidade" id="cidade" required readonly="readonly">
 		</label>
 
 		<label for="estado">Estado:
-			<input type="text" name="estado" id="estado" maxlength="2" required placeholder="XX">
+			<input type="text" name="estado" id="estado" maxlength="2" required placeholder="XX" readonly="readonly">
 		</label>
 
 		<button id="submit">Enviar</button>
@@ -101,6 +101,7 @@
 
 </form>
 <script src="../../scripts/jquery-2.1.4.min.js"></script>
+<script src="../../scripts/api/consulta.js"></script>
 <script src="../../scripts/js/function/insert_client.js"></script>
 <script src="../../scripts/js/literal_objetcts/root_path_l2.js"></script>
 <script src="../../scripts/js/menu/name_menu_service.js"></script>
