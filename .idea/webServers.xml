@@ -2,10 +2,10 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="ef940dee-531d-43f1-a5ee-ee71fdc030f9" name="Estaciona PA" url="http://192.186.234.65">
-        <fileTransfer host="192.186.234.65" port="21" password="dff9dfc4dfeadfc1dfcfdfeedfc5dfc9dfdedfc5dfd8df9adf9adf9d" username="alfredoes">
+      <webServer id="ef940dee-531d-43f1-a5ee-ee71fdc030f9" name="Estaciona PA" url="http://estacionapa.com">
+        <fileTransfer host="estacionapa.com" port="21" password="dff9dfc4dfeadfc1dfcfdfeedfc5dfc9dfdedfc5dfd8df9adf9adf9d" username="alfredoes">
           <advancedOptions>
-            <advancedOptions dataProtectionLevel="Private" />
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" showHiddenFiles="true" />
           </advancedOptions>
         </fileTransfer>
       </webServer>
