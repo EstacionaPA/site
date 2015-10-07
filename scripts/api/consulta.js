@@ -14,7 +14,6 @@
 
                     var validarcep = /^[0-9]{8}$/;
 
-                    //Valida o formato do CEP.
                     if(validarcep.test(cep)) {
 
                         $("#cidade").val("...")
@@ -40,10 +39,8 @@
                     }
                 } //end if.
                 else {
-                    //cep sem valor, limpa formulário.
+
                     consultarcep();
                 }
             });
         });
-
- 
