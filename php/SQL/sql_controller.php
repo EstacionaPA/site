@@ -20,7 +20,7 @@ PARA REALIZAR!!
 */
 
 require 'connection.php';
-require 'sql_services.php';
+require 'sql_service.php';
 
 class SqlController {
     
@@ -28,9 +28,9 @@ class SqlController {
         SqlController::connect();
     }
     
-    public static function connect(){
+    private static function connect(){
         $conn = new Connection;
-        $conn->Conn('remoto');
+        $conn->Conn('local');
     }
 
     //
@@ -72,7 +72,7 @@ class SqlController {
     }
     
     //
-    //VALIDATE
+    //VALIDATES
     //
     
     public static function Validate($type, $toCheck){
@@ -81,12 +81,21 @@ class SqlController {
         
         $sql = new SQLService;
         
-        //this::request('requestAccess') & operation/cad_cars.php
+        //self::request('requestAccess') & operation/cad_cars & account_mananger/register_person
         if($type == 'CheckUser') 
             $query = $sql->BuildSelectCountWhere('pessoas', 'usuario', $toCheck);
-
+            
+        //account_mananger/register_person
         elseif($type == 'CheckPass') 
             $query = $sql->BuildSelectCountWhere('pessoas', 'senha', md5($toCheck));
+        
+        //account_mananger/register_person    
+        elseif($type == 'CheckEmail') 
+            $query = $sql->BuildSelectCountWhere('pessoas', 'email', $toCheck);
+          
+        //account_mananger/register_person  
+        elseif($type == 'CheckCPF') 
+            $query = $sql->BuildSelectCountWhere('pessoas', 'cpf', $toCheck);
 
         //operation/cad_cars.php
         elseif($type == 'CheckMark')
@@ -104,15 +113,30 @@ class SqlController {
         return $sql->validateSQLExecutes($result, 'no');
     }
     
+    //
+    //INSERTS
+    //
     
-    
-    public static function Insert($type, $objct){
+    public static function Insert($type, $obj){
         
-        if($type = 'insertCar'){
-            $command = SQLService::BuildInsertCar($objct->getIdUser(), $objct->getBoard(),$objct->getMark(), $objct->getModel());
-            $exeCmmd = SQLService::OnlySendQuery($command);
+        
+        if($type == 'insertCar'){
+           // $command = SQLService::BuildSqlInsertCar($obj->getIdUser(), $obj->getBoard(),$obj->getMark(), $obj->getModel());
+            //$exeCmmd = SQLService::OnlySendQuery($command);
             
             return $validate;
+        }
+
+        //account_mananger/register_person
+        elseif($type == 'registerPerson'){
+            
+            $command = SQLService::BuildSqlInsertUsers($obj->name, $obj->user, $obj->pass, $obj->email, $obj->cpf, $obj->address, $obj->number, 
+                                                        $obj->comp, $obj->block, $obj->cep, $obj->city, $obj->state, $obj->tel, $obj->cel,
+                                                        $obj->access);
+
+            $exeCmmd = SQLService::onlySendQuery($command);
+            
+            return $exeCmmd;
         }
     }
     public static function Update(){

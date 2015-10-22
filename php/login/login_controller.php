@@ -1,11 +1,10 @@
 <?php
 
-require 'service_login.php';
-require 'access_class.php';
+require 'login_service.php';
 
 Class Login{
     
-    public function init() {
+    public function __construct() {
         session_start();
         $this->controll();
     }
@@ -13,21 +12,20 @@ Class Login{
     public function controll() {
         
         $svcLogin = new ServiceLogin;
-        $svcAccess = new ServiceAccess;
         
         $valid = $svcLogin->validPOST($_POST['user'], $_POST['pass']);
 
-        
-        if($validContent) {
+        if($valid) {
             $svcLogin->ech($valid);
             return;
         }
+        
         $u = $svcLogin->insertSlashes($_POST['user']);
         $p = $svcLogin->insertSlashes($_POST['pass']);
 
         $validLogin = $svcLogin->validLogin($u, $p);
         
-        if($validLogin == 'success' and !isset($validContent)) {
+        if($validLogin == 'success') {
             
             $_SESSION['login'] = $u;
             $svcLogin->ech($validLogin);
@@ -38,4 +36,3 @@ Class Login{
     }
 }
 $login = new Login;
-$login->init();

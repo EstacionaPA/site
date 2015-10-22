@@ -25,7 +25,7 @@ var cadPerson = {
         p = {'pessoa': [{'name': form.nome.value,
                               'user': form.usuario.value,
                               'pass': form.senha.value,
-                              'access': form.acesso.value,
+                              'access': 'vazio',
                               'email': form.email.value,
                               'cpf':  form.cpf.value,
                               'address': form.endereco.value,
@@ -39,7 +39,7 @@ var cadPerson = {
         json = JSON.stringify(p.pessoa[0]);
     
         post = $.post('../../php/account_mananger/mananger_controller.php', 
-                      {acao:'cadastrar', pessoa:json},
+                      {acao:'cadastrarCliente', pessoa:json},
                       function (data) {
                         cadPerson.showResult(data);
                       });
@@ -58,8 +58,6 @@ var cadPerson = {
             alert('Já existe uma pessoa cadastrada com esse email!');
         else if(data == 'cpf')
             alert('Já exite uma pessoa cadastrada com esse CPF!');
-        else if(data == 'acesso')
-            alert('Um acesso deve ser definido!');
         else
             alert(data); 
     }

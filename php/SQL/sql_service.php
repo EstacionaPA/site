@@ -8,6 +8,7 @@ class SQLService {
     
     public function onlySendQuery($sql){
         $validate = mysql_query($sql);
+        return $validate;
     }
     
     public function validateSQLExecutes($result, $insert){
