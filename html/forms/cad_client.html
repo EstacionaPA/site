@@ -1,99 +1,98 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Estaciona PA</title>
-	<link rel="stylesheet" type="text/css" href="../../css/forms/central_form.css">
-	<link rel="stylesheet" type="text/css" href="../../css/layout/central_layout.css">
+    <meta charset="utf-8">
+    <title>Estaciona PA</title>
+    <link rel="stylesheet" type="text/css" href="../../css/forms/central_form.css">
+    <link rel="stylesheet" type="text/css" href="../../css/layout/central_layout.css">
 </head>
 <body>
 
 <nav class="menu">
-	<ul class="itemMenu">
-		<li><a href="../../../index.html">Inicio</a></li>
-		<li><a href="../pages/about.html">Sobre a Empresa</a></li>
-		<li><a href="form_login.html" id="nameMenu">Minha Conta</a></li>
-	</ul>
+    <ul class="itemMenu">
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../pages/about.html">Sobre a Empresa</a></li>
+        <li><a href="form_login.html" id="nameMenu">Minha Conta</a></li>
+    </ul>
 </nav>
 
 <h1>Cadastro de Usuário</h1>
 
 
 <form id="cadastrar">
-	<fieldset>
+    <fieldset>
 
-		<legend>Dados necessários</legend>
+        <legend>Dados necessários</legend>
 
-		<legend>Dados para o Sistema</legend>
+        <legend>Dados para o Sistema</legend>
 
-		<label for="usuario">Usuario:
-			<input type="text" name="usuario" id="usuario" required>
-		</label>
+        <label for="usuario">Usuario:
+            <input type="text" name="usuario" id="usuario" required>
+        </label>
 
-		<label for="senha">Senha:
-			<input type="password" name="senha" id="senha" required>
-		</label>
+        <label for="senha">Senha:
+            <input type="password" name="senha" id="senha" required>
+        </label>
 
-		<legend>Dados pessoais</legend>
+        <legend>Dados pessoais</legend>
 
-		<label for="nome">Nome Completo:
-			<input type="text" name="nome" id="nome" required>
-		</label>
+        <label for="nome">Nome Completo:
+            <input type="text" name="nome" id="nome" required>
+        </label>
 
-		<label for="cpf">Cpf:
-			<input type="text" name="cpf" id="cpf" maxlength="11" required>
-		</label>
+        <label for="cpf">Cpf:
+            <input type="text" name="cpf" id="cpf" maxlength="11" required>
+        </label>
 
-		<label for="telefone">Telefone:
-			<input type="text" name="telefone" id="telefone" maxlength="10" required placeholder="XX99999999">
-		</label>
+        <label for="telefone">Telefone:
+            <input type="text" name="telefone" id="telefone" maxlength="10" required placeholder="XX99999999">
+        </label>
 
-		<label for="celular">Celular:
-			<input type="text" name="celular" id="celular" maxlength="10" required placeholder="XX99999999">
-			<br>
-		</label>
+        <label for="celular">Celular:
+            <input type="text" name="celular" id="celular" maxlength="10" required placeholder="XX99999999">
+            <br>
+        </label>
 
-		<label for="email">Email:
-			<input type="text" name="email" id="email" required>
-		</label>
+        <label for="email">Email:
+            <input type="text" name="email" id="email" required>
+        </label>
 
-		<br>
+        <br>
 
-		<legend>Dados geográficos</legend>
+        <legend>Dados geográficos</legend>
 
-		<label for="endereco">Endereço:
-			<input type="text" name="endereco" id="endereco" required>
-		</label>
+        <label for="endereco">Endereço:
+            <input type="text" name="endereco" id="endereco" required>
+        </label>
 
-		<label for="complemento">Complemento:
-			<input type="text" name="complemento" id="complemento" required>
-		</label>
+        <label for="complemento">Complemento:
+            <input type="text" name="complemento" id="complemento" required>
+        </label>
 
-		<label for="bairro">Bairro:
-			<input type="text" name="bairro" id="bairro" required>
-		</label>
+        <label for="bairro">Bairro:
+            <input type="text" name="bairro" id="bairro" required>
+        </label>
 
-		<label for="numero">Número:
-			<input type="text" name="numero" id="numero" required>
-			<br>
-		</label>
+        <label for="numero">Número:
+            <input type="text" name="numero" id="numero" required>
+            <br>
+        </label>
 
-		<label for="cep">Cep:
-			<input type="text" name="cep" id="cep" maxlength="8" required placeholder="999999000">
-		</label>
+        <label for="cep">Cep:
+            <input type="text" name="cep" id="cep" maxlength="8" required placeholder="999999000">
+        </label>
 
-		<label for="cidade">Cidade:
-			<input type="text" name="cidade" id="cidade" required readonly="readonly">
-		</label>
+        <label for="cidade">Cidade:
+            <input type="text" name="cidade" id="cidade" required readonly="readonly">
+        </label>
 
-		<label for="estado">Estado:
-			<input type="text" name="estado" id="estado" maxlength="2" required placeholder="XX" readonly="readonly">
-		</label>
+        <label for="estado">Estado:
+            <input type="text" name="estado" id="estado" maxlength="2" required placeholder="XX" readonly="readonly">
+        </label>
 
-		<button id="submit">Enviar</button>
+        <button id="submit">Enviar</button>
 
-	</fieldset>
-
+    </fieldset>
 
 </form>
 <script src="../../scripts/jquery-2.1.4.min.js"></script>
