@@ -6,52 +6,77 @@ var editUser = {
     
     readPage: function () {
         
-        var form = document.getElementById('editar');
+        var form = document.querySelector('form');
         
         form.addEventListener('submit', function (event) {
-                                editUser.sendValues();
+                                editUser.sendValues(form);
                                 event.preventDefault();
                               });
     },
     
-    sendValues: function () {
+    sendValues: function (form) {
+    
+        var p = '',
+            json = '',
+            acao = '',
+            newArray = '';
+            
+         //Building the JSON array  
+        p = {
+              'usuario': form.usuario.value,
+              'acesso': form.acesso.value,
+              'telefone': form.telefone.value,
+              'email': form.email.value,
+              'endereco': form.endereco.value,
+              'complemento': form.complemento.value,
+              'bairro': form.bairro.value,
+              'numero': form.numero.value,
+              'cep': form.cep.value,
+              'cidade': form.cidade.value,
+              'estado': form.estado.value
+            };
+         
+        newArray = editUser.fillNullFields(p);
+                              
+        json = JSON.stringify(newArray);
+    
+        post = $.post('../../php/account_mananger/mananger_controller.php', 
+                      {acao:'editar', pessoa:json},
+                      function (data) {
+                        editUser.report(data);
+                      });
+
+    },
+    
+    fillNullFields: function (oldArray) {
+
+        //This logic will be used when the user dont fill the fileld, for the PHP use the correctly JSON
+        for(var key in oldArray){
+            if(oldArray[key] == '')
+                oldArray[key] = '----NULO----';
+        }
         
-        var user = $("#usuario").val();
-        var access = $("#acesso").val();
-        var tel = $("#telefone").val();
-        var cel = $("#celular").val();
-        var email = $("#email").val();
-        var end = $("#endereco").val();
-        var comp = $("#complemento").val();
-        var num = $("#numero").val();
-        var cep = $("#cep").val();
-        var city = $("#cidade").val();
-        var state = $("#estado").val();
-        
-        $.post('../../php/operation/edit_users.php',
-               {user: user, access: access, tel: tel, cel: cel, email: email, end: end,
-                comp: comp, num: num, cep: cep, city: city, state: state},
-               function(data){
-                    editUser.report(data);
-                });
+        return oldArray;
     },
     
     report: function(data) {
         
-        if(data=='success')
-            alert('O usuario foi alterado com sucesso!');
-        
-        else if(data=='noUserField')
-            alert('Favor informar um usuario!');
-        
-        else if(data=='nullFields')
-            alert('Favor informar pelo menos um campo!'); 
-        
-        else if(data=='!user')
-            alert('Usuário inválido!'); 
-        
+        if(data == 'success') 
+            alert('Edição realizada com sucesso!');
+        else if(data == 'nullFields')
+            alert('Preencha pelo menos algum dos campos!');
+        else if(data == 'user')
+            alert('Este usuário já esta cadastrado!');
+        else if(data == 'email')
+            alert('Já existe uma pessoa cadastrada com esse email!');
+        else if(data == 'cpf')
+            alert('Já exite uma pessoa cadastrada com esse CPF!');
+        else if(data == 'acesso')
+            alert('Um acesso deve ser definido!');
+        else if(data == '!user')
+            alert('Este usuário não existe!');
         else
-            alert(data);
+            alert('Por algum motivo, não foi possivel realizar a edição. Contacte um Administrador!'); 
     }
 }
 

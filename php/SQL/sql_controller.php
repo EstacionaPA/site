@@ -139,8 +139,23 @@ class SqlController {
             return $exeCmmd;
         }
     }
-    public static function Update(){
+    
+    //
+    //UPDATES
+    //
+    
+    
+    public static function Update($type, $obj){
+        
+        if($type =='UpdateUser')
+            $sql = SQLService::BuildSqlUpdateSingleValue('pessoas', $obj['column'], $obj['value'], 'usuario', $obj['user']);
+            //return $sql;
+        
+        $exeCmmd = SQLService::OnlySendQuery($sql);
+        
+        return SQLService::validateSQLExecutes($exeCmmd, 'no');  
     }
+    
     public static function Delet(){
     }
 }

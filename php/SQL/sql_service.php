@@ -84,9 +84,25 @@ class SQLService {
             
         return $sql;
     }
+    
+    public static function BuildSqlUpdateSingleValue($table, $column, $value, $fieldToFilter, $filter){
+        
+        $sql = "UPDATE $table
+                SET $column = '$value' 
+                WHERE $fieldToFilter = '$filter';";
+                
+        return $sql;
+    }
 }
     
     /*
+    public static function updateUser($user, $column, $valueColumn){
+        
+        $update = "UPDATE pessoas SET " . $column . " = '$valueColumn' WHERE usuario = '$user';";
+        $valid = mysql_query($update);
+    
+        return $valid;
+    }
     //------------------------REQUISIÇÕES--------------------------
 
     //Requisita o ID do usuario

@@ -1,7 +1,9 @@
 <?php
 
 require '../SQL/sql_controller.php';
+require 'mananger_abstract.php';
 require 'register_person.php';
+require 'edit_person.php';
 
 class ManangerService{
     
@@ -13,9 +15,12 @@ class ManangerService{
         }
         
         elseif($action == 'cadastrarCliente') {
-
             $class = new registerPersonController;
             $person->access = 'c';
+            return $class;
+        }
+        elseif($action == 'editar'){
+            $class = new EditPersonController;
             return $class;
         }
         else
@@ -53,11 +58,19 @@ class ManangerService{
     }
     
     public function register($person){
-        
         $sql = SqlController::Insert('registerPerson', $person);
         return $sql;
     }
     
+    public function update($index, $value, $user){
+        
+        $obj = array('column' => $index,
+                     'value' => $value,
+                     'user' => $user);
+                     
+        $update = SqlController::Update('UpdateUser', $obj);
+        return $update;
+    }   
 }
 
 ?>

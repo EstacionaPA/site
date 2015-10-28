@@ -1,8 +1,6 @@
 <?php
 
-include 'mananger_abstract.php';
-
-class registerPersonController extends ManangerAbtstract{
+class registerPersonController extends ManangerAbstract{
     
     public function controll(&$svc, $person){
 
@@ -16,7 +14,7 @@ class registerPersonController extends ManangerAbtstract{
             if($checkUser == 'dont'){
                 if($checkCPF == 'dont'){
                     if($checkEmail == 'dont'){
-                        if($person->access <> 'n'){
+                        if($person->access != 'n'){
                         
                             //Criptografia da senha
                             $person->senha = md5($person->senha);

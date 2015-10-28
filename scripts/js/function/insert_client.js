@@ -23,18 +23,18 @@ var cadPerson = {
             
          //Building the JSON array  
         p = {'pessoa': [{'name': form.nome.value,
-                              'user': form.usuario.value,
-                              'pass': form.senha.value,
-                              'access': 'vazio',
-                              'email': form.email.value,
-                              'cpf':  form.cpf.value,
-                              'address': form.endereco.value,
-                              'number': form.numero.value,
-                              'comp': form.complemento.value,
-                              'cep': form.cep.value,
-                              'block': form.bairro.value,
-                              'city': form.cidade.value,
-                              'tel': form.telefone.value}]};
+                          'user': form.usuario.value,
+                          'pass': form.senha.value,
+                          'access': 'vazio',
+                          'email': form.email.value,
+                          'cpf':  form.cpf.value,
+                          'address': form.endereco.value,
+                          'number': form.numero.value,
+                          'comp': form.complemento.value,
+                          'cep': form.cep.value,
+                          'block': form.bairro.value,
+                          'city': form.cidade.value,
+                          'tel': form.telefone.value}]};
                               
         json = JSON.stringify(p.pessoa[0]);
     
