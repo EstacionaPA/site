@@ -21,7 +21,7 @@ var ServiceLogin = {
     
     report: function (data){
         
-        if(data=='success')
+        if(data=='done')
             alert('Login realizado com sucesso!');
 
         else if(data=='!user!pass')
@@ -29,6 +29,9 @@ var ServiceLogin = {
 
         else if(data=='nullFields')
             alert('Preencha todos os campos!');
+            
+        else if(data=='inactive')
+            alert('O seu usuario foi inativado!');
 
         else    
             alert(data);

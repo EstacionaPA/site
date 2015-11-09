@@ -29,8 +29,14 @@ class PageController {
                 case 'c':
                     header('location: ../../html/pages/main_login_c.html');
                     break;
+                    
+                default:
+                    header('location: ../../html/forms/form_login.html');
+                    break;
             }
         }
+        else
+            header('location: ../../html/forms/form_login.html');
      
      }
 }

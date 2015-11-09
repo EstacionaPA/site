@@ -38,7 +38,7 @@ var cadPerson = {
                               
         json = JSON.stringify(p.pessoa[0]);
     
-        post = $.post('../../php/account_mananger/mananger_controller.php', 
+        post = $.post('../../php/account_manager/manager_controller.php', 
                       {acao:'cadastrarCliente', pessoa:json},
                       function (data) {
                         cadPerson.showResult(data);

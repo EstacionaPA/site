@@ -10,19 +10,21 @@ var cadCarsService = {
         $.post('../../php/operation/cad_cars.php',
                {user: user, placa: placa, marca: marca, mod: mod},
                function (value) {
+                   
                     cadCarsService.checkValue(value);
                 });
     },
     
     checkValue: function (value) {
         
-        if(value == 'added')
+        alert(value.length);    
+        if(value == 'done')
             alert('Veículo cadastrado com sucesso!');
         
         else if(value == '!user')
             alert('Usuário inválido!');
         
-        else if(value == '!marca') 
+        else if(value == ' !marca') 
             alert('Marca nao cadastrada!');
         
         else if(value == '!modelo') 
@@ -50,10 +52,10 @@ var cadCarsService = {
         
     },
     
-    findValuesModel: function (markValue) {
+    findValuesModel: function (markName) {
         
         $.post('../../php/operation/cad_cars_values_option.php',
-               {request: 'model', markValue: markValue},
+               {request: 'model', markName: markName},
                function (stringModel) {
                     cadCarsService.createList(stringModel, 'modelo', 'option');
                     cadCarsService.writeFieldModelOk();
@@ -63,9 +65,9 @@ var cadCarsService = {
                
     createList: function (string, idSelect, classNameOption){
         
-        var array = new Array();
-        var lin = 0;
-        var option;
+        var array = new Array(),
+            lin = 0,
+            option;
 
         array = string.split(';');
 

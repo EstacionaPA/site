@@ -1,10 +1,10 @@
 <?php
 
-include_once('../sql_commands.php');
+require '../SQL/sql_controller.php';
 
 $array = array();
 
-//VALIDAÇÃO CONTRA MANUSEIO POR PARTE DO USUARIO NO JAVASCRIPT
+//secrurity
 if(isset($_POST["request"])){
     
     $requisitonType = $_POST["request"];
@@ -12,32 +12,32 @@ if(isset($_POST["request"])){
     if($requisitonType == "mark"){
         
         //REQUISITANDO A LISTA DE MARCAS
-        $array = requestMark();
+        $resource = SqlController::Request('RequestMarks', NULL);
         
-        //MONTANDO A STRING PARA O JAVA SCRIPT
-        while($row = mysql_fetch_row($array))
-            
-        foreach($row as $option)
-            echo $option .  ";";
-            
+        while($row = mysql_fetch_row($resource))
+
+            foreach($row as $option)
+                echo $option .  ";";
+        
         return;
     }
 
     else if($requisitonType == "model"){
         
         //VALIDAÇÃO CONTRA MANUPULAÇÃO DO JAVASCRIPT POR PARTE DO USUARIO
-        if(!isset($_POST["markValue"])) {
+        if(!isset($_POST["markName"])) {
             echo "Erro!";
             return;
         }
         else{
             
-            $markValue = $_POST["markValue"];
+            $markName = $_POST["markName"];
             
             //VALIDAÇÃO PARA QUE, QUANDO O USUARIO RETORNAR O VALOR DA MARCA EM INICIAL, FAÇA NADA
-            IF($markValue == "nothing") return;
+            if($markName == "nothing") return;
             
-            $array = requestModel($markValue);
+            $markId = SqlController::Request('RequestIdMark', $markName);
+            $array = SqlController::Request('RequestModels', $markId);
             
             while($row = mysql_fetch_row($array))
 

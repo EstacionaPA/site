@@ -1,6 +1,6 @@
 <?php
     
-include("../sql_commands.php");
+require '../SQL/sql_controller.php';
 
 $board = addslashes($_POST["board"]);
 $i=0;
@@ -8,7 +8,7 @@ $i=0;
 if(isset($board)){
     
         //busca as informaçõos do usuário por uma data
-        $result = relatBordXCar($board);
+        $result = SqlController::Report('BoardXCar', $board);
         $array = mysql_fetch_array($result);
     
         if($array == "") return "";

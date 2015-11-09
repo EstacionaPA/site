@@ -1,6 +1,6 @@
 <?php
 
-include_once('../sql_commands.php');
+require '../SQL/sql_controller.php';
 
 $array = array();
 
@@ -9,7 +9,7 @@ if(isset($_POST["name"])){
     if( $_POST["name"] != ""){
         
         //busca as informaçõos do usuário por uma data
-        $array = relatInfUser($_POST["name"]);
+        $array = SqlController::Report('InfUser', $_POST['name']);
          
         //gera a informação para o javascript
         while($row = mysql_fetch_row($array))

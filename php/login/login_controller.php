@@ -16,7 +16,7 @@ Class Login{
         $valid = $svcLogin->validPOST($_POST['user'], $_POST['pass']);
 
         if($valid) {
-            $svcLogin->ech($valid);
+            echo $valid;
             return;
         }
         
@@ -24,15 +24,22 @@ Class Login{
         $p = $svcLogin->insertSlashes($_POST['pass']);
 
         $validLogin = $svcLogin->validLogin($u, $p);
-        
-        if($validLogin == 'success') {
-            
-            $_SESSION['login'] = $u;
-            $svcLogin->ech($validLogin);
+        $checkInactive = $svcLogin->checkInactive($u);
+
+        if($validLogin == 'done') {
+            if($checkInactive == 'dont'){
+                $_SESSION['login'] = $u;
+                echo $validLogin;
+            }
+            else{
+                echo 'inactive';
+                return;
+            }
+                
         }
         
         else
-            $svcLogin->ech($validLogin);
+            echo $validLogin;
     }
 }
 $login = new Login;

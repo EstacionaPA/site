@@ -18,22 +18,25 @@ class ServiceLogin {
         return addslashes($var);
     }
     
-    public function ech($var){
-        echo $var;
-    }
-    
     public function validLogin($user, $pass){
         
         $validUser = SqlController::validate('CheckUser', $user);
         $validPass = SqlController::validate('CheckPass', $pass);
         
         if($validPass == 'done' and $validUser == 'done')
-            return 'success';
+            return 'done';
         
         else
             return '!user!pass';
         
     }
+    
+    public function checkInactive($user){
+        
+        $check = SqlController::Validate('CheckInactive', $user);
+        return $check;
+    }
+
 }
 
 ?>

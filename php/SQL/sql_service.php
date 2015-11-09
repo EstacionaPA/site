@@ -35,8 +35,19 @@ class SQLService {
     //
     //--------------BUILDS THE QUERIES
     //
-
-    public function BuildSelecFromWhere($fieldToSelect, $table, $fieldToFilter, $filter){
+    
+    public function BuildSelectFromWhereOrder($fieldToSelect, $table, $fieldToFilter, $filter, $orderBy) {
+        
+        $query = "SELECT $fieldToSelect 
+                  FROM $table
+                  WHERE $fieldToFilter = '$filter'
+                  ORDER BY $orderBy;";
+        
+        return $query;
+        
+    }   
+    
+    public function BuildSelectFromWhere($fieldToSelect, $table, $fieldToFilter, $filter){
         
         $query = "SELECT $fieldToSelect 
                   FROM $table
@@ -45,7 +56,7 @@ class SQLService {
         return $query;
     }
     
-    public static function BuildSelectCountWhere($table, $fieldToFilter, $filter){
+    public static function BuildSelectCountFromWhere($table, $fieldToFilter, $filter){
             
         $sql = "SELECT count(*) 
                 FROM $table 
@@ -93,6 +104,61 @@ class SQLService {
                 
         return $sql;
     }
+    
+    public static function BuildSqlInactivePerson($user, $cause){
+        
+        $sql = "INSERT INTO inactive
+                (user, cause)
+                values
+                ('{$user}', '{$cause}');";
+
+        return $sql;
+        
+    }
+    
+    
+    //
+    //--------------REPORTS
+    //
+    
+    
+    //Realiza a consulta de informações de um determinado usuário
+    //operation/relat_inf_user.php
+    public static function relatInfUser($name){
+        
+        $sql =   
+            "select p.nome, p.celular, p.cidade, c.placa, ma.nome as marca, 
+                    mo.nome as modelo
+            from carro  c
+            join pessoas p on c.pessoas_id = p.id
+            join marca ma on ma.id = c.marca_id
+            join modelo mo on mo.id = c.modelo_id
+            where p.nome like '%$name%';";
+            
+            $relatInfUser = mysql_query($sql);
+        
+            return $relatInfUser;
+    }
+    
+    
+    //Realiza a consulta de carros por placa
+    //ARRUMAR NOME!!
+    //operation/relat_boardXcar.php
+    public static function relatBoardXCar($board){
+        
+        $sql = "SELECT p.nome, p.telefone, ma.nome, mo.nome
+                FROM carro c
+                JOIN pessoas p ON p.id = c.pessoas_id
+                JOIN modelo mo on mo.id = c.modelo_id
+                JOIN marca ma on ma.id = c.marca_id
+                WHERE c.placa = '$board';";
+        
+        $relatBoardXCar = mysql_query($sql);
+        
+        return $relatBoardXCar;
+            
+    }
+    
 }
     
     /*

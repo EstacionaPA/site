@@ -1,63 +1,63 @@
 
 <?php
 
-require '../sql_service.php';
-require '../objects.car.php';
+require '../SQL/sql_controller.php';
+require '../objects/car.php';
 
-if($_POST["user"] == "" || $_POST["placa"] == "" || 
-   $_POST["marca"] == "" || $_POST["mod"] == "") {
-        echo "!fields";
+if($_POST['user'] == '' || $_POST['placa'] == '' || 
+   $_POST['marca'] == '' || $_POST['mod'] == '') {
+        echo '!fields';
         return;
 }
 
-$postUser = $_POST["user"];
-$postPlaca = $_POST["placa"];
-$postMarca = $_POST["marca"];
-$postMod = $_POST["mod"];
+$postUser = $_POST['user'];
+$postPlaca = $_POST['placa'];
+$postMarca = $_POST['marca'];
+$postMod = $_POST['mod'];
 
-$validUser = SqlController::validate('CheckUser', $postUser);
-$validMarca = SqlController::validate('CheckMark', $postMarca);
-$validModelo = SqlController::validate('CheckModel', $postMod);
-$validPlaca = SqlController::validate('CheckBoard', $postPlaca);
+$validUser = SqlController::Validate('CheckUser', $postUser);
+$validMarca = SqlController::Validate('CheckMark', $postMarca);
+$validModelo = SqlController::Validate('CheckModel', $postMod);
+$validPlaca = SqlController::Validate('CheckBoard', $postPlaca);
     
-if($validUser == "valido"){
-    if($validMarca == "valido"){
-        if($validModelo == "valido"){
-            if($validPlaca == "invalido"){
+if($validUser == 'done'){
+    if($validMarca == 'done'){
+        if($validModelo == 'done'){
+            if($validPlaca == 'dont'){
                 
 
                 $idUser= SqlController::Request('RequestIdUser', $postUser);
                 $modelo = SqlController::Request('RequestIdModel', $postMod);
                 $marca = SqlController::Request('RequestIdMark', $postMarca);
                 
-                $car = new Car($user, $postMarca, $marca, $modelo);
-                
-                $valid = SqlController::Insert('InsertCar', $car);
-                
-                if($valid) echo "added";
+                $car = new Car($idUser, $postPlaca, $marca, $modelo);
+
+                $valid = SqlController::Insert('insertCar', $car);
+
+                if($valid) echo 'done';
                 else echo $valid;
             }
             
             else{
-                echo "placa";
+                echo 'placa';
                 return;
             }
         }
         
         else{
-            echo "!modelo";
+            echo '!modelo';
             return;
         }
     }
         
     else{
-        echo "!marca";
+        echo '!marca';
         return;
     }
 }
 
 else{
-    echo "!user";
+    echo '!user';
     return;
 }
 

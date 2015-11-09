@@ -40,17 +40,16 @@ var editUser = {
                               
         json = JSON.stringify(newArray);
     
-        post = $.post('../../php/account_mananger/mananger_controller.php', 
-                      {acao:'editar', pessoa:json},
+        post = $.post('../../php/account_manager/manager_controller.php', 
+                      {acao:'editar', objeto:json},
                       function (data) {
                         editUser.report(data);
                       });
-
     },
     
     fillNullFields: function (oldArray) {
 
-        //This logic will be used when the user dont fill the fileld, for the PHP use the correctly JSON
+        //This logic will be used when the user dont fill the fileld. The PHP needs this to use JSON correctly 
         for(var key in oldArray){
             if(oldArray[key] == '')
                 oldArray[key] = '----NULO----';
@@ -75,6 +74,8 @@ var editUser = {
             alert('Um acesso deve ser definido!');
         else if(data == '!user')
             alert('Este usuário não existe!');
+        else if(data == 'inactive')
+            alert('Este usuário esta inativado!');
         else
             alert('Por algum motivo, não foi possivel realizar a edição. Contacte um Administrador!'); 
     }

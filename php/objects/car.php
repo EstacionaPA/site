@@ -43,5 +43,4 @@ class Car{
         $this->model;
     }
 }
-
 ?>
