@@ -43,3 +43,5 @@ Class Login{
     }
 }
 $login = new Login;
+
+?>

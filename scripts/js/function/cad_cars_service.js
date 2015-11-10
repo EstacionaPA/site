@@ -10,21 +10,19 @@ var cadCarsService = {
         $.post('../../php/operation/cad_cars.php',
                {user: user, placa: placa, marca: marca, mod: mod},
                function (value) {
-                   
                     cadCarsService.checkValue(value);
                 });
     },
     
     checkValue: function (value) {
-        
-        alert(value.length);    
+  
         if(value == 'done')
             alert('Veículo cadastrado com sucesso!');
         
         else if(value == '!user')
             alert('Usuário inválido!');
         
-        else if(value == ' !marca') 
+        else if(value == '!marca') 
             alert('Marca nao cadastrada!');
         
         else if(value == '!modelo') 

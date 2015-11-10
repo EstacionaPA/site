@@ -14,6 +14,7 @@ var ServiceLogin = {
             '../../php/login/login_controller.php',
             {user:user, pass: pass},
             function(data) {
+                alert(data.length);
                 callBack(data);
             } 
         );

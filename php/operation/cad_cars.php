@@ -1,4 +1,3 @@
-
 <?php
 
 require '../SQL/sql_controller.php';
@@ -60,5 +59,4 @@ else{
     echo '!user';
     return;
 }
-
 ?>
