@@ -1,0 +1,12 @@
+{
+    "name": "alfre_000/estacionapa",
+    "authors": [
+        {
+            "name": "alfredudu",
+            "email": "alfredudu_007@hotmail.com"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap": "^3.3"
+    }
+}
