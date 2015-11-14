@@ -142,7 +142,6 @@ class SQLService {
     
     
     //Realiza a consulta de carros por placa
-    //ARRUMAR NOME!!
     //operation/relat_boardXcar.php
     public static function relatBoardXCar($board){
         
