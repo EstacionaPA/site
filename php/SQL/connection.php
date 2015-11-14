@@ -14,6 +14,11 @@ class Connection{
             $banco = mysql_select_db("projeto");
         }
         
+        elseif($network == "localServer"){
+            $conexao = mysql_pconnect("localhost","alfredudu","Sn@keDoctor_007") or die ("Erro na conexão!");
+            $banco = mysql_select_db("estacionapa");
+        }
+        
     }
 
 }
