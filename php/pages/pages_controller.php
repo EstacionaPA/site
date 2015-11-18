@@ -1,46 +1,86 @@
 <?php
 
-require '../SQL/sql_controller.php';
+require 'php/login/login_controller.php';
+require 'php/operation/relat_inf_user.php';
+require 'php/SQL/sql_controller.php';
+require 'php/operation/relat_boardXcar.php';
 
 class PageController {
     
      public function __construct() {
         session_start();
-        $this->Controll();
      } 
      
-     public function Controll() {
+     public function validLogin($form){
+         $loginController = new Login($form);
+     }
+     
+     public function getAccess(){
+           if(isset($_SESSION['login'])){
+                $user = $_SESSION['login'];
+                $access = SqlController::Request('RequestAccess', $user);
+                return $access;
+           }
+           else
+                return '!login';
+     }
+     
+     public function openPageByAccess() {
         
         if(isset($_SESSION['login'])){
             
             $user = $_SESSION['login'];
-            
             $access = SqlController::Request('RequestAccess', $user);
             
-            switch($access){
-                case 'a': 
-                    header('location: ../../html/pages/main_login_a.html');
-                    break;
+            if($access == 'a')
+                return $this->getPage('html/pages/main_login_a.html');
                 
-                case 'f':
-                    header('location: ../../html/pages/main_login_f.html');
-                    break;
+            else if($access == 'f')
+                return $this->getPage('html/pages/main_login_f.html');
                     
-                case 'c':
-                    header('location: ../../html/pages/main_login_c.html');
-                    break;
-                    
-                default:
-                    header('location: ../../html/forms/form_login.html');
-                    break;
-            }
+            else if($access == 'c')
+                return $this->getPage('html/pages/main_login_c.html');      
+        }
+        else 
+            return $this->getPage('html/forms/form_login.html');
+     }
+     
+    public function getPage($path){
+        $page = stream_context_create(array(
+            'http' => array(
+                'timeout' => 1
+                )
+            )
+        );
+    
+        return file_get_contents($path, 0, $page); 
+    }
+    
+    public function sair(){
+        $_SESSION['login'] = '';
+        session_destroy();
+        return $this->getPage('index.html');
+    }
+    
+    public function reportInfUser($name){
+        if($this->getAccess() == 'a'){
+            $report = new ReportInfUser();
+            return $report->getInformations($name);
         }
         else
-            header('location: ../../html/forms/form_login.html');
-     
-     }
+            return $this->openPageByAccess();
+    }
+    
+    public function reportCarXBoard($bord){
+        if($this->getAccess() == 'a'){
+            $report = new ReportBoardXCard();
+            return $report->getInformations($bord);
+        }
+        else
+            return $this->openPageByAccess();
+    }
 }
 
-$page = new PageController;
+
     
 ?>

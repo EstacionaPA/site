@@ -9,14 +9,20 @@ var ServiceLogin = {
     
     sendValues: function (user, pass, callBack) {
         
+        var form = {'user': user,
+                    'pass': pass};
+        
         var post = 
-        $.post (
-            '../../php/login/login_controller.php',
-            {user:user, pass: pass},
-            function(data) {
-                callBack(data);
-            } 
-        );
+            $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json',
+                    url: '/login/valid',
+                    data: JSON.stringify(form),
+                    success: 
+                    function (data) { 
+                            callBack(data);
+                    }
+                });
     },
     
     report: function (data){
@@ -38,7 +44,7 @@ var ServiceLogin = {
     },
     
     openPage: function () {
-        document.location = '../../php/pages/pages_controller.php';
+        document.location = '/login';
     },
     
     getPass: function () {

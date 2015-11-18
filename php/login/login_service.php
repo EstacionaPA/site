@@ -1,7 +1,5 @@
 <?php
 
-require dirname(__DIR__) . '/SQL/sql_controller.php';
-
 class ServiceLogin {
     public function validPOST($userPOST, $passPOST){
         
@@ -19,7 +17,7 @@ class ServiceLogin {
     }
     
     public function validLogin($user, $pass){
-        
+        //sql_controller.php have been called by INDEX.PHP
         $validUser = SqlController::validate('CheckUser', $user);
         $validPass = SqlController::validate('CheckPass', $pass);
         

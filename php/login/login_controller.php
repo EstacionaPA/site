@@ -4,24 +4,24 @@ require 'login_service.php';
 
 Class Login{
     
-    public function __construct() {
+    public function __construct($form) {
         session_start();
-        $this->controll();
+        $this->controll($form);
     }
     
-    public function controll() {
+    public function controll($form) {
         
         $svcLogin = new ServiceLogin;
         
-        $valid = $svcLogin->validPOST($_POST['user'], $_POST['pass']);
+        $valid = $svcLogin->validPOST($form['user'], $form['pass']);
 
         if($valid) {
             echo $valid;
             return;
         }
         
-        $u = $svcLogin->insertSlashes($_POST['user']);
-        $p = $svcLogin->insertSlashes($_POST['pass']);
+        $u = $svcLogin->insertSlashes($form['user']);
+        $p = $svcLogin->insertSlashes($form['pass']);
 
         $validLogin = $svcLogin->validLogin($u, $p);
         $checkInactive = $svcLogin->checkInactive($u);
@@ -42,6 +42,5 @@ Class Login{
             echo $validLogin;
     }
 }
-$login = new Login;
 
 ?>

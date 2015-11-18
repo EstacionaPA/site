@@ -12,14 +12,16 @@ var RelatPxCService = {
     sendValues: function (board) {
         
         //Realiza o método POST (JQuery)
-        $.post('../../php/operation/relat_boardXcar.php',
-            //Envia informações
-            {board: board},
-            //Retorno do PHP
-            function(value){
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/text',
+            url: '/report/carXboard/find',
+            data: board,
+            success: function (data) {
                 RelatService.cleanTable();
-                RelatPxCService.verify(value);
-            });
+                RelatPxCService.verify(data);
+            }
+        })
     },
     
     verify: function (value){

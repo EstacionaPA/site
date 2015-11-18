@@ -20,14 +20,16 @@ var RelatInfUserService = {
         var name = $('#name').val();
         
         //Realiza o método POST (JQuery)
-        $.post('../../php/operation/relat_inf_user.php',
-            //Envia informações
-            {name: name},
-            //Retorno do PHP
-            function(value){
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/text',
+            url: '/report/infUser/find',
+            data: name,
+            success: function (data) {
                 RelatService.cleanTable();
-                RelatInfUserService.verify(value);
-            });
+                RelatInfUserService.verify(data);
+            }
+        })
     },
     
     
