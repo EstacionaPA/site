@@ -19,9 +19,9 @@
 -- Current Database: `projeto`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `projeto` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `c9` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-USE `projeto`;
+USE `c9`;
 
 --
 -- Table structure for table `carro`
