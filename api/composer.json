@@ -1,7 +1,0 @@
-{
-    "require": {
-        "slim/slim": "^2.6",
-        "vrana/notorm": "dev-master",
-        "Slim/slim": "^2.6"
-    }
-}
