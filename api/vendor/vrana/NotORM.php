@@ -13,12 +13,12 @@ if (!interface_exists('JsonSerializable')) {
 	}
 }
 
-include_once dirname(__FILE__) . "/NotORM/Structure.php";
-include_once dirname(__FILE__) . "/NotORM/Cache.php";
-include_once dirname(__FILE__) . "/NotORM/Literal.php";
-include_once dirname(__FILE__) . "/NotORM/Result.php";
-include_once dirname(__FILE__) . "/NotORM/MultiResult.php";
-include_once dirname(__FILE__) . "/NotORM/Row.php";
+include_once "api/vendor/vrana/NotORM/Structure.php";
+include_once "api/vendor/vrana/NotORM/Cache.php";
+include_once "api/vendor/vrana/NotORM/Literal.php";
+include_once "api/vendor/vrana/NotORM/Result.php";
+include_once "api/vendor/vrana/NotORM/MultiResult.php";
+include_once "api/vendor/vrana/NotORM/Row.php";
 
 
 
