@@ -32,7 +32,7 @@ $app->get('/register', function() use ($page) {
 
 $app->get('/register/user', function() use ($app, $page) {
     if($page->getAccess() == 'a')
-        echo $page->getPage('html/forms/admin_cad_users.html');
+        echo $page->getPage('html/forms//register/user');
 
     else
         echo $page->openPageByAccess();
@@ -48,7 +48,7 @@ $app->get('/register/cars', function() use ($app, $page) {
 
 $app->get('/edit', function() use ($app, $page) {
     if($page->getAccess() == 'a')
-        echo $page->getPage('html/forms/admin_edit_users.html');
+        echo $page->getPage('html/forms//edit');
 
     else
         echo $page->openPageByAccess();
@@ -56,7 +56,7 @@ $app->get('/edit', function() use ($app, $page) {
 
 $app->get('/delete', function() use ($app, $page) {
     if($page->getAccess() == 'a')
-        echo $page->getPage('html/forms/admin_delet_user.html');
+        echo $page->getPage('html/forms//delete');
 
     else
         echo $page->openPageByAccess();
