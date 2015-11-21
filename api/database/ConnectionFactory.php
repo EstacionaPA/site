@@ -8,10 +8,10 @@ class ConnectionFactory {
     }
     
     private static function getConnection() {
-        $dbhost = getenv('localhost');
-        $dbuser = 'alfredudu';
-        $dbpass = 'Sn@keDoctor_007';
-        $dbname = 'estacionapa';
+        $dbhost = '127.0.0.1';
+        $dbuser = 'root';
+        $dbpass = '';
+        $dbname = 'projeto';
         
         try {
             $connection = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
