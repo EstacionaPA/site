@@ -30,20 +30,36 @@ $app->get('/register', function() use ($page) {
     echo $page->getPage('html/forms/cad_client.html');
 });
 
-$app->get('/register/user', function() use ($page) {
-    echo $page->getPage('html/forms/admin_cad_users.html');
+$app->get('/register/user', function() use ($app, $page) {
+    if($page->getAccess() == 'a')
+        echo $page->getPage('html/forms/admin_cad_users.html');
+
+    else
+        echo $page->openPageByAccess();
 });
 
-$app->get('/register/cars', function() use ($page) {
-    echo $page->getPage('html/forms/admin_cad_cars.html');
+$app->get('/register/cars', function() use ($app, $page) {
+    if($page->getAccess() == 'a')
+        echo $page->getPage('html/forms/admin_cad_cars.html');
+
+    else
+        echo $page->openPageByAccess();
 });
 
-$app->get('/edit', function() use ($page) {
-    echo $page->getPage('html/forms/admin_edit_users.html');
+$app->get('/edit', function() use ($app, $page) {
+    if($page->getAccess() == 'a')
+        echo $page->getPage('html/forms/admin_edit_users.html');
+
+    else
+        echo $page->openPageByAccess();
 });
 
-$app->get('/delete', function() use ($page) {
-    echo $page->getPage('html/forms/admin_delet_user.html');
+$app->get('/delete', function() use ($app, $page) {
+    if($page->getAccess() == 'a')
+        echo $page->getPage('html/forms/admin_delet_user.html');
+
+    else
+        echo $page->openPageByAccess();
 });
 
 // http://estacionapa.com/login/valid (user + pass)
