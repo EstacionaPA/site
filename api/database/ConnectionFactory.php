@@ -9,7 +9,7 @@ class ConnectionFactory {
     
     private static function getConnection() {
         $dbhost = getenv('localhost');
-        $dbuser = getenv('alfredudu');
+        $dbuser = 'alfredudu';
         $dbpass = 'Sn@keDoctor_007';
         $dbname = 'estacionapa';
         
