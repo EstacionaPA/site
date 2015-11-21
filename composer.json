@@ -1,13 +1,17 @@
 {
-    "name": "alfre_000/estacionapa",
+    "name": "EstacionaPA",
     "authors": [
         {
             "name": "alfredudu",
             "email": "alfredudu_007@hotmail.com"
+        },
+        {
+            "name": "andreluiz",
+            "email": "brasilandre93@hotmail.com"
         }
     ],
     "require": {
-        "twbs/bootstrap": "^3.3",
-        "slim/slim": "^2.6"
+        "slim/slim": "^2.6",
+        "vrana/notorm": "dev-master",
     }
 }

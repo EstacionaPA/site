@@ -5,7 +5,6 @@ require 'login_service.php';
 Class Login{
     
     public function __construct($form) {
-        session_start();
         $this->controll($form);
     }
     
