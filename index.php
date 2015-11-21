@@ -32,7 +32,7 @@ $app->get('/register', function() use ($page) {
 
 $app->get('/register/user', function() use ($app, $page) {
     if($page->getAccess() == 'a')
-        echo $page->getPage('html/forms//register/user');
+        echo $page->getPage('html/forms/register/user');
 
     else
         echo $page->openPageByAccess();
