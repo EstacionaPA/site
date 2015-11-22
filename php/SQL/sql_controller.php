@@ -13,7 +13,7 @@ class SqlController {
 
     private static function connect(){
         $conn = new Connection;
-        $conn->Conn('local');
+        $conn->Conn('localServer');
     }
 
     //
