@@ -13,7 +13,6 @@ class BackEndService {
            if(isset($_SESSION['login'])){
                 $user = $_SESSION['login'];
                 $access = SqlController::Request('RequestAccess', $user);
-                $access = 'a';
                 return $access;
            }
            else
