@@ -13,10 +13,9 @@ var RelatPxCService = {
         
         //Realiza o método POST (JQuery)
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             contentType: 'application/text',
-            url: '/report/carXboard/find',
-            data: board,
+            url: '/report/carXboard/' + board,
             success: function (data) {
                 RelatService.cleanTable();
                 RelatPxCService.verify(data);

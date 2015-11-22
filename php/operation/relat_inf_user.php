@@ -1,7 +1,7 @@
 <?php
 
 class ReportInfUser {
-    public function getInformations($name){
+    public function controll($name){
         
         $array = array();
 

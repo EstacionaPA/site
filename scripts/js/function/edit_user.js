@@ -35,23 +35,24 @@ var editUser = {
               'cidade': form.cidade.value,
               'estado': form.estado.value
             };
-         
         newArray = editUser.fillNullFields(p);
-                              
-        json = JSON.stringify(newArray);
-    
-        post = $.post('../../php/account_manager/manager_controller.php', 
-                      {acao:'editar', objeto:json},
-                      function (data) {
-                        editUser.report(data);
-                      });
+        post = $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json',
+                        url: '/edit/user',
+                        data: JSON.stringify(newArray),
+                        success: function (data) {
+                            editUser.report(data);
+                        }
+                        
+        });
     },
     
     fillNullFields: function (oldArray) {
 
         //This logic will be used when the user dont fill the fileld. The PHP needs this to use JSON correctly 
         for(var key in oldArray){
-            if(oldArray[key] == '')
+            if(oldArray[key] == '' || oldArray[key] == 0)
                 oldArray[key] = '----NULO----';
         }
         
@@ -60,8 +61,10 @@ var editUser = {
     
     report: function(data) {
         
-        if(data == 'success') 
+        if(data == 'success') {
             alert('Edição realizada com sucesso!');
+            document.location = '/edit';
+        }
         else if(data == 'nullFields')
             alert('Preencha pelo menos algum dos campos!');
         else if(data == 'user')
@@ -77,7 +80,8 @@ var editUser = {
         else if(data == 'inactive')
             alert('Este usuário esta inativado!');
         else
-            alert('Por algum motivo, não foi possivel realizar a edição. Contacte um Administrador!'); 
+            alert(data);
+            //alert('Por algum motivo, não foi possivel realizar a edição. Contacte um Administrador!'); 
     }
 }
 

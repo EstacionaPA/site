@@ -1,7 +1,7 @@
 <?php
 
 class ReportBoardXCard{
-    public function getInformations($board){
+    public function controll($board){
         
         $board = addslashes($board);
         $i=0;

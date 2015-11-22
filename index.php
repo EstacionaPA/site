@@ -1,7 +1,7 @@
 <?php
 
 require 'api/vendor/autoload.php';
-require 'php/pages/pages_controller.php';
+require 'php/backend/backend_service.php';
 require 'api/database/ConnectionFactory.php';
 require 'api/people/PeopleService.php';
 require 'api/license/LicenseService.php';
@@ -9,98 +9,146 @@ require 'api/vendor/vrana/NotORM.php';
 
 //chamada do framework slim
 $app = new \Slim\Slim();
-$page = new PageController;
+$service = new BackEndService;
 
-    // http://estacionapa.com/login/index
-$app->get('/', function() use ($page) {
-    echo $page->getPage('index.html');
+// http://estacionapa.com/
+$app->get('/', function() use ($service) {
+    echo $service->getPage('index.html');
 });
     
-// http://estacionapa.com/login/index
-$app->get('/login', function() use ($page) {
-    echo $page->openPageByAccess();
+// http://estacionapa.com/login
+$app->get('/login', function() use ($service) {
+    echo $service->openPageByAccess();
 });
 
-// http://estacionapa.com/login/index
-$app->get('/about', function() use ($page) {
-    echo $page->getPage('html/pages/about.html');
+// http://estacionapa.com/about
+$app->get('/about', function() use ($service) {
+    echo $service->getPage('html/pages/about.html');
 });
 
-$app->get('/register', function() use ($page) {
-    echo $page->getPage('html/forms/cad_client.html');
-});
-
-$app->get('/register/user', function() use ($app, $page) {
-    if($page->getAccess() == 'a')
-        echo $page->getPage('html/forms/admin_cad_users.html');
-
-    else
-        echo $page->openPageByAccess();
-});
-
-$app->get('/register/cars', function() use ($app, $page) {
-    if($page->getAccess() == 'a')
-        echo $page->getPage('html/forms/admin_cad_cars.html');
-
-    else
-        echo $page->openPageByAccess();
-});
-
-$app->get('/edit', function() use ($app, $page) {
-    if($page->getAccess() == 'a')
-        echo $page->getPage('html/forms/admin_edit_users.html');
-
-    else
-        echo $page->openPageByAccess();
-});
-
-$app->get('/delete', function() use ($app, $page) {
-    if($page->getAccess() == 'a')
-        echo $page->getPage('html/forms/admin_delet_user.html');
-
-    else
-        echo $page->openPageByAccess();
-});
 
 // http://estacionapa.com/login/valid (user + pass)
-$app->post('/login/valid', function() use ($app, $page) {
+$app->post('/login/valid', function() use ($app, $service) {
     $form = json_decode($app->request->getBody(), true);
-    $login = $page->validLogin($form);
+    $login = $service->validLogin($form);
 });
 
+$app->get('/edit', function() use ($app, $service) {
+    if($service->getAccess() == 'a')
+        echo $service->getPage('html/forms/admin_edit_users.html');
 
-$app->get('/report/infUser', function() use ($app, $page) {
-    if($page->getAccess() == 'a') 
-        echo $page->getPage('html/forms/admin_relat_inf_user.html');
+    else
+        echo $service->openPageByAccess();
+});
+
+$app->post('/edit/user', function() use ($app, $service) {
+    if($service->getAccess() == 'a') {
+        $form = json_decode($app->request->getBody(), true);
+        $service->editUser($form);
+    }
+    else
+        echo $service->openPageByAccess();
+});
+
+$app->get('/delete', function() use ($service) {
+    if($service->getAccess() == 'a')
+        echo $service->getPage('html/forms/admin_delet_user.html');
+
+    else
+        echo $service->openPageByAccess();
+});
+
+$app->post('/delete/user', function() use ($app, $service) {
+    if($service->getAccess() == 'a') {
+        $form = json_decode($app->request->getBody(), true);
+        $service->inactiveUser($form);
+    }
+    else
+        echo $service->openPageByAccess();
+});
+
+$app->get('/register', function() use ($service) {
+    echo $service->getPage('html/forms/cad_client.html');
+});
+
+// http://estacionapa.com/register/user
+$app->post('/register/client/added', function() use ($app, $service) {
+    $form = json_decode($app->request->getBody(), true);
+    $service->registerClient($form);
+});
+// http://estacionapa.com/register/user
+$app->get('/register/user', function() use ($service) {
+    if($service->getAccess() == 'a')
+        echo $service->getPage('html/forms/admin_cad_users.html');
+
+    else
+        echo $service->openPageByAccess();
+});
+
+// http://estacionapa.com/register/user
+$app->post('/register/user/added', function() use ($app, $service) {
+    if($service->getAccess() == 'a') {
+        $form = json_decode($app->request->getBody(), true);
+        $service->registerUser($form);
+    }
+    else
+        echo $service->openPageByAccess();
+});
+
+$app->get('/register/cars', function() use ($service) {
+    if($service->getAccess() == 'a')
+        echo $service->getPage('html/forms/admin_cad_cars.html');
+
+    else
+        echo $service->openPageByAccess();
+});
+
+$app->post('/register/cars/added', function() use ($app, $service) {
+    if($service->getAccess() == 'a') {
+        $form = json_decode($app->request->getBody(), true);
+        $service->registerCar($form);
+    }
+    else
+        echo $service->openPageByAccess();
+});
+
+$app->get('/report/infUser', function() use ($app, $service) {
+    if($service->getAccess() == 'a') 
+        echo $service->getPage('html/forms/admin_relat_inf_user.html');
     
     else
-        echo $page->openPageByAccess();
+        echo $service->openPageByAccess();
 });
 
-$app->post('/report/infUser/find', function() use ($app, $page) {
-    $name = $app->request->getBody();
-    $report = $page->reportInfUser($name);
-    echo $report;
+$app->get('/report/infUser/:name', function($name) use ($app, $service) {
+    if($service->getAccess() == 'a'){
+        $report = $service->reportInfUser($name);
+        echo $report;
+    }
+    else
+        echo $service->openPageByAccess();
 });
 
-$app->get('/report/carXboard', function() use ($app, $page) {
-    if($page->getAccess() == 'a') 
-        echo $page->getPage('html/forms/admin_relat_placaxcarro.html');
+$app->get('/report/carXboard', function() use ($app, $service) {
+    if($service->getAccess() == 'a') 
+        echo $service->getPage('html/forms/admin_relat_placaxcarro.html');
     
     else
-        echo $page->openPageByAccess();
+        echo $service->openPageByAccess();
 });
 
-
-$app->post('/report/carXboard/find', function() use ($app, $page) {
-    $board = $app->request->getBody();
-    $report = $page->reportCarXBoard($board);
-    echo $report;
+$app->get('/report/carXboard/:board', function($board) use ($app, $service) {
+    if($service->getAccess() == 'a'){
+        $report = $service->reportCarXBoard($board);
+        echo $report;
+    }
+    else
+        echo $service->openPageByAccess();
 });
 
 //http://estacionapa.com/sair
-$app->get('/sair', function() use ($page) {
-    echo $page->sair();
+$app->get('/sair', function() use ($service) {
+    echo $service->sair();
 });
 
 //------------------------------------------------------------------------------------------

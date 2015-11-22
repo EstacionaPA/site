@@ -1,44 +1,36 @@
 <?php
 
-require 'login_service.php';
+require 'php/login/login_service.php';
 
-Class Login{
-    
-    public function __construct($form) {
-        $this->controll($form);
-    }
+Class Login extends ManagerAbstract{
     
     public function controll($form) {
-        
         $svcLogin = new ServiceLogin;
         
-        $valid = $svcLogin->validPOST($form['user'], $form['pass']);
+        $valid = $svcLogin->validVars($form['user'], $form['pass']);
 
-        if($valid) {
-            echo $valid;
-            return;
-        }
+        if($valid) return $valid;
         
         $u = $svcLogin->insertSlashes($form['user']);
         $p = $svcLogin->insertSlashes($form['pass']);
 
         $validLogin = $svcLogin->validLogin($u, $p);
         $checkInactive = $svcLogin->checkInactive($u);
-
+       
         if($validLogin == 'done') {
             if($checkInactive == 'dont'){
                 $_SESSION['login'] = $u;
-                echo $validLogin;
+                echo 'done';
             }
             else{
                 echo 'inactive';
-                return;
             }
                 
         }
         
         else
             echo $validLogin;
+
     }
 }
 

@@ -13,7 +13,7 @@ class SqlController {
 
     private static function connect(){
         $conn = new Connection;
-        $conn->Conn('localServer');
+        $conn->Conn('local');
     }
 
     //
@@ -126,9 +126,11 @@ class SqlController {
 
         //account_mananger/register_person
         elseif($type == 'registerPerson')
-            $command = SQLService::BuildSqlInsertUsers($obj->name, $obj->user, $obj->pass, $obj->email, $obj->cpf, $obj->address, $obj->number,
-                                                        $obj->comp, $obj->block, $obj->cep, $obj->city, $obj->state, $obj->tel, $obj->cel,
-                                                        $obj->access);
+            $command = SQLService::BuildSqlInsertUsers($obj['name'], $obj['user'], $obj['pass'], 
+                                                       $obj['email'], $obj['cpf'], $obj['address'],  
+                                                       $obj['number'], $obj['comp'], $obj['block'], 
+                                                       $obj['cep'], $obj['city'], $obj['state'], 
+                                                       $obj['tel'], $obj['cel'], $obj['access']);
 
         elseif($type == 'InactivePerson')
             $command = SQLService::BuildSqlInactivePerson($obj['user'], $obj['cause']);

@@ -22,7 +22,7 @@ var cadPerson = {
             acao = '';
             
          //Building the JSON array  
-        p = {'pessoa': [{ 
+        p = {
                           'name': form.nome.value,
                           'user': form.usuario.value,
                           'pass': form.senha.value,
@@ -35,23 +35,30 @@ var cadPerson = {
                           'cep': form.cep.value,
                           'block': form.bairro.value,
                           'city': form.cidade.value,
-                          'tel': form.telefone.value}
-                       ]};
-                              
-        json = JSON.stringify(p.pessoa[0]);
+                          'cel': form.celular.value,
+                          'state': form.estado.value,
+                          'tel': form.telefone.value
+                       };
     
-        post = $.post('../../php/account_manager/manager_controller.php', 
-                      {acao:'cadastrar', pessoa:json},
-                      function (data) {
-                        cadPerson.showResult(data);
-                      });
+        post = $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            url: '/register/user/added',
+            data: JSON.stringify(p),
+            success: function (data) {
+                cadPerson.showResult(data);
+            }
+                        
+        });
 
     },
     
     showResult: function (data) {
         
-        if(data == 'success') 
+        if(data == 'success') {
             alert('Cadastro Realizado com sucesso!');
+            document.location = '/register/user';
+        }
         else if(data == 'nullFields')
             alert('Preencha todos os campos!');
         else if(data == 'user')

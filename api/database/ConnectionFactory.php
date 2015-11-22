@@ -8,9 +8,15 @@ class ConnectionFactory {
     }
     
     private static function getConnection() {
-        $dbhost = '127.0.0.1';
+       /* $dbhost = '127.0.0.1';
         $dbuser = 'alfredudu';
         $dbpass = 'Sn@keDoctor_007';
+        $dbname = 'estacionapa';
+        */
+        
+        $dbhost = '127.0.0.1';
+        $dbuser = 'root';
+        $dbpass = '';
         $dbname = 'estacionapa';
         
         try {

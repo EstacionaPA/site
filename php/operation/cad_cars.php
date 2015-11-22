@@ -1,62 +1,61 @@
 <?php
 
-require '../SQL/sql_controller.php';
-require '../objects/car.php';
+require 'php/objects/car.php';
 
-if($_POST['user'] == '' || $_POST['placa'] == '' || 
-   $_POST['marca'] == '' || $_POST['mod'] == '') {
-        echo '!fields';
-        return;
-}
+class RegisterCar {
+    public function controll($form){
 
-$postUser = $_POST['user'];
-$postPlaca = $_POST['placa'];
-$postMarca = $_POST['marca'];
-$postMod = $_POST['mod'];
+        if($form['user'] == '' || $form['placa'] == '' || 
+           $form['marca'] == '' || $form['modelo'] == '') {
+                echo '!fields';
+                return;
+        }
 
-$validUser = SqlController::Validate('CheckUser', $postUser);
-$validMarca = SqlController::Validate('CheckMark', $postMarca);
-$validModelo = SqlController::Validate('CheckModel', $postMod);
-$validPlaca = SqlController::Validate('CheckBoard', $postPlaca);
-    
-if($validUser == 'done'){
-    if($validMarca == 'done'){
-        if($validModelo == 'done'){
-            if($validPlaca == 'dont'){
-                
+        $validUser = SqlController::Validate('CheckUser', $form['user']);
+        $validMarca = SqlController::Validate('CheckMark', $form['marca']);
+        $validModelo = SqlController::Validate('CheckModel', $form['modelo']);
+        $validPlaca = SqlController::Validate('CheckBoard', $form['placa']);
 
-                $idUser= SqlController::Request('RequestIdUser', $postUser);
-                $modelo = SqlController::Request('RequestIdModel', $postMod);
-                $marca = SqlController::Request('RequestIdMark', $postMarca);
-                
-                $car = new Car($idUser, $postPlaca, $marca, $modelo);
+        if($validUser == 'done'){
+            if($validMarca == 'done'){
+                if($validModelo == 'done'){
+                    if($validPlaca == 'dont'){
 
-                $valid = SqlController::Insert('insertCar', $car);
 
-                if($valid) echo 'done';
-                else echo $valid;
+                        $idUser= SqlController::Request('RequestIdUser', $form['user']);
+                        $modelo = SqlController::Request('RequestIdModel', $form['modelo']);
+                        $marca = SqlController::Request('RequestIdMark', $form['marca']);
+
+                        $car = new Car($idUser, $form['placa'], $marca, $modelo);
+
+                        $valid = SqlController::Insert('insertCar', $car);
+
+                        if($valid) echo 'done';
+                        else echo $valid;
+                    }
+
+                    else{
+                        echo 'placa';
+                        return;
+                    }
+                }
+
+                else{
+                    echo '!modelo';
+                    return;
+                }
             }
-            
+
             else{
-                echo 'placa';
+                echo '!marca';
                 return;
             }
         }
-        
+
         else{
-            echo '!modelo';
+            echo '!user';
             return;
         }
     }
-        
-    else{
-        echo '!marca';
-        return;
-    }
-}
-
-else{
-    echo '!user';
-    return;
 }
 ?>

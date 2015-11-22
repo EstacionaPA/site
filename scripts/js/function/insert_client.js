@@ -22,34 +22,41 @@ var cadPerson = {
             acao = '';
             
          //Building the JSON array  
-        p = {'pessoa': [{'name': form.nome.value,
-                          'user': form.usuario.value,
-                          'pass': form.senha.value,
-                          'access': 'vazio',
-                          'email': form.email.value,
-                          'cpf':  form.cpf.value,
-                          'address': form.endereco.value,
-                          'number': form.numero.value,
-                          'comp': form.complemento.value,
-                          'cep': form.cep.value,
-                          'block': form.bairro.value,
-                          'city': form.cidade.value,
-                          'tel': form.telefone.value}]};
-                              
-        json = JSON.stringify(p.pessoa[0]);
+        p = {   'name': form.nome.value,
+                'user': form.usuario.value,
+                'pass': form.senha.value,
+                'access': 'vazio',
+                'email': form.email.value,
+                'cpf':  form.cpf.value,
+                'address': form.endereco.value,
+                'number': form.numero.value,
+                'comp': form.complemento.value,
+                'cep': form.cep.value,
+                'block': form.bairro.value,
+                'city': form.cidade.value,
+                'tel': form.telefone.value,
+                'state' : form.estado.value,
+                'cel' : form.celular.value
+        };
     
-        post = $.post('../../php/account_manager/manager_controller.php', 
-                      {acao:'cadastrarCliente', pessoa:json},
-                      function (data) {
-                        cadPerson.showResult(data);
-                      });
+        post = $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            url: '/register/client/added',
+            data: JSON.stringify(p),
+            success: function (data) {
+                cadPerson.showResult(data);
+            }
+        });
 
     },
     
     showResult: function (data) {
         
-        if(data == 'success') 
+        if(data == 'success') {
             alert('Cadastro Realizado com sucesso!');
+            document.location = '/register';
+        }
         else if(data == 'nullFields')
             alert('Preencha todos os campos!');
         else if(data == 'user')

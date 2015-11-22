@@ -1,10 +1,10 @@
 <?php
 
 class ServiceLogin {
-    public function validPOST($userPOST, $passPOST){
+    public function validVars($user, $pass){
         
-        if((!isset($userPOST) and !isset($passPOST)) or 
-            ($userPOST != '' and $passPOST != '')) 
+        if((!isset($user) and !isset($pass)) or 
+            ($user != '' and $pass != '')) 
             
                 return NULL;
         else

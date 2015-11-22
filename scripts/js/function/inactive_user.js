@@ -20,14 +20,17 @@ var deletUser = {
               'user': form.usuario.value,
               'cause': form.causa.value
             };
-         
-                              
-        json = JSON.stringify(inactive);
-        
-        $.post('../../php/account_manager/manager_controller.php',
-               {acao:'inativarPessoa', pessoa:json},
-               function (data) {
-                    deletUser.report(data);
+
+        var post = 
+            $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json',
+                    url: '/delete/user',
+                    data: JSON.stringify(inactive),
+                    success: 
+                    function (data) { 
+                            deletUser.report(data);
+                    }
                 });
     },
     

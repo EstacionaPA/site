@@ -2,23 +2,30 @@ var cadCarsService = {
 
     sendValues: function (form) {
         
-        var user = form.usuario.value;
-        var placa = form.placaCarro.value;
-        var marca = form.marca.value;
-        var mod = form.modelo.value;
-                
-        $.post('../../php/operation/cad_cars.php',
-               {user: user, placa: placa, marca: marca, mod: mod},
-               function (value) {
-                    cadCarsService.checkValue(value);
-                });
+        var car = {
+            'user' : form.usuario.value,
+            'placa' : form.placaCarro.value,
+            'marca' : form.marca.value,
+            'modelo' : form.modelo.value
+        };
+        
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            url: '/register/cars/added',
+            data: JSON.stringify(car),
+            success: function (data) {
+                cadCarsService.checkValue(data);
+            }
+        });
     },
     
     checkValue: function (value) {
   
-        if(value == 'done')
+        if(value == 'done'){
             alert('Veículo cadastrado com sucesso!');
-        
+            document.location = '/register/cars';
+        }
         else if(value == '!user')
             alert('Usuário inválido!');
         

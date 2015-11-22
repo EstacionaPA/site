@@ -1,25 +1,24 @@
 <?php
 
-require 'manager_service.php';
-require 'to_action.php';
+require 'php/account_manager/manager_service.php';
+require 'php/account_manager/manager_abstract.php';
+require 'php/account_manager/to_action.php';
 
 class ManagerController{
-    public function __construct(){
+    public function manager($action, $data){
         
         $svc = new ManagerService;
         $convert = new ActionToClass;
         
-        $checkPostPerson = $svc->checkPost($_POST['pessoa']);
-        $checkPostAction = $svc->checkPost($_POST['acao']);
+        $checkAction = $svc->checkVar($action);
+        $checkData = $svc->checkVar($data);
         
-        if($checkPostAction == 'done' and $checkPostPerson == 'done') {
-            $person = $svc->getJSONPost($_POST['pessoa']);
-                                                                //Used only in 'CadastroCliente' mode
-            $class = $convert->convert($_POST['acao'], $person);
+        if($checkAction == 'done' and $checkData == 'done') {
+                                                //Used only in 'CadastroCliente' mode
+            $class = $convert->convert($action, $data);
     
             if($class <> 'dont'){            
-                //the ManagerAbtstract are required in manager_service.php
-                ManagerAbstract::doAction($class, $svc, $person);
+                ManagerAbstract::doAction($class, $data);
             }
             else 
                 echo 'nullFields';   
@@ -28,7 +27,5 @@ class ManagerController{
             echo 'nullFields';  
     }
 }
-
-$init = new ManagerController;
 
 ?>

@@ -21,10 +21,9 @@ var RelatInfUserService = {
         
         //Realiza o método POST (JQuery)
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             contentType: 'application/text',
-            url: '/report/infUser/find',
-            data: name,
+            url: '/report/infUser/' + name,
             success: function (data) {
                 RelatService.cleanTable();
                 RelatInfUserService.verify(data);

@@ -1,24 +1,19 @@
 <?php
 
-require 'php/login/login_controller.php';
-require 'php/operation/relat_inf_user.php';
+require 'php/account_manager/manager_controller.php';
 require 'php/SQL/sql_controller.php';
-require 'php/operation/relat_boardXcar.php';
 
-class PageController {
+class BackEndService {
     
      public function __construct() {
         session_start();
      } 
      
-     public function validLogin($form){
-         $loginController = new Login($form);
-     }
-     
      public function getAccess(){
            if(isset($_SESSION['login'])){
                 $user = $_SESSION['login'];
                 $access = SqlController::Request('RequestAccess', $user);
+                $access = 'a';
                 return $access;
            }
            else
@@ -62,22 +57,42 @@ class PageController {
         return $this->getPage('index.html');
     }
     
+    public function validLogin($form){
+        $manager = new ManagerController;
+        echo $manager->manager('checkLogin', $form);
+     }
+    
     public function reportInfUser($name){
-        if($this->getAccess() == 'a'){
-            $report = new ReportInfUser();
-            return $report->getInformations($name);
-        }
-        else
-            return $this->openPageByAccess();
+        $manager = new ManagerController;
+        echo $manager->manager('relatInfUser' , $name);
     }
     
-    public function reportCarXBoard($bord){
-        if($this->getAccess() == 'a'){
-            $report = new ReportBoardXCard();
-            return $report->getInformations($bord);
-        }
-        else
-            return $this->openPageByAccess();
+    public function reportCarXBoard($board){
+        $manager = new ManagerController;
+        echo $manager->manager('relatBoardXCar', $board);
+    }
+    
+    public function editUser($form){
+        $manager = new ManagerController;
+        echo $manager->manager('editUser', $form);
+    }
+    
+    public function inactiveUser($form){
+        $manager = new ManagerController;
+        echo $manager->manager('inactiveUser', $form);
+    }
+    
+    public function registerUser($form){
+        $manager = new ManagerController;
+        echo $manager->manager('registerUser', $form);
+    }
+    public function registerClient($form){
+        $manager = new ManagerController;
+        echo $manager->manager('registerClient', $form);
+    }
+    public function registerCar($form){
+        $manager = new ManagerController;
+        echo $manager->manager('registerCar', $form);
     }
 }
 
