@@ -1,7 +1,5 @@
 <?php
 
-
-
 require 'connection.php';
 require 'sql_service.php';
 
@@ -13,7 +11,7 @@ class SqlController {
 
     private static function connect(){
         $conn = new Connection;
-        $conn->Conn('localServer');
+        $conn->Conn('local');
     }
 
     //
