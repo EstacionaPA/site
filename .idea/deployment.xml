@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="EstacionaPA" persistUploadOnCheckin="false">
+  <component name="PublishConfigData" serverName="EstacionaPA" uploadOnCheckin="c2f87b6d-f70d-4976-9ecc-65ba1d6dde1c">
     <serverData>
       <paths name="EstacionaPA">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-            <mapping deploy="" local="$PROJECT_DIR$/api" web="/api" />
-            <mapping local="$PROJECT_DIR$/css" web="/css" />
-            <mapping local="$PROJECT_DIR$/html" web="/html" />
-            <mapping local="$PROJECT_DIR$/img" web="/img" />
-            <mapping local="$PROJECT_DIR$/php" web="/php" />
-            <mapping local="$PROJECT_DIR$/scripts" web="/scripts" />
-            <mapping local="$PROJECT_DIR$/teste" web="/teste" />
+            <mapping deploy="" local="$PROJECT_DIR$" web="/public_html" />
+            <mapping deploy="" local="$PROJECT_DIR$/api" web="/public_html/api" />
+            <mapping local="$PROJECT_DIR$/css" web="/public_html/css" />
+            <mapping local="$PROJECT_DIR$/html" web="/public_html/html" />
+            <mapping local="$PROJECT_DIR$/img" web="/public_html/img" />
+            <mapping deploy="" local="$PROJECT_DIR$/php" web="/public_html/php" />
+            <mapping local="$PROJECT_DIR$/scripts" web="/public_html/scripts" />
+            <mapping local="$PROJECT_DIR$/teste" web="/public_html/teste" />
           </mappings>
           <excludedPaths>
             <excludedPath local="true" path="$PROJECT_DIR$/.idea" />
@@ -20,5 +20,6 @@
         </serverdata>
       </paths>
     </serverData>
+    <option name="myUploadOnCheckinName" value="EstacionaPA" />
   </component>
 </project>

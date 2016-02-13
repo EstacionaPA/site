@@ -13,7 +13,6 @@ class SqlController {
         $conn = new Connection;
         $conn->Conn('localServer');
     }
-
     //
     //REQUESTS
     //
