@@ -5,13 +5,22 @@ class Connection{
     public function Conn ($network){
 
         if($network == "local"){
-            $conexao = mysqli_pconnect("localhost","root","snake007") or die ("Erro na conexão!");
-            $banco = mysqli_select_db("projeto");
+            $servidor = 'localhost';
+            $usuario = 'root';
+            $senha = 'snake007';
+            $banco = 'projeto';
+
+            $mysqli = new mysqli($servidor, $usuario, $senha, $banco) or die ("Erro na conexão!");
         }
         
         elseif($network == "localServer"){
-            $conexao = mysqli_pconnect("localhost","u650072308_site","x3Lae6vUSI") or die ("Erro na conexão!");
-            $banco = mysqli_select_db("u650072308_site");
+            $servidor = 'localhost';
+            $usuario = 'u650072308_site';
+            $senha = 'x3Lae6vUSI';
+            $banco = 'u650072308_site';
+
+            $mysqli = new mysqli($servidor, $usuario, $senha, $banco) or die ("Erro na conexão!");
+
         }
         
     }
