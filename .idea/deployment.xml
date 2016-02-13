@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="Estaciona PA" persistUploadOnCheckin="false" />
+  <component name="PublishConfigData" serverName="EstacionaPA" persistUploadOnCheckin="false">
+    <serverData>
+      <paths name="EstacionaPA">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="" local="$PROJECT_DIR$/api" web="/api" />
+            <mapping local="$PROJECT_DIR$/css" web="/css" />
+            <mapping local="$PROJECT_DIR$/html" web="/html" />
+            <mapping local="$PROJECT_DIR$/img" web="/img" />
+            <mapping local="$PROJECT_DIR$/php" web="/php" />
+            <mapping local="$PROJECT_DIR$/scripts" web="/scripts" />
+            <mapping local="$PROJECT_DIR$/teste" web="/teste" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/.idea" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
 </project>
