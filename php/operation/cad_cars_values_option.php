@@ -14,20 +14,20 @@ if(isset($_POST["request"])){
         //REQUISITANDO A LISTA DE MARCAS
         $resource = SqlController::Request('RequestMarks', NULL);
         
-        while($row = mysql_fetch_row($resource))
-
-            foreach($row as $option)
-                echo $option .  ";";
+        if($resource)    
+            for($i = 0; $i < count($resource); $i = $i + 1) echo $resource[$i][0] . ';';
+            
+        else
+            return NULL;
         
-        return;
     }
 
     else if($requisitonType == "model"){
         
         //VALIDAÇÃO CONTRA MANUPULAÇÃO DO JAVASCRIPT POR PARTE DO USUARIO
         if(!isset($_POST["markName"])) {
-            echo "Erro!";
-            return;
+            echo "Informe uma Marca.";
+            return NULL;
         }
         else{
             
@@ -39,15 +39,13 @@ if(isset($_POST["request"])){
             $markId = SqlController::Request('RequestIdMark', $markName);
             $array = SqlController::Request('RequestModels', $markId);
             
-            while($row = mysql_fetch_row($array))
-
-            foreach($row as $option)
-                echo $option .  ";";
-
-            return;
+            if($array)  
+                for($i = 0; $i < count($array); $i = $i + 1) echo $array[$i][0] . ';';
+            
+            return NULL;
         }
     }
 
 }
-echo "Erro!";
+echo "Erro geral.";
 ?>

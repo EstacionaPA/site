@@ -17,8 +17,11 @@ class ServiceLogin {
     }
     
     public function validLogin($user, $pass){
+        
         //sql_controller.php have been called by INDEX.PHP
+        
         $validUser = SqlController::validate('CheckUser', $user);
+        
         $validPass = SqlController::validate('CheckPass', $pass);
         
         if($validPass == 'done' and $validUser == 'done')
@@ -26,6 +29,7 @@ class ServiceLogin {
         
         else
             return '!user!pass';
+            
         
     }
     

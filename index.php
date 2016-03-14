@@ -1,7 +1,7 @@
 <?php
 
 require 'api/vendor/autoload.php';
-require 'php/backend/backend_service.php';
+require 'php/backend_manager/backend_service.php';
 require 'api/database/ConnectionFactory.php';
 require 'api/people/PeopleService.php';
 require 'api/license/LicenseService.php';
@@ -35,10 +35,8 @@ $app->post('/login/valid', function() use ($app, $service) {
 });
 
 $app->get('/edit', function() use ($app, $service, $access) {
-    if($access == 'a'){
-        echo $access;
+    if($access == 'a')
         echo $service->getPage('html/forms/admin_edit_users.html');
-    }
 
     else
         echo $service->openPageByAccess();
@@ -99,11 +97,11 @@ $app->post('/register/user/added', function() use ($app, $service, $access) {
 });
 
 $app->get('/register/cars', function() use ($service, $access) {
-    if($access == 'a')
+    //if($access == 'a')
         echo $service->getPage('html/forms/admin_cad_cars.html');
 
-    else
-        echo $service->openPageByAccess();
+    //else
+       // echo $service->openPageByAccess();
 });
 
 $app->post('/register/cars/added', function() use ($app, $service, $access) {

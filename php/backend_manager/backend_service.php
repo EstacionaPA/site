@@ -1,6 +1,6 @@
 <?php
 
-require 'php/account_manager/manager_controller.php';
+require 'manager_controller.php';
 require 'php/SQL/sql_controller.php';
 
 class BackEndService {

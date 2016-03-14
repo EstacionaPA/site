@@ -11,7 +11,7 @@ require 'php/operation/cad_cars.php';
 require 'php/operation/relat_inf_user.php';
 require 'php/operation/relat_boardXcar.php';
 
-class ActionToClass{                    //Similar to C/C++ pointer
+class ToActionClass{                    //Similar to C/C++ pointer
     public function convert($action, &$person){
             
             if($action == 'checkLogin'){

@@ -26,6 +26,7 @@ var editUser = {
               'usuario': form.usuario.value,
               'acesso': form.acesso.value,
               'telefone': form.telefone.value,
+              'celular': form.celular.value,
               'email': form.email.value,
               'endereco': form.endereco.value,
               'complemento': form.complemento.value,
@@ -63,7 +64,7 @@ var editUser = {
         
         if(data == 'success') {
             alert('Edição realizada com sucesso!');
-            document.location = '/edit';
+            //document.location = '/edit';
         }
         else if(data == 'nullFields')
             alert('Preencha pelo menos algum dos campos!');

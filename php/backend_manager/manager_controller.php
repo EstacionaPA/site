@@ -1,14 +1,14 @@
 <?php
 
-require 'php/account_manager/manager_service.php';
-require 'php/account_manager/manager_abstract.php';
-require 'php/account_manager/to_action.php';
+require 'manager_service.php';
+require 'manager_abstract.php';
+require 'to_action.php';
 
 class ManagerController{
     public function manager($action, $data){
         
         $svc = new ManagerService;
-        $convert = new ActionToClass;
+        $convert = new ToActionClass;
         
         $checkAction = $svc->checkVar($action);
         $checkData = $svc->checkVar($data);

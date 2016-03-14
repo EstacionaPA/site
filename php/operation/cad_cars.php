@@ -22,7 +22,7 @@ class RegisterCar {
                     if($validPlaca == 'dont'){
 
 
-                        $idUser= SqlController::Request('RequestIdUser', $form['user']);
+                        $idUser = SqlController::Request('RequestIdUser', $form['user']);
                         $modelo = SqlController::Request('RequestIdModel', $form['modelo']);
                         $marca = SqlController::Request('RequestIdMark', $form['marca']);
 

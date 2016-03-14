@@ -5,6 +5,8 @@ require 'php/login/login_service.php';
 Class Login extends ManagerAbstract{
     
     public function controll($form) {
+        
+        
         $svcLogin = new ServiceLogin;
         
         $valid = $svcLogin->validVars($form['user'], $form['pass']);
@@ -14,7 +16,10 @@ Class Login extends ManagerAbstract{
         $u = $svcLogin->insertSlashes($form['user']);
         $p = $svcLogin->insertSlashes($form['pass']);
 
+
         $validLogin = $svcLogin->validLogin($u, $p);
+        
+        
         $checkInactive = $svcLogin->checkInactive($u);
        
         if($validLogin == 'done') {
@@ -30,7 +35,7 @@ Class Login extends ManagerAbstract{
         
         else
             echo $validLogin;
-
+    
     }
 }
 

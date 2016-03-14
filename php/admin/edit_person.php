@@ -28,22 +28,29 @@ class EditPersonController extends ManagerAbstract {
             };
             
             //Check all the JSON values
-            while($value = current($person)){
+            echo count($person) . ';';
+            print_r($person);
+            //while($value = current($person)){
+            for($i = 0; $i < count($person); $i = $i + 1){
+                echo 'contagem: ' . count($person) . ';';
+                $value = current($person);
+                echo 'valor: ' . $value . ';';
+                echo 'loop:' . $i . ';';
                 //This conditional ignore JSON null values, null aceess value and user field
                 if($value != 'n' and $value != '----NULO----' and key($person) != 'usuario'){
+
                     $update = $svc->update(key($person), $value, $person['usuario']);
                     
                     if($update)
-                        echo 'success';
+                        echo ';' . $update;
                     else
                         'dont';
-                    
-                    return;
-                       
                 }
+                
+                //array_shift($person);
                 next($person);
             }
-            echo 'nullFields3';
+            echo 'nullFields';
             return;
             
         }
