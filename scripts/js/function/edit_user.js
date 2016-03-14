@@ -64,7 +64,7 @@ var editUser = {
         
         if(data == 'success') {
             alert('Edição realizada com sucesso!');
-            //document.location = '/edit';
+            document.location = '/edit';
         }
         else if(data == 'nullFields')
             alert('Preencha pelo menos algum dos campos!');
