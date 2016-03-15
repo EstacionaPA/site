@@ -6,7 +6,7 @@ class SQLService {
     
     public static function connect(){
         $conn = new Connection;
-        $mysqli = $conn->Conn('localServer');
+        $mysqli = $conn->Conn('local');
         return $mysqli;
     }
     
@@ -49,7 +49,7 @@ class SQLService {
                 return self::validateSQLExecutes($resultQuery, 'yes');
             
             else {
-                echo 'Opcao de servico de SQL invalida. Contacte um suporte!';
+                echo 'Opcao de servico de SQL invalida. Contacte o suporte!';
                 return NULL;
             }
                

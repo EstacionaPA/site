@@ -136,7 +136,7 @@ class SqlController {
         }
         
         else
-            echo 'Opcao de Controle de SQL inválida. Contacte um suporte!';
+            echo 'Opcao de Controle de SQL inválida. Contacte o suporte!';
         
         echo NULL;
             
@@ -176,7 +176,7 @@ class SqlController {
 
         
         else
-            echo 'Opcao de Controle de SQL inválida. Contacte um suporte!';
+            echo 'Opcao de Controle de SQL inválida. Contacte o suporte!';
 
 
     }
@@ -197,7 +197,7 @@ class SqlController {
         }
             
         else
-            echo 'Opcao de Controle de SQL inválida. Contacte um suporte!';
+            echo 'Opcao de Controle de SQL inválida. Contacte o suporte!';
     }
 
     public static function Delet(){
@@ -224,7 +224,7 @@ class SqlController {
         }
             
         else
-            echo 'Opcao de Controle de SQL inválida. Contacte um suporte!';
+            echo 'Opcao de Controle de SQL inválida. Contacte o suporte!';
 
         return NULL;
 
