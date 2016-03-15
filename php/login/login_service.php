@@ -17,8 +17,7 @@ class ServiceLogin {
     }
     
     public function validLogin($user, $pass){
-        
-        //sql_controller.php have been called by INDEX.PHP
+
         
         $validUser = SqlController::validate('CheckUser', $user);
         

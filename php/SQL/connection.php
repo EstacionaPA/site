@@ -14,15 +14,12 @@ class Connection{
             $senha = '';
             $banco = 'projeto';
 
-            $mysqli = new mysqli($servidor, $usuario, $senha, $banco);
+            $mysqli = @new mysqli($servidor, $usuario, $senha, $banco);
             
-            if ($mysqli->connect_errno) {
-                echo 'Erro de Conexao: ' . $mysqli->connect_error . '.';
-                $mysqli->close();
-                return NULL;
+            if ($mysqli->connect_error) {
+                die("A conexao falhou: " . $mysqli->connect_error);
             }
             
-
             return $mysqli;
             
         }
@@ -33,7 +30,14 @@ class Connection{
             $senha = 'x3Lae6vUSI';
             $banco = 'u650072308_site';
 
-            $mysqli = new mysqli($servidor, $usuario, $senha, $banco) or die ("Erro na conexão!");
+            $mysqli = @new mysqli($servidor, $usuario, $senha, $banco);
+            
+            if ($mysqli->connect_error) {
+                die("A conexao falhou: " . $mysqli->connect_error);
+            }
+            
+
+            return $mysqli;
 
         }
         
