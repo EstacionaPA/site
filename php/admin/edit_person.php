@@ -8,6 +8,7 @@ class EditPersonController extends ManagerAbstract {
         
         $checkUser = $svc->checkSingleValue('CheckUser', $person['usuario']);
         $checkInactive = $svc->checkInactive($person['usuario']);
+        $validOperation = false;
 
         //Validation if user is not inactived
         if($checkInactive == 'done'){
@@ -28,29 +29,25 @@ class EditPersonController extends ManagerAbstract {
             };
             
             //Check all the JSON values
-            echo count($person) . ';';
-            print_r($person);
+
             //while($value = current($person)){
             for($i = 0; $i < count($person); $i = $i + 1){
-                echo 'contagem: ' . count($person) . ';';
                 $value = current($person);
-                echo 'valor: ' . $value . ';';
-                echo 'loop:' . $i . ';';
                 //This conditional ignore JSON null values, null aceess value and user field
                 if($value != 'n' and $value != '----NULO----' and key($person) != 'usuario'){
-
                     $update = $svc->update(key($person), $value, $person['usuario']);
-                    
-                    if($update)
-                        echo ';' . $update;
-                    else
-                        'dont';
+                    $validOperation = true;
                 }
                 
                 //array_shift($person);
                 next($person);
             }
-            echo 'nullFields';
+            
+            if($validOperation == true) 
+                echo 'success';
+            else
+                echo 'nullFields';
+                
             return;
             
         }

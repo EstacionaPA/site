@@ -33,7 +33,10 @@ class BackEndService {
                 return $this->getPage('html/pages/main_login_f.html');
                     
             else if($access == 'c')
-                return $this->getPage('html/pages/main_login_c.html');      
+                return $this->getPage('html/pages/main_login_c.html');
+            
+            else
+                echo 'Acesso invalido. Contacte o suporte!';
         }
         else 
             return $this->getPage('html/forms/form_login.html');
