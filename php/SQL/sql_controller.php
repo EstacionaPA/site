@@ -167,7 +167,8 @@ class SqlController {
             $result = $sql->ExecuteSQL($query, 'OnlyExecute');
             return $result;
         }
-
+        
+        //admin/admin_service
         elseif($type == 'InactivePerson'){
             $query = $sql->BuildSqlInactivePerson($obj['user'], $obj['cause']);
             $result = $sql->ExecuteSQL($query, 'OnlyExecute');
@@ -189,9 +190,10 @@ class SqlController {
     public static function Update($type, $obj){
         
         $sql = new SQLService;
-
+        
+        //admin/admin_service
         if($type =='UpdateUser'){
-            $query = SQLService::BuildSqlUpdateSingleValue('pessoas', $obj['column'], $obj['value'], 'usuario', $obj['user']);
+            $query = $sql->BuildSqlUpdateSingleValue('pessoas', $obj['column'], $obj['value'], 'usuario', $obj['user']);
             $result = $sql->ExecuteSQL($query, 'OnlyExecute');
             return $result;
         }
@@ -210,13 +212,15 @@ class SqlController {
     public static function Report($type, $obj){
         
         $sql = new SQLService;
-
+    
+        //operation/relat_boardXcar.php
         if($type == 'BoardXCar'){
             $query = $sql->relatBoardXCar($obj);
             $result = $sql->ExecuteSQL($query, 'getArrayList');
             return $result;
         }
-
+        
+        //operation/relat_inf_user.php
         elseif($type == 'InfUser'){
             $query = $sql->relatInfUser($obj);
             $result = $sql->ExecuteSQL($query, 'getArrayList');

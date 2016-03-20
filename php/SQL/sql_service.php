@@ -6,7 +6,7 @@ class SQLService {
     
     public static function connect(){
         $conn = new Connection;
-        $mysqli = $conn->Conn('localServer');
+        $mysqli = $conn->Conn('local');
         return $mysqli;
     }
     
