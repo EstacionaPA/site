@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.44, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.47, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: projeto
 -- ------------------------------------------------------
--- Server version	5.5.44-0ubuntu0.14.04.1
+-- Server version	5.5.47-0ubuntu0.14.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -123,6 +123,30 @@ INSERT INTO `modelo` VALUES ('001001-4','Fiorino FurgÃ£o 1.5 mpi / i.e.','21')
 UNLOCK TABLES;
 
 --
+-- Table structure for table `parametros`
+--
+
+DROP TABLE IF EXISTS `parametros`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `parametros` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `value` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `parametros`
+--
+
+LOCK TABLES `parametros` WRITE;
+/*!40000 ALTER TABLE `parametros` DISABLE KEYS */;
+/*!40000 ALTER TABLE `parametros` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `pessoas`
 --
 
@@ -147,7 +171,7 @@ CREATE TABLE `pessoas` (
   `celular` varchar(12) NOT NULL,
   `acesso` varchar(1) NOT NULL,
   PRIMARY KEY (`id`,`usuario`,`email`,`cpf`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,7 +180,7 @@ CREATE TABLE `pessoas` (
 
 LOCK TABLES `pessoas` WRITE;
 /*!40000 ALTER TABLE `pessoas` DISABLE KEYS */;
-INSERT INTO `pessoas` VALUES (1,'Alfredo Eduardo','alfredudu','da679535870fd52c412d15b69948ac96','alfredudu_007@hotmail.com','08792467660','Rua Capitao Jorge Gustavo Tinoco','122','Casa','Sao Carlos','37550000','Pouso Alegre','CA','3588888888','3588075998','a'),(2,'Andre Luiz','andre','202cb962ac59075b964b07152d234b70','brasilandre93@hotmail.com','00000000000','Rua','1','Casa','Foch','37550000','Pouso Alegre','MG','3588888888','3588888888','a'),(4,'Joao','joao','dccd96c256bc7dd39bae41a405f25e43','joao@joao.com.br','00000000000','Rua','1','Casa','Foch','37550000','Pouso Alegre','MG','3588888888','3588888888','f'),(5,'-','andre','c4ca4238a0b923820dcc509a6f75849b','-','-','-','-','-','-','-','-','SP','-','-','a'),(7,'-','andre','c4ca4238a0b923820dcc509a6f75849b','-','-','-','-','-','-','-','-','SP','-','-','a'),(8,'Anderson','anderson','202cb962ac59075b964b07152d234b70','anderson@pa.com.br','00000000000','Rua','1','Casa','Foch','37550000','Pouso Alegre','MG','3588888888','3588888888','c'),(9,'-','TESTE','c4ca4238a0b923820dcc509a6f75849b','-','-','-','-','-','-','-','-','SP','--','-','c'),(10,'1','teste','c4ca4238a0b923820dcc509a6f75849b','1','1','1','1','1','1','1','1','SP','1','1','a'),(11,'UsuÃ¡rio Ester','user','c4ca4238a0b923820dcc509a6f75849b','user@user.com','123,321,123','R: user','123','comp','Bairro do User','00000-00','Cidade User','SP','3400-0000','9900-0000','c'),(12,'Lais Franco','lais','202cb962ac59075b964b07152d234b70','lahspfc@gmail.com','00000000000','Rua','1','Casa','Aquele','37550000','Pouso Alegre','SP','3588888888','3588888888','c'),(13,'Marcio','marcio','81dc9bdb52d04dc20036dbd8313ed055','mecva@m','1234','av. 1','50','nada','centro','4321','pa','MG','4321','2345','a'),(14,'123','ANDREQSE','123','123123','123123','1','1','1','1','1','1','','123','','a'),(15,'1','andre12312','1','13234432432','1234324432','1','1','1','1','37550000','Pouso Alegre','','1','','c'),(16,'1','andre12312','1','132344324322','322332','1','1','1','1','37550000','Pouso Alegre','','1','','c'),(17,'1','andre12312','1','1323443243222','3223322','1','1','1','1','37550000','Pouso Alegre','','1','','c'),(18,'1','usuario','1','3','3','1','1','1','1','37550000','Pouso Alegre','','1','','c'),(19,'a','testeCad','1','1123123','123','1','1','1','1','1','1','','1','','c'),(21,'11','cliente','1','1ojasd','1spokdkopsd','1','1','1','1','37550000','Pouso Alegre','','1','','c'),(22,'Adiocionado por post','post','','post@post.com.br','000000000','Rua Post','1','Casa','Post','37550000','Pouso Alegre','MG','3588888888','3588888888','a'),(23,'Paulo','paulo','c4ca4238a0b923820dcc509a6f75849b','paulo@gmail.com','54692875555','Rua dos canarios','90','-','Ype','37550000','Pouso Alegre','MG','3588765456','-','c'),(24,'Derio','derio','81dc9bdb52d04dc20036dbd8313ed055','derio.junior@hotmail.com','12345678911','Abrelino','296','Casa','Jd Olimpico','37550000','Pouso Alegre','MG','99360820','99360820','c'),(25,'Andre','testeclien','202cb962ac59075b964b07152d234b70','----','11521199663','-','-','-','-','37550000','Pouso Alegre','MG','34214506','-','c'),(26,'Edy Segura','edysegura','202cb962ac59075b964b07152d234b70','edysegura@gmail.com','555555555','Rua x','x','x','x','02255020','...','..','0000000','0000000','c'),(27,'guilherme sanches ','teste123','698dc19d489c4e4db73e28a713eab07b','guilherme_1993pa@yahoo.com.br','10902797603','av 1','356','casa','centro','37550000','Pouso Alegre','MG','3534544444','3592337481','c');
+INSERT INTO `pessoas` VALUES (1,'Alfredo Eduardo','alfredudu','da679535870fd52c412d15b69948ac96','alfredudu_007@hotmail.com','08792467660','Rua Capitao Jorge Gustavo Tinoco','122','Casa','Sao Carlos','37550000','Pouso Alegre','CA','3588888888','3588075998','a'),(2,'Andre Luiz','andre','202cb962ac59075b964b07152d234b70','brasilandre93@hotmail.com','00000000000','Rua','1','Casa','Foch','37550000','Pouso Alegre','MG','3588888888','3588888888','a'),(4,'Joao','joao','dccd96c256bc7dd39bae41a405f25e43','joao@joao.com.br','00000000000','Rua','1','Casa','Foch','37550000','Pouso Alegre','MG','3588888888','3588888888','f'),(5,'-','andre','c4ca4238a0b923820dcc509a6f75849b','-','-','-','-','-','-','-','-','SP','-','-','a'),(7,'-','andre','c4ca4238a0b923820dcc509a6f75849b','-','-','-','-','-','-','-','-','SP','-','-','a'),(8,'Anderson','anderson','202cb962ac59075b964b07152d234b70','anderson@pa.com.br','00000000000','Rua','1','Casa','Foch','37550000','Pouso Alegre','MG','3588888888','3588888888','c'),(9,'-','TESTE','c4ca4238a0b923820dcc509a6f75849b','-','-','-','-','-','-','-','-','SP','--','-','c'),(10,'1','teste','c4ca4238a0b923820dcc509a6f75849b','1','1','1','1','1','1','1','1','SP','1','1','a'),(11,'UsuÃ¡rio Ester','user','c4ca4238a0b923820dcc509a6f75849b','user@user.com','123,321,123','R: user','123','comp','Bairro do User','00000-00','Cidade User','SP','3400-0000','9900-0000','c'),(12,'Lais Franco','lais','202cb962ac59075b964b07152d234b70','lahspfc@gmail.com','00000000000','Rua','1','Casa','Aquele','37550000','Pouso Alegre','SP','3588888888','3588888888','c'),(13,'Marcio','marcio','81dc9bdb52d04dc20036dbd8313ed055','mecva@m','1234','av. 1','50','nada','centro','4321','pa','MG','4321','2345','a'),(14,'123','ANDREQSE','123','123123','123123','1','1','1','1','1','1','','123','','a'),(15,'1','andre12312','1','13234432432','1234324432','1','1','1','1','37550000','Pouso Alegre','','1','','c'),(16,'1','andre12312','1','132344324322','322332','1','1','1','1','37550000','Pouso Alegre','','1','','c'),(17,'1','andre12312','1','1323443243222','3223322','1','1','1','1','37550000','Pouso Alegre','','1','','c'),(18,'1','usuario','1','3','3','1','1','1','1','37550000','Pouso Alegre','','1','','c'),(19,'a','testeCad','1','1123123','123','1','1','1','1','1','1','','1','','c'),(21,'11','cliente','1','1ojasd','1spokdkopsd','1','1','1','1','37550000','Pouso Alegre','','1','','c'),(22,'Adiocionado por post','post','','post@post.com.br','000000000','Rua Post','1','Casa','Post','37550000','Pouso Alegre','MG','3588888888','3588888888','a'),(23,'Paulo','paulo','c4ca4238a0b923820dcc509a6f75849b','paulo@gmail.com','54692875555','Rua dos canarios','90','-','Ype','37550000','Pouso Alegre','MG','3588765456','-','c'),(24,'Derio','derio','81dc9bdb52d04dc20036dbd8313ed055','derio.junior@hotmail.com','12345678911','Abrelino','296','Casa','Jd Olimpico','37550000','Pouso Alegre','MG','99360820','99360820','c'),(25,'Andre','testeclien','202cb962ac59075b964b07152d234b70','----','11521199663','-','-','-','-','37550000','Pouso Alegre','MG','34214506','-','c'),(26,'Edy Segura','edysegura','202cb962ac59075b964b07152d234b70','edysegura@gmail.com','555555555','Rua x','x','x','x','02255020','...','..','0000000','0000000','c'),(27,'guilherme sanches ','teste123','698dc19d489c4e4db73e28a713eab07b','guilherme_1993pa@yahoo.com.br','10902797603','av 1','356','casa','centro','37550000','Pouso Alegre','MG','3534544444','3592337481','c'),(28,'Andre','andreandre','4297f44b13955235245b2497399d7a93','234234234234','1234234324','245234','1','1','1','37550000','...','..','1','234','c');
 /*!40000 ALTER TABLE `pessoas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,13 +228,13 @@ CREATE TABLE `reservas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_carro` int(11) DEFAULT NULL,
   `vaga` int(11) DEFAULT NULL,
-  `hora_reserva` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `hora_fim` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `data` varchar(8) DEFAULT NULL,
+  `hora_reserva` time DEFAULT NULL,
+  `hora_fim` time DEFAULT NULL,
+  `data` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_carro` (`id_carro`),
   CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`id_carro`) REFERENCES `carro` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -258,5 +282,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-09 23:55:45
- 
+-- Dump completed on 2016-03-26 22:35:00
