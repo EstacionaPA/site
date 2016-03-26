@@ -6,7 +6,7 @@ class SQLService {
     
     public static function connect(){
         $conn = new Connection;
-        $mysqli = $conn->Conn('localServer');
+        $mysqli = $conn->Conn('local');
         return $mysqli;
     }
     
@@ -24,7 +24,7 @@ class SQLService {
     }
     
     public function ExecuteSQL($query, $type){
-
+        
         $db = self::connect();
         
         if(!$db) return NULL;
@@ -32,7 +32,6 @@ class SQLService {
         $resultQuery = $db->query($query);
         
         if($resultQuery){
-            
             if($type == 'getArray') 
                 $result = $resultQuery->fetch_assoc();
             
@@ -52,10 +51,6 @@ class SQLService {
                 echo 'Opcao de servico de SQL invalida. Contacte o suporte!';
                 return NULL;
             }
-               
-                
-                //if (!$db->query("SET @a:='this will not work'")) 
-                    //printf("Error: %s\n", $db->error);
                 
         }else {
             echo 'Erro de MySQL: ' . $db->error . '.';
@@ -67,16 +62,6 @@ class SQLService {
         return $result;
     }
     
-    public function mySqlFechArray($query){
-        
-        return "teste";
-        /*
-        $result = mysqli_query($query);
-        $row = mysqli_fetch_array($result);
-        return $row[0];
-        */
-    }
-    
     //
     //--------------BUILDS THE QUERIES
     //
@@ -86,7 +71,7 @@ class SQLService {
         $query = "SELECT $fieldToSelect 
                   FROM $table
                   WHERE $fieldToFilter = $filter
-                  ORDER BY $orderBy;";
+                  ORDER BY $orderBy ";
         
         return $query;
         
@@ -96,7 +81,7 @@ class SQLService {
         
         $query = "SELECT $fieldToSelect 
                   FROM $table
-                  WHERE $fieldToFilter = '$filter';";
+                  WHERE $fieldToFilter = '$filter' ";
                 
         return $query;
     }
@@ -105,12 +90,11 @@ class SQLService {
             
         $sql = "SELECT count(*) 
                 FROM $table 
-                WHERE $fieldToFilter = '$filter';";
+                WHERE $fieldToFilter = '$filter' ";
     
         return $sql;
     }
     
-    //operation/insert_user.php
     public function BuildSqlInsertUsers($nome, $usuario, $criptografada, $email, 
                                                $cpf, $end, $num, $comp, $bairro, $cep, 
                                                $cidade, $estado, $tel, $cel, $acesso) {
@@ -129,14 +113,13 @@ class SQLService {
         return $sql;
     }
     
-    //operation/cad_cars.php
     public function BuildSqlInsertCar($user, $placa, $marca, $mod){
         
         
         $sql = "INSERT INTO carro
                 (placa, marca_id, pessoas_id, modelo_id)
                 values
-                ('{$placa}', '{$marca}', '{$user}', '{$mod}')";
+                ('{$placa}', '{$marca}', '{$user}', '{$mod}') ";
             
         return $sql;
     }
@@ -145,7 +128,7 @@ class SQLService {
         
         $sql = "UPDATE $table
                 SET $column = '$value' 
-                WHERE $fieldToFilter = '$filter';";
+                WHERE $fieldToFilter = '$filter' ";
                 
         return $sql;
     }
@@ -155,10 +138,29 @@ class SQLService {
         $sql = "INSERT INTO inactive
                 (user, cause)
                 values
-                ('{$user}', '{$cause}');";
+                ('{$user}', '{$cause}') ";
 
         return $sql;
         
+    }
+    
+    public function BuildSqlRegisterVacancy($idCar, $vacancy, $hourInit, $hourEnd, $date){
+        
+        $sql = "INSERT INTO reservas
+                (id_carro, vaga, hora_reserva, hora_fim, data)
+                values
+                ('{$idCar}', '{$vacancy}', '$hourInit', '$hourEnd', '{$date}') ";
+                
+        return $sql;
+        
+    }
+    
+    public function InsertANDOnSQL($sql, $fieldToFilter, $filter){
+        
+        $sql = $sql . 
+               "AND $fieldToFilter = '$filter' ";
+               
+        return $sql;
     }
     
     
@@ -178,7 +180,7 @@ class SQLService {
             join pessoas p on c.pessoas_id = p.id
             join marca ma on ma.id = c.marca_id
             join modelo mo on mo.id = c.modelo_id
-            where p.nome like '%$name%';";
+            where p.nome like '%$name%' ";
             
             return $sql;
     }
@@ -193,7 +195,7 @@ class SQLService {
                 JOIN pessoas p ON p.id = c.pessoas_id
                 JOIN modelo mo on mo.id = c.modelo_id
                 JOIN marca ma on ma.id = c.marca_id
-                WHERE c.placa = '$board';";
+                WHERE c.placa = '$board' ";
         
         return $sql;
             

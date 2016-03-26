@@ -1,0 +1,62 @@
+<body>
+
+<nav class="menu">
+    <ul class="itemMenu">
+        <li><a href="../../index.html">Inicio</a></li>
+        <li><a>Administração</a>
+            <ul>
+                <li><a>Cadastros</a>
+                    <ul>
+                        <li><a href="/register/user">Usuários</a></li>
+                        <li><a href="/register/cars">Veículos</a></li>
+                    </ul>
+                </li>
+                <li><a href="/edit">Editar Usuários</a></li>
+                <li><a href="/delete">Excluir Usuários</a></li>
+            </ul>
+        </li>
+        <li><a>Relatórios</a>
+            <ul>
+                <li><a href="../../report/infUser">Inf. Usuários</a></li>
+                <li><a href="../../report/carXboard">Carros x Placas</a></li>
+            </ul>
+        </li>
+        <!--<li><a>Realizar Check-in</a></li>-->
+        <li><a href="../../login" id="nameMenu" >Minha Conta</a>
+            <ul>
+                <li><a href="../../sair">Sair</a></li>
+            </ul>
+        </li>	 
+    </ul>
+</nav>
+
+<h1>Cadastro de Carros de um Cliente</h1>
+
+<form id="cadCar">
+
+	<fieldset>
+	
+        <legend>Dados do Veículo</legend>
+        
+		<label for="usuario">Usuário:</label>
+		<input type="text" name="usuario" id="usuario" required>
+		
+		<label for="placa">Placa do Carro:</label>
+		<input type="text" name="placa" id="placaCarro" maxlength="7" required placeholder="XXX9999">
+		
+		<label for="marca">Marca:</label>
+        <select name="placa" id="marca">
+		    <option value="nothing" id="optionMark">(CARREGANDO...)</option>
+		</select>
+		
+		<label for="modelo">Modelo:</label>
+		<select name="modelo" id="modelo">
+		    <option value="nothing" id="optionModel">(ESCOLHA UMA MARCA PRIMEIRO)</option>
+		</select>
+		
+		<button id="submit">Confirmar</button>
+		
+	</fieldset>
+
+</form>
+</body>

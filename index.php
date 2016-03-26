@@ -97,11 +97,11 @@ $app->post('/register/user/added', function() use ($app, $service, $access) {
 });
 
 $app->get('/register/cars', function() use ($service, $access) {
-    //if($access == 'a')
+    if($access == 'a')
         echo $service->getPage('html/forms/admin_cad_cars.html');
 
-    //else
-       // echo $service->openPageByAccess();
+    else
+        echo $service->openPageByAccess();
 });
 
 $app->post('/register/cars/added', function() use ($app, $service, $access) {
@@ -147,6 +147,31 @@ $app->get('/report/carXboard/:board', function($board) use ($app, $service, $acc
         echo $service->openPageByAccess();
 });
 
+$app->get('/vacancies', function($board) use ($app, $service, $access) {
+    if($access == 'a'){
+        
+    }
+    else
+        echo $service->openPageByAccess();
+});
+
+// http://estacionapa.com/register/user
+$app->post('/vacancies/ask', function() use ($app, $service) {
+    if($access == 'a'){
+        $form = json_decode($app->request->getBody(), true);
+        /*$form = array('id_carro' => 6,
+                      'vaga' => 3,
+                      'hora_reserva' => '11:00:00',
+                      'hora_fim' => '17:30:00',
+                      'data' => '20/02/2016');
+        */
+        
+        $service->vacanciesAsk($form);
+    }
+    else
+        echo $service->openPageByAccess();
+});
+
 //http://estacionapa.com/sair
 $app->get('/sair', function() use ($service) {
     echo $service->sair();
@@ -155,14 +180,14 @@ $app->get('/sair', function() use ($service) {
 //------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------
-
+/*
 $app->get('/api/', function() use ( $app ) {
     echo "Welcome to website ESTACIONAPA";
 });
 
 /*
 ROTAS PARA BUSCA DE PESSOAS NO BANCO DE DADOS
-*/
+
 $app->get('/api/people/', function() use ( $app ) {
     $people = PeopleService::listPeople();
     $app->response()->header('Content-Type', 'application/json');
@@ -226,7 +251,7 @@ $app->delete('/api/people/:id', function($id) use ( $app ) {
 
 /*
 ROTAS PARA BUSCA DE PLACAS NO BANCO DE DADOS
-*/
+
 $app->get('/api/license/', function() use ( $app ) {
     $license = LicenseService::listLicense();
     $app->response()->header('Content-Type', 'application/json');
@@ -246,9 +271,8 @@ $app->get('/api/license/:id', function($id) use ( $app ) {
     }
 });
 
+*/
+
 $app->run();
-
-
-
 
 ?>

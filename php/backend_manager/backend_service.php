@@ -53,6 +53,18 @@ class BackEndService {
         return file_get_contents($path, 0, $page); 
     }
     
+    public function TESTEgetPage(){
+        
+        $page = file_get_contents('html/teste/html_inicio.html') . 
+                    file_get_contents('html/teste/cabecalho.html') . 
+                        file_get_contents('html/teste/corpo.html') . 
+                    file_get_contents('html/teste/rodape.html') . 
+                file_get_contents('html/teste/html_fim.html');
+     
+        return $page;
+    }
+    
+    
     public function sair(){
         $_SESSION['login'] = '';
         session_destroy();
@@ -95,6 +107,10 @@ class BackEndService {
     public function registerCar($form){
         $manager = new ManagerController;
         echo $manager->manager('registerCar', $form);
+    }
+    public function vacanciesAsk($form){
+        $manager = new ManagerController;
+        echo $manager->manager('vacanciesAsk', $form);
     }
 }
 

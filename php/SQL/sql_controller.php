@@ -65,6 +65,13 @@ class SqlController {
             return $result;
         }
         
+        elseif($type == 'RequestReserves') {
+            $query = $sql->BuildSelectFromWhere('*', 'reservas', 'vaga', $var['vaga']);
+            $query = $sql->InsertANDOnSQL($query, 'data', $var['data']);
+            $result = $sql->ExecuteSQL($query, 'getArrayList');
+            return $result;
+        }
+        
         else
             echo 'Opcao de Controle de SQL inválida. Contacte o suporte!';
     }
@@ -135,10 +142,15 @@ class SqlController {
             return $result;
         }
         
+        //vacancies/vacancies_services.php
+        elseif($type == 'CheckIdCar'){
+            $query = $sql->BuildSelectCountFromWhere('carro', 'id', $toCheck);
+            $result = $sql->ExecuteSQL($query, 'checkValue');
+            return $result;
+        }
+
         else
             echo 'Opcao de Controle de SQL inválida. Contacte o suporte!';
-        
-        echo NULL;
             
     }
 
@@ -171,6 +183,14 @@ class SqlController {
         //admin/admin_service
         elseif($type == 'InactivePerson'){
             $query = $sql->BuildSqlInactivePerson($obj['user'], $obj['cause']);
+            $result = $sql->ExecuteSQL($query, 'OnlyExecute');
+            return $result;
+        }
+        
+        //vacancies/vacancies_services.php
+        elseif($type == 'RegisterVacancy'){
+            $query = $sql->BuildSqlRegisterVacancy($obj['id_carro'], $obj['vaga'], $obj['hora_reserva'],
+                                                   $obj['hora_fim'], $obj['data']);
             $result = $sql->ExecuteSQL($query, 'OnlyExecute');
             return $result;
         }

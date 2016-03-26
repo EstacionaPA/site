@@ -2,14 +2,17 @@
 
 require 'php/login/login_controller.php';
 
+require 'php/vacancies/vacancies_controller.php';
+
+require 'php/operation/cad_cars.php';
+require 'php/operation/relat_inf_user.php';
+require 'php/operation/relat_boardXcar.php';
+
 require 'php/admin/admin_service.php';
 require 'php/admin/edit_person.php';
 require 'php/admin/inactive_person.php';
 require 'php/admin/register_person.php';
 
-require 'php/operation/cad_cars.php';
-require 'php/operation/relat_inf_user.php';
-require 'php/operation/relat_boardXcar.php';
 
 class ToActionClass{                    //Similar to C/C++ pointer
     public function convert($action, &$person){
@@ -52,6 +55,11 @@ class ToActionClass{                    //Similar to C/C++ pointer
             }
             elseif($action == 'relatInfUser'){
                 $class = new ReportInfUser;
+                return $class;
+            }
+            
+            elseif($action == 'vacanciesAsk'){
+                $class = new VacanciesControll;
                 return $class;
             }
             
