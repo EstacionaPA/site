@@ -157,15 +157,14 @@ $app->get('/vacancies', function($board) use ($app, $service, $access) {
 
 // http://estacionapa.com/register/user
 $app->post('/vacancies/ask', function() use ($app, $service) {
-    if($access == 'a'){
+    if($access = 'a'){
         $form = json_decode($app->request->getBody(), true);
         /*$form = array('id_carro' => 6,
                       'vaga' => 3,
-                      'hora_reserva' => '11:00:00',
-                      'hora_fim' => '17:30:00',
+                      'hora_reserva' => '17:00:00',
+                      'hora_fim' => '19:00:00',
                       'data' => '20/02/2016');
         */
-        
         $service->vacanciesAsk($form);
     }
     else

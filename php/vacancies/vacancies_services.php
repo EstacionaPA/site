@@ -5,10 +5,10 @@ class VacanciesServices {
      public function checkDate($date){
         
         /*
-         *VALIDAÇÕES:
-         *SE CONTÉM 10 CARACTERES   
-         *SE OQUE CONTEM ENTRES OS NUMEROS SÃO BARRAS
-         *SE É DO TIPO DATA
+         *VALIDATIONS:
+         *IF CONTAINS 10 CARACTERS   
+         *IF THAT CONTAINS BETWEEN NUMBERS IS '/'
+         *IF IS SET LIKE DATE
         */
         
         $day = 0;
@@ -19,17 +19,11 @@ class VacanciesServices {
                         'posInitChar2' => 5,
                         'posEndChar2' => -4,
                         'ASCIICode' => 47, // '/' on ASCII table = 47
-                        'strLenMax' => 10); 
+                        'strLenMax' => 10,
+                        'checkDate' => 'yes');
                                
                                 // '/' on ASCII table = 47
         if($this->validVars($date, $config)) return 'not';
-       
-        $day = substr($date, 0, 2);
-        $month = substr($date, 4, 6);
-        $year = substr($date, 8, 10);
-        
-        if(!checkdate($month, $day, $year))
-            return 'not';
             
         return 'done';
     }
@@ -37,10 +31,10 @@ class VacanciesServices {
     public function checkHour($hourInit, $hourEnd){
         
         /*
-         *VALIDAÇÕES:
-         *SE CONTÉM 8 CARACTERES   
-         *SE OQUE CONTEM ENTRES OS NUMEROS SÃO DOIS PONTOS
-         *SE É DO TIPO HORA
+         *VALIDATIONS:
+         *IF CONTAINS 10 CARACTERES   
+         *IF THAT CONTAINS BETWEEN NUMBERS IS ':'
+         *IF IS SET LIKE HOUR
         */
         
         $hour = 0;
@@ -76,26 +70,22 @@ class VacanciesServices {
                     $validHourReserve = false;
                     
             if(($object['hora_fim'] > $result[$i]['hora_reserva'] and
-                $object['hora_fim'] <= $result[$i]['hora_fim'])){
+                $object['hora_fim'] <= $result[$i]['hora_fim']))
                     $validHourEnd = false; 
-                    
-                }
                     
             if(($object['hora_fim'] > $result[$i]['hora_reserva'] and
                 $object['hora_reserva'] < $result[$i]['hora_reserva']))
-                $validHourEndBetween = false;
+                    $validHourEndBetween = false;
                 
-        echo 'reserva: ' . $object['hora_reserva'] . '. ini: ' . $result[$i]['hora_reserva'] . '<br>';
-        echo 'fim: ' . $object['hora_fim'] . '. end: ' . $result[$i]['hora_fim'] . '<br>';
                 
         }
         if($object['hora_fim'] < $object['hora_reserva'])
             return '!validInitEndHour';
         if($validHourReserve == false)
             return '!validHourReserve';
-        elseif($validHourEnd == false)
+        if($validHourEnd == false)
             return '!validHourEnd';
-        elseif($validHourEndBetween == false)
+        if($validHourEndBetween == false)
             return '!validHorEndBetween';
         
         else
@@ -128,9 +118,9 @@ class VacanciesServices {
             ord($char2) != $config['ASCIICode']) 
             return 'not';
             
-        if($config['checkHour']){
+        if(isset($config['checkHour'])){
             
-            $time = $this->returnTimes($str);
+            $time = $this->returnTimes($str, 'hour');
             
             $hour = $time['hour'];
             $min = $time['min'];
@@ -140,16 +130,31 @@ class VacanciesServices {
                  (is_numeric($min) and ($min >= 00 and $min < 60)) and
                  (is_numeric($sec) and $sec == 00)))
                     return 'not';
-        }    
+        }
+        
+        elseif(isset($config['checkDate'])){
+            
+            $date = $this->returnTimes($str, 'date');
+        
+            if(!checkdate($date['month'], $date['day'], $date['year']))
+                return 'not';
+        }
             
         return NULL;
     }
     
-    public function returnTimes($times){
+    public function returnTimes($times, $parameter){
         
-        $time = array('hour' => substr($times, 0, -6),
-                      'min' => substr($times, 3, -3),
-                      'sec' => substr($times, 6));
+        if($parameter == 'hour'){
+            $time = array('hour' => substr($times, 0, -6),
+                          'min' => substr($times, 3, -3),
+                          'sec' => substr($times, 6));
+        }
+        else{
+            $time = array('day' => substr($times, 0, 2),
+                          'month' => substr($times, 4, 6),
+                          'year' => substr($times, 8, 10));
+        }
     
         return $time;
     }

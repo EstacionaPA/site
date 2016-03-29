@@ -2,13 +2,39 @@
 // Conexao com o banco de dados
 class Connection{
     
-    public function Conn ($network){
+    public function Conn (){
+        try{
+            $servidor = 'localhost';
+            $usuario = 'root';
+            $senha = '';
+            $banco = 'projeto';
 
+            $mysqli = @new mysqli($servidor, $usuario, $senha, $banco);
+        }
+        catch(Exception $e){
+            $servidor = 'localhost';
+            $usuario = 'u650072308_site';
+            $senha = 'x3Lae6vUSI';
+            $banco = 'u650072308_site';
+
+            $mysqli = @new mysqli($servidor, $usuario, $senha, $banco);
+            
+            if ($mysqli->connect_error) {
+                die("A conexao falhou: " . $mysqli->connect_error);
+                return NULL;
+            }
+        }
+        
+        return $mysqli;
+
+        
+    }
+
+}
+
+  
+        /*
         if($network == "local"){
-            /*
-            $conexao = mysql_pconnect("localhost","root","") or die ("Erro na conexão!");
-            $banco = mysql_select_db("projeto");
-            */
             
             $servidor = 'localhost';
             $usuario = 'root';
@@ -37,12 +63,6 @@ class Connection{
                 die("A conexao falhou: " . $mysqli->connect_error);
             }
             
+*/
 
-            return $mysqli;
-
-        }
-        
-    }
-
-}
 ?>
