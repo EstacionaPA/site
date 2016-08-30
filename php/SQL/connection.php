@@ -16,7 +16,7 @@ class Connection{
        
             $servidor = 'localhost';
             $usuario = 'root';
-            $senha = '';
+            $senha = '123';
             $banco = 'projeto';
 
             $mysqli = @new mysqli($servidor, $usuario, $senha, $banco);

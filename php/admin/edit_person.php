@@ -33,7 +33,7 @@ class EditPersonController extends ManagerAbstract {
             //while($value = current($person)){
             for($i = 0; $i < count($person); $i = $i + 1){
                 $value = current($person);
-                //This conditional ignore JSON null values, null aceess value and user field
+                //This conditional ignore JSON null values, null access value and user field
                 if($value != 'n' and $value != '----NULO----' and key($person) != 'usuario'){
                     $update = $svc->update(key($person), $value, $person['usuario']);
                     $validOperation = true;

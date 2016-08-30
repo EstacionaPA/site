@@ -25,12 +25,13 @@ class SQLService {
     
     public function ExecuteSQL($query, $type){
         
+        $result = NULL;
         $db = self::connect();
         
         if(!$db) return NULL;
         
         $resultQuery = $db->query($query);
-        
+
         if($resultQuery){
             if($type == 'getArray') 
                 $result = $resultQuery->fetch_assoc();
@@ -65,6 +66,39 @@ class SQLService {
     //
     //--------------BUILDS THE QUERIES
     //
+    
+    public function Select( $fields){
+        $query = "SELECT $fields";
+        return $query;
+    }
+    
+    public function From($sql, $table){
+        $query = $sql . " " . 
+                "FROM $table";
+        return $query;
+    }
+    
+    public function LeftOuterJoin($sql, $table, $condition){
+        $query = $sql . " " .  
+                "LEFT OUTER JOIN $table ON $condition";
+        return $query;
+    }
+    
+    public function Where($sql, $condition) {
+        $query = $sql . " " . 
+                "WHERE $condition";
+        return $query;
+    }
+    
+    public function Insert($table, $fields, $values){
+        $query = "INSERT INTO $table ($fields) VALUES ($values)";
+        return $query;
+    }
+    
+    public function Update($table, $fieldsValues){
+        $query = "UPDATE $table SET $fieldsValues";
+        return $query;
+    }
     
     public function BuildSelectFromWhereOrder($fieldToSelect, $table, $fieldToFilter, $filter, $orderBy) {
         
@@ -135,7 +169,7 @@ class SQLService {
     
     public function BuildSqlInactivePerson($user, $cause){
         
-        $sql = "INSERT INTO inactive
+        $sql = "INSERT INTO inactive_pessoas
                 (user, cause)
                 values
                 ('{$user}', '{$cause}') ";

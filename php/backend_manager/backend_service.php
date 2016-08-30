@@ -1,6 +1,7 @@
 <?php
 
 require 'manager_controller.php';
+
 require 'php/SQL/sql_controller.php';
 
 class BackEndService {
@@ -108,9 +109,21 @@ class BackEndService {
         $manager = new ManagerController;
         echo $manager->manager('registerCar', $form);
     }
-    public function vacanciesAsk($form){
+    public function vacanciesRequest($form){
         $manager = new ManagerController;
-        echo $manager->manager('vacanciesAsk', $form);
+        echo $manager->manager('vacanciesRequest', $form);
+    }
+    public function registerPark($form){
+        $manager = new ManagerController;
+        echo $manager->manager('registerPark', $form);
+    }
+    public function editPark($form){
+        $manager = new ManagerController;
+        echo $manager->manager('editPark', $form);
+    }
+    public function vacanciesConsult($form){
+        $manager = new ManagerController;
+        echo $manager->manager('vacanciesConsult', $form);
     }
 }
 

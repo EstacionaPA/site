@@ -6,12 +6,11 @@ Class Login extends ManagerAbstract{
     
     public function controll($form) {
         
-        
         $svcLogin = new ServiceLogin;
         
-        $valid = $svcLogin->validVars($form['user'], $form['pass']);
+        $valid = $svcLogin->validForm($form);
 
-        if($valid) return $valid;
+        if($valid == 'nullFields') return $valid;
         
         $u = $svcLogin->insertSlashes($form['user']);
         $p = $svcLogin->insertSlashes($form['pass']);

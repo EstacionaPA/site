@@ -1,18 +1,23 @@
 <?php
 
-require 'php/login/login_controller.php';
+include 'php/login/login_controller.php';
 
-require 'php/vacancies/vacancies_controller.php';
+include 'php/operation/cad_cars.php';
+include 'php/operation/relat_inf_user.php';
+include 'php/operation/relat_boardXcar.php';
 
-require 'php/operation/cad_cars.php';
-require 'php/operation/relat_inf_user.php';
-require 'php/operation/relat_boardXcar.php';
+include 'php/admin/admin_service.php';
+include 'php/admin/edit_person.php';
+include 'php/admin/inactive_person.php';
+include 'php/admin/register_person.php';
 
-require 'php/admin/admin_service.php';
-require 'php/admin/edit_person.php';
-require 'php/admin/inactive_person.php';
-require 'php/admin/register_person.php';
+include 'php/master/master_service.php';
+include 'php/master/register_park.php';
+include 'php/master/edit_park.php';
 
+include 'php/vacancies/vacancies_services.php';
+include 'php/vacancies/vacancies_request.php';
+include 'php/vacancies/vacancies_consult.php';
 
 class ToActionClass{                    //Similar to C/C++ pointer
     public function convert($action, &$person){
@@ -58,14 +63,31 @@ class ToActionClass{                    //Similar to C/C++ pointer
                 return $class;
             }
             
-            elseif($action == 'vacanciesAsk'){
-                $class = new VacanciesControll;
+            elseif($action == 'vacanciesRequest'){
+                $class = new VacanciesRequest;
+                return $class;
+            }
+            
+            elseif($action == 'vacanciesConsult'){
+                $class = new VacanciesConsult;
+                return $class;
+            }    
+                
+            elseif($action == 'registerPark'){
+                $class = new RegisterPark;
+                return $class;
+            }
+        
+            elseif($action == 'editPark'){
+                $class = new EditPark;
                 return $class;
             }
             
             else
-                return 'dont';
+                echo 'Erro de conversao do comando para a classe PHP.';
+               
         }
+        
 }
 
 ?>

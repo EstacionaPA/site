@@ -9,7 +9,7 @@ class SqlController {
     //
 
     public static function Request($type, $var){
-
+        
         //Realize a query to request a determinate value, from determinate filter
         $sql = new SQLService;
 
@@ -30,7 +30,7 @@ class SqlController {
             return $result['nome'];
         }
 
-        //operation/cad_cars.php
+        //operation/cad_cars.php && vacancies/vacancies_request.php
         elseif($type == 'RequestIdUser'){
             $query = $sql->BuildSelectFromWhere('id', 'pessoas', 'usuario', $var);
             $result = $sql->ExecuteSQL($query, 'getArray');
@@ -52,7 +52,8 @@ class SqlController {
         }
 
         //operation/cad_cars_values_option.php
-        elseif($type == 'RequestMarks'){                            //THIS IS TO SEND A NULL SQL CONDITION (WHERE 1 = '1')
+        elseif($type == 'RequestMarks'){
+            //THIS IS TO SEND A NULL SQL CONDITION (WHERE 1 = '1')
             $query = $sql->BuildSelectFromWhereOrder('nome', 'marca', 1, 1 ,'nome');
             $result = $sql->ExecuteSQL($query, 'getArrayList');
             return $result;
@@ -65,15 +66,71 @@ class SqlController {
             return $result;
         }
         
+        //vacancies/vacancies_service.php
         elseif($type == 'RequestReserves') {
-            $query = $sql->BuildSelectFromWhere('*', 'reservas', 'vaga', $var['vaga']);
-            $query = $sql->InsertANDOnSQL($query, 'data', $var['data']);
+            $query = $sql->Select('*');
+            $query = $sql->From($query, 'reservas r');
+            $query = $sql->Where($query, 'r.data = "' . $var['data'] . '"
+                                          AND
+                                          r.id_estac = ' . $var['id_estac']);
             $result = $sql->ExecuteSQL($query, 'getArrayList');
             return $result;
         }
         
+        //vacancies/vacancies_service.php
+        elseif($type == 'RequestSomeDataReserve') {
+            $query = $sql->Select('r.vaga, 
+                                   r.hora_reserva, 
+                                   r.hora_fim, 
+                                   r.id_estac,
+                                   e.nome,
+                                   e.vagas as "' . 'max_vagas'. '"');
+            $query = $sql->From($query, 'reservas r');
+            $query = $sql->LeftOuterJoin($query, 'estacionamentos e', 
+                                                 'e.id = r.id_estac');
+            $query = $sql->Where($query, 'r.data = "' . $var['data'] . '"');
+            //echo $query;
+            $result = $sql->ExecuteSQL($query, 'getArrayList');
+            return $result; 
+        }
+        
+        //NOT USED
+        elseif($type == 'RequestAllParks') {
+            $query = $sql->Select('*');
+            $query = $sql->From($query, 'estacionamentos');
+            $result = $sql->ExecuteSQL($query, 'getArrayList');
+            return $result;
+        }
+        
+        //php/vacancies/vacancies_services.php
+        elseif($type == 'RequestHourFuncPark') {
+            $query = $sql->Select('e.h_func_init, e.h_func_fim');
+            $query = $sql->From($query, 'estacionamentos e');
+            $query = $sql->Where($query, 'id = ' . $var);
+            $result = $sql->ExecuteSQL($query, 'getArrayList');
+            return $result;
+        }
+        
+        //NOT USED
+        elseif($type == 'RequestVacanciesPark') {
+            $query = $sql->Select('e.vagas');
+            $query = $sql->From($query, 'estacionamentos e');
+            $query = $sql->Where($query, 'id = ' . $var);
+            $result = $sql->ExecuteSQL($query, 'getArray');
+            return $result;
+        }
+        
+        //operaton/vacancies_services.php
+        elseif($type == 'RequestMaxVacancies'){
+            $query = $sql->Select('e.vagas');
+            $query = $sql->From($query, 'estacionamentos e');
+            $query = $sql->Where($query, 'e.id = ' . $var);
+            $result = $sql->ExecuteSQL($query, 'getArray');
+            return $result;
+        }
+        
         else
-            echo 'Opcao de Controle de SQL inválida. Contacte o suporte!';
+            echo 'Opcao de Controle de SQL inválida para o Request. Contacte o suporte!';
     }
 
     //
@@ -137,7 +194,7 @@ class SqlController {
 
         //login/login_service & account_manager/manager_service
         elseif($type == 'CheckInactive'){
-            $query = $sql->BuildSelectCountFromWhere('inactive', 'user', $toCheck);
+            $query = $sql->BuildSelectCountFromWhere('inactive_pessoas', 'user', $toCheck);
             $result = $sql->ExecuteSQL($query, 'checkValue');
             return $result;
         }
@@ -148,9 +205,30 @@ class SqlController {
             $result = $sql->ExecuteSQL($query, 'checkValue');
             return $result;
         }
+        ///NOT USED
+        elseif($type == 'CheckHoursPark'){
+            $query = $sql->Select('e.h_func_init, e.h_func_end');
+            $query = $sql->From('estacionamentos e');
+            $query = $sql->Where('e.id = ' . $toCheck);
+            $result = $svc->ExecuteSQL($query, 'getArrayList');
+            return $query;//$result;
+        }
+        //NOT USED
+        elseif($type == 'CheckMaxHourToPark'){
+            $query = $sql->Select('e.qtd_func_vagas');
+            $query = $sql->From('estacionamentos e');
+            $query = $sql->Where('e.id = ' . $toCheck);
+            $result = $svc->ExecuteSQL($query, 'getArray');
+            return $query;//$result;
+        }
+        
+        elseif($type == 'CheckMinHourToPark'){
+            
+            echo "DESENVOLVER";
+        }
 
         else
-            echo 'Opcao de Controle de SQL inválida. Contacte o suporte!';
+            echo 'Opcao de Controle de SQL inválida para o Validate. Contacte o suporte!';
             
     }
 
@@ -161,9 +239,23 @@ class SqlController {
     public static function Insert($type, $obj){
         
         $sql = new SQLService;
+        
+        if($type == 'insertPark'){
+            
+            $values = '"' . $obj['nome'] . '", ' . 
+                      $obj['responsavel'] . ', ' .
+                      $obj['vagas'] . ', ' . 
+                      $obj['h_func_init'] . ', ' . 
+                      $obj['h_funt_fim'];
+            $query = $sql->Insert('estacionamentos',
+                                  'nome, responsavel, vagas, h_func_init, h_func_fim',
+                                  $values);
+            $result = $sql->ExecuteSQL($query, 'OnlyExecute');
+            return $result;
+        }
 
         //operation/cad_cars.php
-        if($type == 'insertCar'){
+        elseif($type == 'insertCar'){
             $query = $sql->BuildSqlInsertCar($obj->getUser(), $obj->getBoard(),$obj->getMark(), $obj->getModel());
             $result = $sql->ExecuteSQL($query, 'OnlyExecute');
             return $result;
@@ -189,15 +281,30 @@ class SqlController {
         
         //vacancies/vacancies_services.php
         elseif($type == 'RegisterVacancy'){
-            $query = $sql->BuildSqlRegisterVacancy($obj['id_carro'], $obj['vaga'], $obj['hora_reserva'],
-                                                   $obj['hora_fim'], $obj['data']);
+            
+            $query = $sql->Insert('reservas', 
+                                  'id_carro, 
+                                   id_estac,
+                                   id_pessoa,
+                                   vaga, 
+                                   hora_reserva, 
+                                   hora_fim, 
+                                   data',
+                                   $obj['id_carro'] . ', ' .
+                                   $obj['id_estac'] . ', ' .
+                                   $obj['id_pessoa'] . ', ' .
+                                   $obj['vaga'] . ', ' .
+                                   '"' . $obj['hora_reserva'] . '", ' . 
+                                   '"' . $obj['hora_fim'] . '", ' . 
+                                   '"' . $obj['data'] . '"');
+            
             $result = $sql->ExecuteSQL($query, 'OnlyExecute');
             return $result;
         }
 
         
         else
-            echo 'Opcao de Controle de SQL inválida. Contacte o suporte!';
+            echo 'Opcao de Controle de SQL inválida para o Insert. Contacte o suporte!';
 
 
     }
@@ -217,9 +324,22 @@ class SqlController {
             $result = $sql->ExecuteSQL($query, 'OnlyExecute');
             return $result;
         }
+        
+        elseif($type == 'UpdatePark'){
+            $values = 'e.nome = "' . $obj['nome'] . '", ' . 
+                      'e.vagas = ' . $obj['vagas'] . ', ' .
+                      'e.responsavel = ' . $obj['responsavel'] . ', ' .
+                      'e.h_func_init = "' . $obj['h_func_init'] . '", ' . 
+                      'e.h_func_fim = "' . $obj['h_func_fim'] . '"';
+            
+            $query = $sql->Update('estacionamentos e', $values);
+            $query = $sql->Where($query, 'e.id = ' . $obj['id']);
+            $result = $sql->ExecuteSQL($query, 'OnlyExecute');
+            return $result;
+        }
             
         else
-            echo 'Opcao de Controle de SQL inválida. Contacte o suporte!';
+            echo 'Opcao de Controle de SQL inválida para o Update. Contacte o suporte!';
     }
 
     public static function Delet(){
@@ -248,7 +368,7 @@ class SqlController {
         }
             
         else
-            echo 'Opcao de Controle de SQL inválida. Contacte o suporte!';
+            echo 'Opcao de Controle de SQL inválida para o Report. Contacte o suporte!';
 
         return NULL;
 

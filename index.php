@@ -1,22 +1,34 @@
 <?php
-
+//
+//PROXIMAS ETAPAS
+//DESENVOLVER SOBRE O NÃO CONTROLE DE VAGAS ESPECIFICAS (VAGA = QUALQUER UMA)
+//IMPLEMENTAR NO REGISTRO DE VAGA DE PEGAR CARRO [FRONTEND]
+//VALIDAR O IDCARRO
+//VALIDAR O IDESTAC
+//DESENVOLVER PRE-VAGA/APROVAÇÃO
+//TER MOVIMENTAÇÕES FINANCEIRAS
+//
+//
 require 'api/vendor/autoload.php';
-require 'php/backend_manager/backend_service.php';
-require 'api/database/ConnectionFactory.php';
-require 'api/people/PeopleService.php';
-require 'api/license/LicenseService.php';
 require 'api/vendor/vrana/NotORM.php';
 
+require 'php/access/access.php';
+require 'php/backend_manager/backend_service.php';
+
 //chamada do framework slim
-$app = new \Slim\Slim();
+$app = new \Slim\Slim(array('debug' => true));
 $service = new BackEndService;
 $access = $service->getAccess();
+
+$app->error(function (\Exception $e) use ($app) {
+    $app->render('error.php');
+});
 
 // http://estacionapa.com/
 $app->get('/', function() use ($service) {
     echo $service->getPage('index.html');
 });
-    
+
 // http://estacionapa.com/login
 $app->get('/login', function() use ($service) {
     echo $service->openPageByAccess();
@@ -42,6 +54,14 @@ $app->get('/edit', function() use ($app, $service, $access) {
         echo $service->openPageByAccess();
 });
 
+$app->post('/edit/park', function() use ($app, $service, $access) {
+    //if($access == 'a')
+        $form = json_decode($app->request->getBody(), true);
+        $service->editPark($form);
+    //else
+       // echo $service->openPageByAccess();
+});
+
 $app->post('/edit/user', function() use ($app, $service, $access) {
     if($access == 'a') {
         $form = json_decode($app->request->getBody(), true);
@@ -54,6 +74,14 @@ $app->post('/edit/user', function() use ($app, $service, $access) {
 $app->get('/delete', function() use ($service, $access) {
     if($access == 'a')
         echo $service->getPage('html/forms/admin_delet_user.html');
+
+    else
+        echo $service->openPageByAccess();
+});
+
+$app->get('/delete/parks', function() use ($service, $access) {
+    if($access == 'a')
+        echo 'DEVELOPMENT';
 
     else
         echo $service->openPageByAccess();
@@ -77,6 +105,16 @@ $app->post('/register/client/added', function() use ($app, $service) {
     $form = json_decode($app->request->getBody(), true);
     $service->registerClient($form);
 });
+
+$app->post('/register/parks', function() use ($app, $service) {
+    if(1){
+        $form = json_decode($app->request->getBody(), true);
+        $service->registerPark($form);
+    }
+    else
+        echo $service->openPageByAccess();
+});
+
 // http://estacionapa.com/register/user
 $app->get('/register/user', function() use ($service, $access) {
     if($access == 'a')
@@ -155,122 +193,41 @@ $app->get('/vacancies', function($board) use ($app, $service, $access) {
         echo $service->openPageByAccess();
 });
 
-// http://estacionapa.com/register/user
-$app->post('/vacancies/ask', function() use ($app, $service) {
-    if($access = 'a'){
+$app->post('/vacancies/consult', function() use ($app, $service) {
         $form = json_decode($app->request->getBody(), true);
-        /*$form = array('id_carro' => 6,
-                      'vaga' => 3,
-                      'hora_reserva' => '17:00:00',
-                      'hora_fim' => '19:00:00',
-                      'data' => '20/02/2016');
-        */
-        $service->vacanciesAsk($form);
+        //array(
+        //'hora_reserva' => 'HH:MM:00',
+        //'hora_fim' => 'HH:MM:00',
+        //'data' => 'DD/MM/YYYY'
+        //);
+        $service->vacanciesConsult($form);
+});
+
+$app->post('/vacancies/request', function() use ($app, $service, $access) {
+    if($access == 'a'){
+        $form = json_decode($app->request->getBody(), true);
+        //array(
+        //'id_carro' => ID CARRO,
+        //'id_estac' => ID ESTACIONAMENTO,
+        //'vaga' => VAGA OU VAZIA,
+        //'hora_reserva' => 'HH:MM:00', <===== ALWAYS ZERO
+        //'hora_fim' => 'HH:MM:00', <======== ALWAYS ZERO
+        //'data' => 'DD/MM/YYYY'
+        //); //IDPESSOA = GET BY SESSION
+        $service->vacanciesRequest($form);
     }
     else
         echo $service->openPageByAccess();
+});
+
+$app->get('/getconfig', function () use ($app, $service) {
+   echo '3'; 
 });
 
 //http://estacionapa.com/sair
 $app->get('/sair', function() use ($service) {
     echo $service->sair();
 });
-
-//------------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------------
-/*
-$app->get('/api/', function() use ( $app ) {
-    echo "Welcome to website ESTACIONAPA";
-});
-
-/*
-ROTAS PARA BUSCA DE PESSOAS NO BANCO DE DADOS
-
-$app->get('/api/people/', function() use ( $app ) {
-    $people = PeopleService::listPeople();
-    $app->response()->header('Content-Type', 'application/json');
-    echo json_encode($people);
-});
-
-$app->get('/api/people/:id', function($id) use ( $app ) {
-    $pessoas = PeopleService::getById($id);
-    
-    if($pessoas) {
-        $app->response()->header('Content-Type', 'application/json');
-        echo json_encode($pessoas);
-    }
-    else {
-      $app->response->setStatus('404');
-      echo "People with id = $id not found";
-    }
-});
-
-$app->post('/api/people/', function() use ( $app ) {
-    $pessoasJson = $app->request()->getBody();
-    $newPeople = json_decode($pessoasJson, true);
-    if($newPeople) {
-        $pessoas = PeopleService::add($newPeople);
-        echo "People {$newPeople['usuario']} added";
-    }
-    else {
-        $app->response->setStatus(400);
-        echo "Malformat JSON";
-    }
-});
-
-$app->put('/api/people/', function() use ( $app ) {
-    $pessoasJson = $app->request()->getBody();
-    $updatedPeople = json_decode($pessoasJson, true);
-    
-    if($updatedPeople && $updatedPeople['id']) {
-        if(PeopleService::update($updatedPeople)) {
-          echo "People {$updatedPeople['usuario']} updated";  
-        }
-        else {
-          $app->response->setStatus('404');
-          echo "People not found";
-        }
-    }
-    else {
-        $app->response->setStatus(400);
-        echo "Malformat JSON";
-    }
-});
-
-$app->delete('/api/people/:id', function($id) use ( $app ) {
-    if(PeopleService::delete($id)) {
-      echo "People with id = $id was deleted";
-    }
-    else {
-      $app->response->setStatus('404');
-      echo "People with id = $id not found";
-    }
-});
-
-/*
-ROTAS PARA BUSCA DE PLACAS NO BANCO DE DADOS
-
-$app->get('/api/license/', function() use ( $app ) {
-    $license = LicenseService::listLicense();
-    $app->response()->header('Content-Type', 'application/json');
-    echo json_encode($license);
-});
-
-$app->get('/api/license/:id', function($id) use ( $app ) {
-    $licenses = LicenseService::getById($id);
-    
-    if($licenses) {
-        $app->response()->header('Content-Type', 'application/json');
-        echo json_encode($licenses);
-    }
-    else {
-      $app->response->setStatus('404');
-      echo "License with id = $id not found";
-    }
-});
-
-*/
 
 $app->run();
 

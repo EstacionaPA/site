@@ -1,8 +1,8 @@
 <?php
 
-require 'manager_service.php';
-require 'manager_abstract.php';
-require 'to_action.php';
+include 'manager_service.php';
+include 'manager_abstract.php';
+include 'to_action.php';
 
 class ManagerController{
     public function manager($action, $data){
@@ -21,7 +21,7 @@ class ManagerController{
                 ManagerAbstract::doAction($class, $data);
             }
             else 
-                echo 'nullFields';   
+                echo 'Houve um erro na conversao do comando para a classe. Contacte o Suporte!';   
         }
         else
             echo 'nullFields';  

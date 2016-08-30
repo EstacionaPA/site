@@ -1,15 +1,17 @@
 <?php
 
 class ServiceLogin {
-    public function validVars($user, $pass){
+    public function validForm($form){
         
-        if((!isset($user) and !isset($pass)) or 
-            ($user != '' and $pass != '')) 
-            
-                return NULL;
-        else
-            echo 'nullFields';
-            
+        if((!isset($form['user']) or !isset($form['pass']))){
+            echo 'inexistente';
+            return 'nullFields';
+        }
+        
+        if($form['user'] == '' or $form['pass'] == ''){
+            echo 'vazio';
+            return 'nullFields';
+        }
     }
     
     public function insertSlashes($var){

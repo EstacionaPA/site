@@ -60,7 +60,7 @@ var cadPerson = {
         else if(data == 'nullFields')
             alert('Preencha todos os campos!');
         else if(data == 'user')
-            alert('Este usuário já esta cadastrado!');
+            alert('Já existe uma pessoa cadastrada com esse usuário!');
         else if(data == 'email')
             alert('Já existe uma pessoa cadastrada com esse email!');
         else if(data == 'cpf')
