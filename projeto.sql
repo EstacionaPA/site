@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.47, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.15  Distrib 10.0.26-MariaDB, for debian-linux-gnu (i686)
 --
 -- Host: localhost    Database: projeto
 -- ------------------------------------------------------
--- Server version	5.5.47-0ubuntu0.14.04.1
+-- Server version	10.0.26-MariaDB-0+deb8u1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -35,7 +35,7 @@ CREATE TABLE `carro` (
   CONSTRAINT `fk_carro_marca1` FOREIGN KEY (`marca_id`) REFERENCES `marca` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_carro_modelo1` FOREIGN KEY (`modelo_id`) REFERENCES `modelo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_carro_pessoas1` FOREIGN KEY (`pessoas_id`) REFERENCES `pessoas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,31 +44,64 @@ CREATE TABLE `carro` (
 
 LOCK TABLES `carro` WRITE;
 /*!40000 ALTER TABLE `carro` DISABLE KEYS */;
-INSERT INTO `carro` VALUES (1,'HBU5835','59',1,'005001-6'),(3,'HLM6137','25',1,'014032-5'),(5,'HFC1234','21',2,'001026-0'),(6,'KIT-345','7',2,'009169-3'),(7,'KIU7654','7',9,'009130-8'),(8,'XXX0000','57',11,'056006-5'),(9,'aaa1234','23',13,'004362-1'),(10,'1234567','59',1,'005303-1'),(11,'1111111','1',2,'038003-2'),(12,'kkkkkkk','21',2,'001231-9'),(13,'1','161',2,'073008-4'),(14,'12','161',2,'073008-4'),(15,'123','161',2,'073008-4'),(16,'123123','11',2,'042001-8'),(17,'12436','4',2,'037003-7'),(18,'1345345','12',21,'010018-8'),(19,'9999999','152',2,'068007-9'),(20,'xtz0250','59',24,'005329-5'),(21,'HJT4564','59',26,'005307-4'),(22,'ghy3214','13',27,'011001-9'),(23,'ghy3213','11',9,'042001-8'),(24,'0000000','12',9,'010017-0');
+INSERT INTO `carro` VALUES (1,'TES9999','12',36,'010010-2'),(2,'KKJ9898','177',37,'080009-0'),(3,'IOI9898','182',36,'081001-0');
 /*!40000 ALTER TABLE `carro` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `inactive`
+-- Table structure for table `estacionamentos`
 --
 
-DROP TABLE IF EXISTS `inactive`;
+DROP TABLE IF EXISTS `estacionamentos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `inactive` (
+CREATE TABLE `estacionamentos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `responsavel` int(11) NOT NULL,
+  `vagas` int(11) NOT NULL,
+  `h_func_init` time DEFAULT NULL,
+  `h_func_fim` time DEFAULT NULL,
+  `endereco` char(100) NOT NULL,
+  `num` int(11) NOT NULL,
+  `bairro` char(30) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `responsavel` (`responsavel`),
+  CONSTRAINT `estacionamentos_ibfk_1` FOREIGN KEY (`responsavel`) REFERENCES `pessoas` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `estacionamentos`
+--
+
+LOCK TABLES `estacionamentos` WRITE;
+/*!40000 ALTER TABLE `estacionamentos` DISABLE KEYS */;
+INSERT INTO `estacionamentos` VALUES (1,'Estacionamento Logo Ali',37,12,'08:00:00','18:00:00','',0,''),(2,'Ze da Esquina',37,8,'08:00:00','18:00:00','',0,''),(3,'Brothers Park - ME',37,35,'06:00:00','23:00:00','',0,''),(4,'EstacionaPA',36,8,'08:00:00','18:00:00','',0,''),(5,'New EstacionaPA',36,10,'08:00:00','18:00:00','',0,'');
+/*!40000 ALTER TABLE `estacionamentos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `inactive_pessoas`
+--
+
+DROP TABLE IF EXISTS `inactive_pessoas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `inactive_pessoas` (
   `user` varchar(30) DEFAULT NULL,
   `cause` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `inactive`
+-- Dumping data for table `inactive_pessoas`
 --
 
-LOCK TABLES `inactive` WRITE;
-/*!40000 ALTER TABLE `inactive` DISABLE KEYS */;
-INSERT INTO `inactive` VALUES ('paulo','1'),('edysegura','Foda');
-/*!40000 ALTER TABLE `inactive` ENABLE KEYS */;
+LOCK TABLES `inactive_pessoas` WRITE;
+/*!40000 ALTER TABLE `inactive_pessoas` DISABLE KEYS */;
+INSERT INTO `inactive_pessoas` VALUES ('paulo','1'),('edysegura','Foda');
+/*!40000 ALTER TABLE `inactive_pessoas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -171,7 +204,7 @@ CREATE TABLE `pessoas` (
   `celular` varchar(12) NOT NULL,
   `acesso` varchar(1) NOT NULL,
   PRIMARY KEY (`id`,`usuario`,`email`,`cpf`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,41 +213,8 @@ CREATE TABLE `pessoas` (
 
 LOCK TABLES `pessoas` WRITE;
 /*!40000 ALTER TABLE `pessoas` DISABLE KEYS */;
-INSERT INTO `pessoas` VALUES (1,'Alfredo Eduardo','alfredudu','da679535870fd52c412d15b69948ac96','alfredudu_007@hotmail.com','08792467660','Rua Capitao Jorge Gustavo Tinoco','122','Casa','Sao Carlos','37550000','Pouso Alegre','CA','3588888888','3588075998','a'),(2,'Andre Luiz','andre','202cb962ac59075b964b07152d234b70','brasilandre93@hotmail.com','00000000000','Rua','1','Casa','Foch','37550000','Pouso Alegre','MG','3588888888','3588888888','a'),(4,'Joao','joao','dccd96c256bc7dd39bae41a405f25e43','joao@joao.com.br','00000000000','Rua','1','Casa','Foch','37550000','Pouso Alegre','MG','3588888888','3588888888','f'),(5,'-','andre','c4ca4238a0b923820dcc509a6f75849b','-','-','-','-','-','-','-','-','SP','-','-','a'),(7,'-','andre','c4ca4238a0b923820dcc509a6f75849b','-','-','-','-','-','-','-','-','SP','-','-','a'),(8,'Anderson','anderson','202cb962ac59075b964b07152d234b70','anderson@pa.com.br','00000000000','Rua','1','Casa','Foch','37550000','Pouso Alegre','MG','3588888888','3588888888','c'),(9,'-','TESTE','c4ca4238a0b923820dcc509a6f75849b','-','-','-','-','-','-','-','-','SP','--','-','c'),(10,'1','teste','c4ca4238a0b923820dcc509a6f75849b','1','1','1','1','1','1','1','1','SP','1','1','a'),(11,'UsuÃ¡rio Ester','user','c4ca4238a0b923820dcc509a6f75849b','user@user.com','123,321,123','R: user','123','comp','Bairro do User','00000-00','Cidade User','SP','3400-0000','9900-0000','c'),(12,'Lais Franco','lais','202cb962ac59075b964b07152d234b70','lahspfc@gmail.com','00000000000','Rua','1','Casa','Aquele','37550000','Pouso Alegre','SP','3588888888','3588888888','c'),(13,'Marcio','marcio','81dc9bdb52d04dc20036dbd8313ed055','mecva@m','1234','av. 1','50','nada','centro','4321','pa','MG','4321','2345','a'),(14,'123','ANDREQSE','123','123123','123123','1','1','1','1','1','1','','123','','a'),(15,'1','andre12312','1','13234432432','1234324432','1','1','1','1','37550000','Pouso Alegre','','1','','c'),(16,'1','andre12312','1','132344324322','322332','1','1','1','1','37550000','Pouso Alegre','','1','','c'),(17,'1','andre12312','1','1323443243222','3223322','1','1','1','1','37550000','Pouso Alegre','','1','','c'),(18,'1','usuario','1','3','3','1','1','1','1','37550000','Pouso Alegre','','1','','c'),(19,'a','testeCad','1','1123123','123','1','1','1','1','1','1','','1','','c'),(21,'11','cliente','1','1ojasd','1spokdkopsd','1','1','1','1','37550000','Pouso Alegre','','1','','c'),(22,'Adiocionado por post','post','','post@post.com.br','000000000','Rua Post','1','Casa','Post','37550000','Pouso Alegre','MG','3588888888','3588888888','a'),(23,'Paulo','paulo','c4ca4238a0b923820dcc509a6f75849b','paulo@gmail.com','54692875555','Rua dos canarios','90','-','Ype','37550000','Pouso Alegre','MG','3588765456','-','c'),(24,'Derio','derio','81dc9bdb52d04dc20036dbd8313ed055','derio.junior@hotmail.com','12345678911','Abrelino','296','Casa','Jd Olimpico','37550000','Pouso Alegre','MG','99360820','99360820','c'),(25,'Andre','testeclien','202cb962ac59075b964b07152d234b70','----','11521199663','-','-','-','-','37550000','Pouso Alegre','MG','34214506','-','c'),(26,'Edy Segura','edysegura','202cb962ac59075b964b07152d234b70','edysegura@gmail.com','555555555','Rua x','x','x','x','02255020','...','..','0000000','0000000','c'),(27,'guilherme sanches ','teste123','698dc19d489c4e4db73e28a713eab07b','guilherme_1993pa@yahoo.com.br','10902797603','av 1','356','casa','centro','37550000','Pouso Alegre','MG','3534544444','3592337481','c'),(28,'Andre','andreandre','4297f44b13955235245b2497399d7a93','234234234234','1234234324','245234','1','1','1','37550000','...','..','1','234','c');
+INSERT INTO `pessoas` VALUES (36,'Andre','andre','c4ca4238a0b923820dcc509a6f75849b','andre@estacionapa.com.br','115','Plinio','123','N/A','Foch','37550','PA','MG','9898','9898','a'),(37,'Andre','master','f9a4492eeefee0bce696d94f189abd4d','andreluiz1993pa@gmail.com','12312312367','PA','PA','N/A','PA','37550000','PA','MG','99999999','9999999','a'),(38,'1','alfredo','202cb962ac59075b964b07152d234b70','1','1','1','1','1','1','1','1','1','1','1','c'),(39,'Q','y','c4ca4238a0b923820dcc509a6f75849b','Q','Q','Q','Q','N/A','Q','Q','Q','Q','Q','Q','c'),(40,'Qq','Teste','c4ca4238a0b923820dcc509a6f75849b','Qjd','Qyetw','Q','Q','N/A','Q','Q','Q','Q','Q','Q','c');
 /*!40000 ALTER TABLE `pessoas` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `reserva`
---
-
-DROP TABLE IF EXISTS `reserva`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `reserva` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `data_reserva` datetime NOT NULL,
-  `pessoas_id` int(11) NOT NULL,
-  `vaga_id` int(11) NOT NULL,
-  `carro_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`pessoas_id`),
-  KEY `fk_reserva_pessoas1_idx` (`pessoas_id`),
-  KEY `fk_reserva_vaga1_idx` (`vaga_id`),
-  KEY `fk_reserva_carro1_idx` (`carro_id`),
-  CONSTRAINT `fk_reserva_carro1` FOREIGN KEY (`carro_id`) REFERENCES `carro` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_reserva_pessoas1` FOREIGN KEY (`pessoas_id`) REFERENCES `pessoas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_reserva_vaga1` FOREIGN KEY (`vaga_id`) REFERENCES `vaga` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `reserva`
---
-
-LOCK TABLES `reserva` WRITE;
-/*!40000 ALTER TABLE `reserva` DISABLE KEYS */;
-INSERT INTO `reserva` VALUES (1,'2015-05-13 00:00:00',1,1,1),(2,'2015-05-15 00:00:00',1,2,1),(3,'2015-05-17 00:00:00',1,3,1),(4,'2015-05-19 00:00:00',1,4,3),(5,'2015-05-21 00:00:00',1,5,3),(6,'2015-05-13 00:00:00',1,6,3),(8,'2015-05-13 00:00:00',1,7,3),(9,'2015-05-13 00:00:00',2,8,5);
-/*!40000 ALTER TABLE `reserva` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -231,10 +231,13 @@ CREATE TABLE `reservas` (
   `hora_reserva` time DEFAULT NULL,
   `hora_fim` time DEFAULT NULL,
   `data` varchar(10) DEFAULT NULL,
+  `id_estac` int(11) NOT NULL,
+  `id_pessoa` int(11) NOT NULL,
+  `agendada` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_carro` (`id_carro`),
   CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`id_carro`) REFERENCES `carro` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -243,6 +246,7 @@ CREATE TABLE `reservas` (
 
 LOCK TABLES `reservas` WRITE;
 /*!40000 ALTER TABLE `reservas` DISABLE KEYS */;
+INSERT INTO `reservas` VALUES (39,3,4,'08:00:00','10:30:00','21/02/2016',5,36,NULL),(40,3,4,'05:00:00','06:00:00','21/02/2016',5,36,NULL),(41,3,4,'11:00:00','12:00:00','21/02/2016',5,36,NULL),(42,3,4,'14:30:00','15:00:00','21/02/2016',5,36,NULL),(43,3,4,'17:30:00','18:00:00','21/02/2016',5,36,NULL),(44,3,4,'16:30:00','17:00:00','22/02/2016',5,36,NULL),(45,3,4,'13:30:00','14:00:00','22/02/2016',5,36,NULL),(46,3,4,'10:30:00','12:00:00','22/02/2016',5,36,NULL),(47,3,4,'18:30:00','19:00:00','22/02/2016',5,36,NULL),(48,3,4,'10:00:00','13:00:00','28/02/2016',5,36,NULL),(49,3,1,'09:00:00','15:00:00','21/02/2016',2,36,NULL),(50,3,2,'09:00:00','15:00:00','21/02/2016',3,36,NULL),(51,3,5,'09:00:00','15:00:00','21/02/2016',1,36,NULL);
 /*!40000 ALTER TABLE `reservas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -272,6 +276,10 @@ LOCK TABLES `vaga` WRITE;
 INSERT INTO `vaga` VALUES (1,'1','2015-05-13 12:00:00','2015-05-13 15:00:00',0),(2,'2','2015-05-15 13:00:00','2015-05-15 16:00:00',0),(3,'3',NULL,NULL,0),(4,'4',NULL,NULL,0),(5,'5',NULL,NULL,0),(6,'6',NULL,NULL,0),(7,'7',NULL,NULL,0),(8,'8','2015-05-15 12:00:00','2015-05-15 13:00:00',0),(9,'9',NULL,NULL,0),(10,'10',NULL,NULL,0);
 /*!40000 ALTER TABLE `vaga` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'projeto'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -282,4 +290,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-26 22:35:00
+-- Dump completed on 2016-09-28 10:49:31
