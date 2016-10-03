@@ -3,7 +3,7 @@
 class GetParks extends ManagerAbstract{
     public function controll($form){ //$form = '' ------ NÃO SERÁ UTILIZADO
 
-        print_r(SqlController::Request('RequestParks', ''));
+        echo json_encode(SqlController::Request('RequestParks', ''));
 
     }
 }

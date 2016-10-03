@@ -58,7 +58,7 @@ DROP TABLE IF EXISTS `estacionamentos`;
 CREATE TABLE `estacionamentos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
-  `responsavel` int(11) NOT NULL,
+  `id_pessoa` int(11) NOT NULL,
   `vagas` int(11) NOT NULL,
   `h_func_init` time DEFAULT NULL,
   `h_func_fim` time DEFAULT NULL,
@@ -66,8 +66,8 @@ CREATE TABLE `estacionamentos` (
   `num` int(11) NOT NULL,
   `bairro` char(30) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `responsavel` (`responsavel`),
-  CONSTRAINT `estacionamentos_ibfk_1` FOREIGN KEY (`responsavel`) REFERENCES `pessoas` (`id`)
+  KEY `responsavel` (`id_pessoa`),
+  CONSTRAINT `estacionamentos_ibfk_1` FOREIGN KEY (`id_pessoa`) REFERENCES `pessoas` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -290,4 +290,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-28 10:49:31
+-- Dump completed on 2016-10-03 16:08:39
