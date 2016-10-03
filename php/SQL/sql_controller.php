@@ -94,10 +94,17 @@ class SqlController {
             return $result; 
         }
         
-        //NOT USED
-        elseif($type == 'RequestAllParks') {
-            $query = $sql->Select('*');
-            $query = $sql->From($query, 'estacionamentos');
+        //php/operation/getParks.php
+        elseif($type == 'RequestParks') {
+            $query = $sql->Select('e.nome,
+                                   p.nome,
+                                   e.h_func_init,
+                                   e.h_func_fim,
+                                   e.endereco,
+                                   e.num,
+                                   e.bairro');
+            $query = $sql->From($query, 'estacionamentos e');
+            $query = $sql->leftOuterJoin($query, 'pessoas p', 'e.id_pessoa = p.id');
             $result = $sql->ExecuteSQL($query, 'getArrayList');
             return $result;
         }

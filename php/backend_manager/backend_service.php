@@ -125,6 +125,11 @@ class BackEndService {
         $manager = new ManagerController;
         echo $manager->manager('vacanciesConsult', $form);
     }
+
+    public function getParks($form){
+        $manager = new ManagerController;
+        echo $manager->manager('getParks', $form);
+    }
 }
 
 

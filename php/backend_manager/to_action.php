@@ -5,6 +5,7 @@ include 'php/login/login_controller.php';
 include 'php/operation/cad_cars.php';
 include 'php/operation/relat_inf_user.php';
 include 'php/operation/relat_boardXcar.php';
+include 'php/operation/get_parks.php';
 
 include 'php/admin/admin_service.php';
 include 'php/admin/edit_person.php';
@@ -18,6 +19,8 @@ include 'php/master/edit_park.php';
 include 'php/vacancies/vacancies_services.php';
 include 'php/vacancies/vacancies_request.php';
 include 'php/vacancies/vacancies_consult.php';
+
+
 
 class ToActionClass{                    //Similar to C/C++ pointer
     public function convert($action, &$person){
@@ -80,6 +83,11 @@ class ToActionClass{                    //Similar to C/C++ pointer
         
             elseif($action == 'editPark'){
                 $class = new EditPark;
+                return $class;
+            }
+
+            elseif($action == 'getParks'){
+                $class = new GetParks;
                 return $class;
             }
             

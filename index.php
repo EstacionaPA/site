@@ -215,8 +215,9 @@ $app->post('/vacancies/request', function() use ($app, $service, $access) {
         echo $service->openPageByAccess();
 });
 
-$app->get('/getconfig', function () use ($app, $service) {
-   echo '3'; 
+$app->post('/getParks', function () use ($app, $service) {
+    $form = '';
+    $service->getParks($form);
 });
 
 //http://estacionapa.com/sair
