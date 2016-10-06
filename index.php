@@ -13,7 +13,7 @@ require 'php/backend_manager/backend_service.php';
 //chamada do framework slim
 $app = new \Slim\Slim(array('debug' => true));
 $service = new BackEndService;
-$access = $service->getAccess();
+$access = $service->getAccess('');
 
 $app->error(function (\Exception $e) use ($app) {
     $app->render('error.php');
@@ -180,12 +180,9 @@ $app->get('/report/carXboard/:board', function($board) use ($app, $service, $acc
         echo $service->openPageByAccess();
 });
 
-$app->get('/vacancies', function($board) use ($app, $service, $access) {
-    if($access == 'a'){
-        
-    }
-    else
-        echo $service->openPageByAccess();
+$app->post('/request/login', function() use ($app, $service, $access) {
+    $data = json_decode($app->request->getBody(), true);
+    echo $service->getAccessMobile($data);
 });
 
 $app->post('/vacancies/consult', function() use ($app, $service) {

@@ -96,7 +96,8 @@ class SqlController {
         
         //php/operation/getParks.php
         elseif($type == 'RequestParks') {
-            $query = $sql->Select('e.nome as "estacionamento",
+            $query = $sql->Select('e.id,
+                                   e.nome as "estacionamento",
                                    p.nome as "responsavel",
                                    e.h_func_init,
                                    e.h_func_fim,

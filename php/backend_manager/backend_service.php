@@ -19,6 +19,15 @@ class BackEndService {
            else
                 return '!login';
      }
+
+     public function getAccessMobile($data){
+           
+           $user = SqlController::Validate('CheckUser', $data['user']);
+           $pass = SqlController::Validate('CheckPass', $data);
+
+           if($user == 'done' and $pass == 'done')
+                echo self::getAccess($data['user']);
+     }
      
      public function openPageByAccess() {
         
