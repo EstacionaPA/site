@@ -20,10 +20,8 @@ class VacanciesRequest extends ManagerAbstract{
         (isset($object['hora_reserva']) and $object['hora_reserva'] != '') and
         (isset($object['hora_fim']) and $object['hora_fim']) != '' and
         (isset($object['data']) and $object['data'] != '')){
-         
-            $user = $_SESSION['login'];
             
-            $object['id_pessoa'] = $service->requestIdUser($user);
+            $object['id_pessoa'] = $service->requestIdUser($object['usuario']);
             $validDate = $service->checkDate($object['data'], $object);
             $validHour = $service->checkHour($object['hora_reserva'],
                                              $object['hora_fim']);

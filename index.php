@@ -13,7 +13,7 @@ require 'php/backend_manager/backend_service.php';
 //chamada do framework slim
 $app = new \Slim\Slim(array('debug' => true));
 $service = new BackEndService;
-$access = $service->getAccess('');
+$access = $service->getAccess($_SERVER['HTTP_USER_AGENT']);
 
 $app->error(function (\Exception $e) use ($app) {
     $app->render('error.php');
@@ -180,9 +180,10 @@ $app->get('/report/carXboard/:board', function($board) use ($app, $service, $acc
         echo $service->openPageByAccess();
 });
 
-$app->post('/request/login', function() use ($app, $service, $access) {
+$app->get('/request/login', function() use ($app, $service, $access) {
     $data = json_decode($app->request->getBody(), true);
-    echo $service->getAccessMobile($data);
+    echo strpos($_SERVER['HTTP_USER_AGENT'], 'Android');
+    //echo $service->getAccessMobile($data);
 });
 
 $app->post('/vacancies/consult', function() use ($app, $service) {
@@ -196,7 +197,7 @@ $app->post('/vacancies/consult', function() use ($app, $service) {
 });
 
 $app->post('/vacancies/request', function() use ($app, $service, $access) {
-    if($access == 'a'){
+    //if($access == 'a' or $access == 'valid'){
         $form = json_decode($app->request->getBody(), true);
         //array(
         //'id_carro' => ID CARRO,
@@ -205,11 +206,12 @@ $app->post('/vacancies/request', function() use ($app, $service, $access) {
         //'hora_reserva' => 'HH:MM:00', <===== ALWAYS ZERO
         //'hora_fim' => 'HH:MM:00', <======== ALWAYS ZERO
         //'data' => 'DD/MM/YYYY'
-        //); //IDPESSOA = GET BY SESSION
+        //'usuario' => NOME DE USUARIO QUE ESTÁ LOGADO
+        //);
         $service->vacanciesRequest($form);
-    }
-    else
-        echo $service->openPageByAccess();
+   // }
+   // else
+   //     echo $service->openPageByAccess();
 });
 
 $app->post('/getParks', function () use ($app, $service) {
