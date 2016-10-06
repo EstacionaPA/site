@@ -180,10 +180,10 @@ $app->get('/report/carXboard/:board', function($board) use ($app, $service, $acc
         echo $service->openPageByAccess();
 });
 
-$app->get('/request/login', function() use ($app, $service, $access) {
+$app->post('/request/login', function() use ($app, $service, $access) {
     $data = json_decode($app->request->getBody(), true);
-    echo strpos($_SERVER['HTTP_USER_AGENT'], 'Android');
-    //echo $service->getAccessMobile($data);
+    //echo strpos($_SERVER['HTTP_USER_AGENT'], 'Android');
+    echo $service->getAccessMobile($data);
 });
 
 $app->post('/vacancies/consult', function() use ($app, $service) {
@@ -217,6 +217,11 @@ $app->post('/vacancies/request', function() use ($app, $service, $access) {
 $app->post('/getParks', function () use ($app, $service) {
     $form = '';
     $service->getParks($form);
+});
+
+$app->post('/getCars', function () use ($app, $service) {
+    $form = json_decode($app->request->getBody(), true);
+    $service->getCars($form);
 });
 
 //http://estacionapa.com/sair

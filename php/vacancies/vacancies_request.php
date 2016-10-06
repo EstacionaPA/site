@@ -13,14 +13,23 @@ class VacanciesRequest extends ManagerAbstract{
     $validIdCar = '';
     $feedBack = '';
     $validHourFunc = '';
-        
+
      if((isset($object['id_carro']) and $object['id_carro'] != '') and
         (isset($object['id_estac']) and $object['id_estac'] != '') and
         (isset($object['vaga']) and $object['vaga'] != '') and
+        (isset($object['usuario']) and $object['usuario'] != '') and
         (isset($object['hora_reserva']) and $object['hora_reserva'] != '') and
         (isset($object['hora_fim']) and $object['hora_fim']) != '' and
         (isset($object['data']) and $object['data'] != '')){
-            
+/*
+            if((isset($object['vaga']) and $object['vaga'] != '')){
+                $restVacancies[] = SqlController::Request('RequestRestReserves', $object);
+                
+                for($i = 0; $i<count($restVacancies); $i++){
+                    if($restVacancies[$i]['vaga'])
+                }
+            }
+            */
             $object['id_pessoa'] = $service->requestIdUser($object['usuario']);
             $validDate = $service->checkDate($object['data'], $object);
             $validHour = $service->checkHour($object['hora_reserva'],

@@ -30,7 +30,7 @@ class SqlController {
             return $result['nome'];
         }
 
-        //operation/cad_cars.php && vacancies/vacancies_request.php
+        //operation/cad_cars.php && vacancies/vacancies_request.php && operation/get_cars.php
         elseif($type == 'RequestIdUser'){
             $query = $sql->BuildSelectFromWhere('id', 'pessoas', 'usuario', $var);
             $result = $sql->ExecuteSQL($query, 'getArray');
@@ -72,11 +72,37 @@ class SqlController {
             $query = $sql->From($query, 'reservas r');
             $query = $sql->Where($query, 'r.data = "' . $var['data'] . '"
                                           AND
+                                          r.id_estac = ' . $var['id_estac'] . ' ' . 
+                                          'AND 
+                                          r.vaga = ' . $var['vaga']);
+            $result = $sql->ExecuteSQL($query, 'getArrayList');
+            return $result;
+        }
+
+        //vacancies/vacancies_service.php
+        elseif($type == 'RequestRestReserves') {
+            $query = $sql->Select('*');
+            $query = $sql->From($query, 'reservas r');
+            $query = $sql->Where($query, 'r.data = "' . $var['data'] . '"
+                                          AND
                                           r.id_estac = ' . $var['id_estac']);
             $result = $sql->ExecuteSQL($query, 'getArrayList');
             return $result;
         }
         
+        //operation/get_cars.php
+        elseif($type == 'RequestCarsOfPerson') {
+            $query = $sql->Select('c.id as "id_carro",
+                                   c.placa,
+                                   mo.nome as "modelo",
+                                   ma.nome as "marca"');
+            $query = $sql->From($query, 'carro c');
+            $query = $sql->LeftOuterJoin($query, 'modelo mo', 'mo.id = c.modelo_id');
+            $query = $sql->LeftOuterJoin($query, 'marca ma', 'ma.id = c.marca_id');
+            $query = $sql->Where($query, 'c.pessoas_id = ' . $var);
+            $result = $sql->ExecuteSQL($query, 'getArrayList');
+            return $result;
+        }
         //vacancies/vacancies_service.php
         elseif($type == 'RequestSomeDataReserve') {
             $query = $sql->Select('r.vaga, 
