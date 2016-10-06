@@ -67,8 +67,13 @@ class SQLService {
     //--------------BUILDS THE QUERIES
     //
     
-    public function Select( $fields){
+    public function Select($fields){
         $query = "SELECT $fields";
+        return $query;
+    }
+
+    public function SelectCount($fields){
+        $query = "SELECT count($fields)";
         return $query;
     }
     

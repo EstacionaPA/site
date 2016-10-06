@@ -159,7 +159,10 @@ class SqlController {
 
         //account_mananger/register_person
         elseif($type == 'CheckPass'){
-            $query = $sql->BuildSelectCountFromWhere('pessoas', 'senha', md5($toCheck));
+            $query = $sql->SelectCount('*');
+            $query = $sql->From($query, 'pessoas p');
+            $query = $sql->Where($query, 'p.senha = "' . md5($toCheck["pass"]) . '" AND ' .
+                                         'p.usuario = "' . $toCheck['user'] . '"');
             $result = $sql->ExecuteSQL($query, 'checkValue');
             return $result;
         }

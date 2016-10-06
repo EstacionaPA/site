@@ -18,12 +18,12 @@ class ServiceLogin {
         return addslashes($var);
     }
     
-    public function validLogin($user, $pass){
+    public function validLogin($form){
 
         
-        $validUser = SqlController::validate('CheckUser', $user);
+        $validUser = SqlController::validate('CheckUser', $form['user']);
         
-        $validPass = SqlController::validate('CheckPass', $pass);
+        $validPass = SqlController::validate('CheckPass', $form);
         
         if($validPass == 'done' and $validUser == 'done')
             return 'done';

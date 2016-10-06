@@ -12,18 +12,18 @@ Class Login extends ManagerAbstract{
 
         if($valid == 'nullFields') return $valid;
         
-        $u = $svcLogin->insertSlashes($form['user']);
-        $p = $svcLogin->insertSlashes($form['pass']);
+        $form['user'] = $svcLogin->insertSlashes($form['user']);
+        $form['pass'] = $svcLogin->insertSlashes($form['pass']);
 
 
-        $validLogin = $svcLogin->validLogin($u, $p);
+        $validLogin = $svcLogin->validLogin($form);
         
         
-        $checkInactive = $svcLogin->checkInactive($u);
+        $checkInactive = $svcLogin->checkInactive($form['user']);
        
         if($validLogin == 'done') {
             if($checkInactive == 'dont'){
-                $_SESSION['login'] = $u;
+                $_SESSION['login'] = $form['user'];
                 echo 'done';
             }
             else{

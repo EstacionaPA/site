@@ -10,9 +10,9 @@ class BackEndService {
         session_start();
      } 
      
-     public function getAccess(){
-           if(isset($_SESSION['login'])){
-                $user = $_SESSION['login'];
+     public function getAccess($user){
+           if(isset($_SESSION['login']) or $user != ''){
+                if($user == '') $user = $_SESSION['login'];
                 $access = SqlController::Request('RequestAccess', $user);
                 return $access;
            }
