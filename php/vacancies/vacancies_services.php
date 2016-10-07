@@ -58,11 +58,7 @@ class VacanciesServices {
     }
      
     public function checkResult($result, $object, $index){
-        
-        if($object['hora_fim'] <= $object['hora_reserva'] or
-           $object['hora_fim'] == $object['hora_reserva'])
-            return '!validHourConsult';
-
+    
         if(($object['hora_reserva'] >= $result[$index]['hora_reserva'] and
             $object['hora_reserva'] < $result[$index]['hora_fim'])
            and 
@@ -177,8 +173,7 @@ class VacanciesServices {
     }
     
     public function registerVacancy($object){
-        $result = SqlController::Insert('RegisterVacancy', $object);
-        return $result;
+        return SqlController::Insert('RegisterVacancy', $object);
     }
     
     public function checkHourFunc($object) {
@@ -189,6 +184,10 @@ class VacanciesServices {
             return 'done';
         else
             return 'not';
+    }
+
+    public function requestRestVacancies($object){
+        return SqlController::Request('RequestRestReserves', $object);
     }
 }
 

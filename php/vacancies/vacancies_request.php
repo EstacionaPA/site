@@ -30,6 +30,7 @@ class VacanciesRequest extends ManagerAbstract{
                 }
             }
             */
+            
             $object['id_pessoa'] = $service->requestIdUser($object['usuario']);
             $validDate = $service->checkDate($object['data'], $object);
             $validHour = $service->checkHour($object['hora_reserva'],
@@ -44,13 +45,18 @@ class VacanciesRequest extends ManagerAbstract{
             if($validDate == 'done'){//3
             if($validHour == 'done'){//4
             if($validHourFunc == 'done'){//5
+            if($object['hora_reserva'] <= $object['hora_fim']) {//6
                 
                 $result = $service->requestVacancies($object);
+                $restVacancies = $service->requestRestVacancies($object);
 
                 if(count($result) == 0){
                     $service->registerVacancy($object);
                     echo 'done';
                 }
+                else if(count($restVacancies) == $vagas['vagas'])
+                    echo '!vacancies';
+                
                 else{
                     for($i = 0; $i < count($result); $i++){
                         $feedback = $service->checkResult($result, $object, $i);
@@ -62,7 +68,10 @@ class VacanciesRequest extends ManagerAbstract{
                     $service->registerVacancy($object);
                     echo 'done';
                 }
-                
+            }//6
+            else
+                echo '!validHourRequest'; 
+
             }//5
             else
                 echo '!validHourFunc';
