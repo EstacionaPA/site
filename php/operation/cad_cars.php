@@ -1,61 +1,45 @@
 <?php
 
-require 'php/objects/car.php';
-
 class RegisterCar {
     public function controll($form){
 
         if($form['user'] == '' || $form['placa'] == '' || 
-           $form['marca'] == '' || $form['modelo'] == '') {
+           $form['idMarca'] == '' || $form['idModelo'] == '') {
                 echo '!fields';
                 return;
         }
 
         $validUser = SqlController::Validate('CheckUser', $form['user']);
-        $validMarca = SqlController::Validate('CheckMark', $form['marca']);
-        $validModelo = SqlController::Validate('CheckModel', $form['modelo']);
+        $validMarca = SqlController::Validate('CheckIDMark', $form['idMarca']);
+        $validModelo = SqlController::Validate('CheckIDModel', $form['idModelo']);
         $validPlaca = SqlController::Validate('CheckBoard', $form['placa']);
 
-        if($validUser == 'done'){
-            if($validMarca == 'done'){
-                if($validModelo == 'done'){
-                    if($validPlaca == 'dont'){
+        if($validUser == 'done'){//1
+        if($validMarca == 'done'){//2
+        if($validModelo == 'done'){//3
+        if($validPlaca == 'dont'){//4
+        
+            $valid = SqlController::Insert('insertCar', $form);
 
+            if($valid) echo 'done';
+            else echo $valid;
+        
+        }//4
+        else
+            echo 'placa';
 
-                        $idUser = SqlController::Request('RequestIdUser', $form['user']);
-                        $modelo = SqlController::Request('RequestIdModel', $form['modelo']);
-                        $marca = SqlController::Request('RequestIdMark', $form['marca']);
+        }//3
+        else
+            echo '!modelo';
 
-                        $car = new Car($idUser, $form['placa'], $marca, $modelo);
+        }//2
+        else
+            echo '!marca';
 
-                        $valid = SqlController::Insert('insertCar', $car);
-
-                        if($valid) echo 'done';
-                        else echo $valid;
-                    }
-
-                    else{
-                        echo 'placa';
-                        return;
-                    }
-                }
-
-                else{
-                    echo '!modelo';
-                    return;
-                }
-            }
-
-            else{
-                echo '!marca';
-                return;
-            }
-        }
-
-        else{
+        }//1
+        else
             echo '!user';
-            return;
-        }
+            
     }
 }
 ?>

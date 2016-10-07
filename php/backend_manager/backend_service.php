@@ -10,14 +10,24 @@ class BackEndService {
         session_start();
      } 
      
-     public function getAccess($user){
-           if(isset($_SESSION['login']) or $user != ''){
-                if($user == '') $user = $_SESSION['login'];
-                $access = SqlController::Request('RequestAccess', $user);
-                return $access;
+     public function getAccess($data){
+           if(isset($_SESSION['login']) or 
+               (strpos($data, 'Android') != '' or 
+                strpos($data, 'AppleWebKit') != '')){
+                    if(strpos($data, 'Android') == '' && strpos($data, 'AppleWebKit') == '') {
+                    
+                        $data = $_SESSION['login'];
+                        $access = SqlController::Request('RequestAccess', $data);
+                    }
+                    else
+                        $access = 'valid';
+                    
+                    return $access;
            }
            else
                 return '!login';
+
+    
      }
 
      public function getAccessMobile($data){
@@ -26,7 +36,7 @@ class BackEndService {
            $pass = SqlController::Validate('CheckPass', $data);
 
            if($user == 'done' and $pass == 'done')
-                echo self::getAccess($data['user']);
+                echo $access = SqlController::Request('RequestAccess', $data['user']);
      }
      
      public function openPageByAccess() {
@@ -143,6 +153,16 @@ class BackEndService {
     public function getCars($form){
         $manager = new ManagerController;
         echo $manager->manager('getCars', $form);
+    }
+
+    public function getMarks($form){
+        $manager = new ManagerController;
+        echo $manager->manager('getMarks', $form);
+    }
+
+    public function getModels($form){
+        $manager = new ManagerController;
+        echo $manager->manager('getModels', $form);
     }
 }
 

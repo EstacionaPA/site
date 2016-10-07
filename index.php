@@ -138,12 +138,12 @@ $app->get('/register/cars', function() use ($service, $access) {
 });
 
 $app->post('/register/cars/added', function() use ($app, $service, $access) {
-    if($access == 'a') {
+    //if($access == 'a') {
         $form = json_decode($app->request->getBody(), true);
         $service->registerCar($form);
-    }
-    else
-        echo $service->openPageByAccess();
+    //}
+    //else
+    //    echo $service->openPageByAccess();
 });
 
 $app->get('/report/infUser', function() use ($app, $service, $access) {
@@ -197,7 +197,7 @@ $app->post('/vacancies/consult', function() use ($app, $service) {
 });
 
 $app->post('/vacancies/request', function() use ($app, $service, $access) {
-    //if($access == 'a' or $access == 'valid'){
+    if($access == 'a' or $access == 'valid'){
         $form = json_decode($app->request->getBody(), true);
         //array(
         //'id_carro' => ID CARRO,
@@ -209,9 +209,9 @@ $app->post('/vacancies/request', function() use ($app, $service, $access) {
         //'usuario' => NOME DE USUARIO QUE ESTÁ LOGADO
         //);
         $service->vacanciesRequest($form);
-   // }
-   // else
-   //     echo $service->openPageByAccess();
+    }
+    else
+        echo $service->openPageByAccess();
 });
 
 $app->post('/getParks', function () use ($app, $service) {
@@ -222,6 +222,16 @@ $app->post('/getParks', function () use ($app, $service) {
 $app->post('/getCars', function () use ($app, $service) {
     $form = json_decode($app->request->getBody(), true);
     $service->getCars($form);
+});
+
+$app->post('/getModels', function () use ($app, $service) {
+    $form = json_decode($app->request->getBody(), true);
+    $service->getModels($form);
+});
+
+$app->get('/getMarks', function () use ($app, $service) {
+    $form = '';
+    $service->getMarks($form);
 });
 
 //http://estacionapa.com/sair

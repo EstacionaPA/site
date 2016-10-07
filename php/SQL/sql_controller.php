@@ -53,15 +53,19 @@ class SqlController {
 
         //operation/cad_cars_values_option.php
         elseif($type == 'RequestMarks'){
-            //THIS IS TO SEND A NULL SQL CONDITION (WHERE 1 = '1')
-            $query = $sql->BuildSelectFromWhereOrder('nome', 'marca', 1, 1 ,'nome');
+            $query = $sql->Select('m.id,
+                                   m.nome');
+            $query = $sql->From($query, 'marca m');
             $result = $sql->ExecuteSQL($query, 'getArrayList');
             return $result;
         }
 
         //operation/cad_cars_values_option.php
         elseif($type == 'RequestModels') {
-            $query = $sql->BuildSelectFromWhereOrder('nome', 'modelo', 'marca_id', $var, 'nome');
+            $query = $sql->Select('m.id,
+                                   m.nome');
+            $query = $sql->From($query, 'modelo m');
+            $query = $sql->Where($query, 'm.marca_id = ' . $var['idMarca']);
             $result = $sql->ExecuteSQL($query, 'getArrayList');
             return $result;
         }
@@ -129,6 +133,7 @@ class SqlController {
                                    e.h_func_fim,
                                    e.endereco,
                                    e.num,
+                                   e.vagas,
                                    e.bairro');
             $query = $sql->From($query, 'estacionamentos e');
             $query = $sql->leftOuterJoin($query, 'pessoas p', 'e.id_pessoa = p.id');
@@ -209,15 +214,15 @@ class SqlController {
         }
 
         //operation/cad_cars.php
-        elseif($type == 'CheckMark'){
-            $query = $sql->BuildSelectCountFromWhere('marca', 'nome', $toCheck);
+        elseif($type == 'CheckIDMark'){
+            $query = $sql->BuildSelectCountFromWhere('marca', 'id', $toCheck);
             $result = $sql->ExecuteSQL($query, 'checkValue');
             return $result;
         }
 
         //operation/cad_cars.php
-        elseif($type == 'CheckModel'){
-            $query = $sql->BuildSelectCountFromWhere('modelo', 'nome', $toCheck);
+        elseif($type == 'CheckIDModel'){
+            $query = $sql->BuildSelectCountFromWhere('modelo', 'id', $toCheck);
             $result = $sql->ExecuteSQL($query, 'checkValue');
             return $result;
         }
@@ -293,9 +298,20 @@ class SqlController {
 
         //operation/cad_cars.php
         elseif($type == 'insertCar'){
-            $query = $sql->BuildSqlInsertCar($obj->getUser(), $obj->getBoard(),$obj->getMark(), $obj->getModel());
+
+            $query = $sql->Insert('carro', 
+                                  'placa, 
+                                   marca_id,
+                                   pessoas_id,
+                                   modelo_id',
+                                   '"' . $obj['placa'] . '", ' .
+                                   $obj['idMarca'] . ', ' .
+                                   $obj['idPessoa'] . ', ' .
+                                   '"' . $obj['idModelo'] . '"');
+            
             $result = $sql->ExecuteSQL($query, 'OnlyExecute');
             return $result;
+
         }
 
         //account_mananger/register_person

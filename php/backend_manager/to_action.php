@@ -7,6 +7,8 @@ include 'php/operation/relat_inf_user.php';
 include 'php/operation/relat_boardXcar.php';
 include 'php/operation/get_parks.php';
 include 'php/operation/get_cars.php';
+include 'php/operation/get_models.php';
+include 'php/operation/get_marks.php';
 
 include 'php/admin/admin_service.php';
 include 'php/admin/edit_person.php';
@@ -94,6 +96,16 @@ class ToActionClass{                    //Similar to C/C++ pointer
 
             elseif($action == 'getCars'){
                 $class = new GetCars;
+                return $class;
+            }
+
+            elseif($action == 'getModels'){
+                $class = new GetModels;
+                return $class;
+            }
+
+            elseif($action == 'getMarks'){
+                $class = new GetMarks;
                 return $class;
             }
             
