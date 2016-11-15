@@ -100,6 +100,18 @@ class BackEndService {
                     file_get_contents('front-web/html/foot/main.html');
         }
 
+        elseif($type == 'register'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
+                        file_get_contents('front-web/html/body/menu.html') .
+                        file_get_contents('front-web/html/body/register/accept.html') .
+                        file_get_contents('front-web/html/body/register/data_system.html') .
+                        file_get_contents('front-web/html/body/register/data_person.html') .
+                        file_get_contents('front-web/html/body/register/data_geo.html') .
+                    file_get_contents('front-web/html/foot/main.html') . 
+                    file_get_contents('front-web/html/foot/register.html');
+        }
+
         return $page;
     }
     

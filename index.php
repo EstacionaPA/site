@@ -1,9 +1,5 @@
 <?php
-//
-//PROXIMAS ETAPAS
-//TER MOVIMENTAÇÕES FINANCEIRAS
-//
-//
+
 require 'api/vendor/autoload.php';
 require 'api/vendor/vrana/NotORM.php';
 
@@ -92,7 +88,7 @@ $app->post('/delete/user', function() use ($app, $service, $access) {
 });
 
 $app->get('/register', function() use ($service) {
-    echo $service->getPage('html/forms/cad_client.html');
+    echo $service->buildPage('register');
 });
 
 // http://estacionapa.com/register/user
