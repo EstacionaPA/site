@@ -40,7 +40,6 @@ class BackEndService {
      }
      
      public function openPageByAccess() {
-        
         if(isset($_SESSION['login'])){
             
             $user = $_SESSION['login'];
@@ -59,7 +58,7 @@ class BackEndService {
                 echo 'Acesso invalido. Contacte o suporte!';
         }
         else 
-            return $this->getPage('html/forms/form_login.html');
+            return $this->buildPage('login');
      }
      
     public function getPage($path){
@@ -73,14 +72,34 @@ class BackEndService {
         return file_get_contents($path, 0, $page); 
     }
     
-    public function TESTEgetPage(){
+    public function buildPage($type){
+
+        if($type == 'index'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/index.html') . 
+                            file_get_contents('front-web/html/body/menu.html') . 
+                            file_get_contents('front-web/html/body/slideshow.html') . 
+                    file_get_contents('front-web/html/foot/index.html') .
+                    file_get_contents('front-web/html/foot/main.html');   
+        }
         
-        $page = file_get_contents('html/teste/html_inicio.html') . 
-                    file_get_contents('html/teste/cabecalho.html') . 
-                        file_get_contents('html/teste/corpo.html') . 
-                    file_get_contents('html/teste/rodape.html') . 
-                file_get_contents('html/teste/html_fim.html');
-     
+        elseif($type == 'about'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
+                            file_get_contents('front-web/html/body/menu.html') . 
+                            file_get_contents('front-web/html/body/about.html') . 
+                    file_get_contents('front-web/html/foot/main.html'); 
+                    
+        }
+
+        elseif($type == 'login'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
+                        file_get_contents('front-web/html/body/menu.html') .
+                        file_get_contents('front-web/html/body/form_login.html') . 
+                    file_get_contents('front-web/html/foot/main.html');
+        }
+
         return $page;
     }
     

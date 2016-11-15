@@ -21,7 +21,7 @@ $app->error(function (\Exception $e) use ($app) {
 
 // http://estacionapa.com/
 $app->get('/', function() use ($service) {
-    echo $service->getPage('index.html');
+    echo $service->buildPage('index');
 });
 
 // http://estacionapa.com/login
@@ -31,7 +31,7 @@ $app->get('/login', function() use ($service) {
 
 // http://estacionapa.com/about
 $app->get('/about', function() use ($service) {
-    echo $service->getPage('html/pages/about.html');
+    echo $service->buildPage('about');
 });
 
 
@@ -232,6 +232,11 @@ $app->post('/getModels', function () use ($app, $service) {
 $app->get('/getMarks', function () use ($app, $service) {
     $form = '';
     $service->getMarks($form);
+});
+
+$app->get('/teste', function () use ($app, $service) {
+    $form = '';
+    $service->TESTEgetPage();
 });
 
 //http://estacionapa.com/sair
