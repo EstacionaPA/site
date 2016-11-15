@@ -18,7 +18,8 @@ class RegisterCar {
         if($validMarca == 'done'){//2
         if($validModelo == 'done'){//3
         if($validPlaca == 'dont'){//4
-        
+
+            $form['idUser'] = SqlController::Request('RequestIdUser', $form['user']);        
             $valid = SqlController::Insert('insertCar', $form);
 
             if($valid) echo 'done';

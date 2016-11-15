@@ -306,7 +306,7 @@ class SqlController {
                                    modelo_id',
                                    '"' . $obj['placa'] . '", ' .
                                    $obj['idMarca'] . ', ' .
-                                   $obj['idPessoa'] . ', ' .
+                                   $obj['idUser'] . ', ' .
                                    '"' . $obj['idModelo'] . '"');
             
             $result = $sql->ExecuteSQL($query, 'OnlyExecute');
