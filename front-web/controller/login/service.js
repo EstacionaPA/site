@@ -1,0 +1,7 @@
+var ServiceLogin = {
+
+    init: function () {
+        
+    }
+
+}

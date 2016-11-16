@@ -137,7 +137,7 @@ var ControllerRegister = {
     },
 
     montForm: function () {
-          p = {'name': $('#name').val(),
+        var  p = {'name': $('#name').val(),
                 'user': $('#user').val(),
                 'pass': $('#pass').val(),
                 'access': 'vazio',

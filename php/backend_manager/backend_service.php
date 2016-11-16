@@ -46,13 +46,13 @@ class BackEndService {
             $access = SqlController::Request('RequestAccess', $user);
             
             if($access == 'a')
-                return $this->getPage('html/pages/main_login_a.html');
+                return $this->buildPage('index');
                 
             else if($access == 'f')
-                return $this->getPage('html/pages/main_login_f.html');
+                return $this->buildPage('index');
                     
             else if($access == 'c')
-                return $this->getPage('html/pages/main_login_c.html');
+                return $this->buildPage('index');
             
             else
                 echo 'Acesso invalido. Contacte o suporte!';
@@ -96,7 +96,8 @@ class BackEndService {
                     file_get_contents('front-web/html/head/end.html') . 
                         file_get_contents('front-web/html/body/menu.html') .
                         file_get_contents('front-web/html/body/form_login.html') . 
-                    file_get_contents('front-web/html/foot/main.html');
+                    file_get_contents('front-web/html/foot/main.html') .
+                    file_get_contents('front-web/html/foot/login.html');
         }
 
         elseif($type == 'register'){
