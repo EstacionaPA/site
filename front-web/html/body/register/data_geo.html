@@ -1,56 +1,61 @@
-<legend>Dados Geograficos <span class="glyphicon glyphicon-globe" aria-hidden="true"></span></legend>
+<div id="dataGeo">
+    <legend>Dados Geograficos <span class="glyphicon glyphicon-globe" aria-hidden="true"></span></legend>
 
-<div class="container">
-    <form class="form-group">
-        <p>
-            <div class="input-group">
-                <span class="input-group-addon"></span>
-                <input type="text" class="form-control" id="end" placeholder="RUA: XXXXX" required>
-            </div>
-        </p>
-        <p>
-            <div class="input-group">
-                <span class="input-group-addon"></span>
-                <input type="password" class="form-control" id="comp" placeholder="COMPLEMENTO (OU DEIXE VAZIO)">
-            </div>
-        </p>
-        <p>
-            <div class="input-group">
-                <span class="input-group-addon"></span>
-                <input type="password" class="form-control" id="bairro" placeholder="BAIRRO" required>
-            </div>
-        </p>
+    <div class="container">
+        <form class="form-group">
+            <p>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="address" placeholder="RUA: XXXXX" required>
+                    <span class="input-group-addon">Rua</span>
+                </div>
+            </p>
+            <p>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="comp" placeholder="COMPLEMENTO (OU DEIXE VAZIO)">
+                    <span class="input-group-addon">Complemento</span>
+                </div>
+            </p>
+            <p>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="block" placeholder="BAIRRO" required>
+                    <span class="input-group-addon">Bairro</span>
+                </div>
+            </p>
 
-        <p>
-            <div class="input-group">
-                <span class="input-group-addon"></span>
-                <input type="password" class="form-control" id="numero" placeholder="NÚMERO" required>
-            </div>
-        </p>
+            <p>
+                <div class="input-group">
+                    <input type="number" class="form-control" id="number" placeholder="NÚMERO" required>
+                    <span class="input-group-addon">Numero</span>
+                </div>
+            </p>
 
-        <p>
-            <div class="input-group">
-                <span class="input-group-addon"></span>
-                <input type="password" class="form-control" id="cep" placeholder="CEP" required>
-            </div>
-        </p>
+            <p>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="cep" placeholder="CEP" required>
+                    <span class="input-group-addon">CEP</span>
+                </div>
+            </p>
 
-        <p>
-            <div class="input-group">
-                <span class="input-group-addon"></span>
-                <input type="password" class="form-control" id="cidade" placeholder="CIDADE" required>
-            </div>
-        </p>
+            <p>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="city" placeholder="CIDADE" required>
+                    <span class="input-group-addon">Cidade</span>
+                </div>
+            </p>
 
-        <p>
-            <div class="input-group">
-                <span class="input-group-addon"></span>
-                <input type="password" class="form-control" id="estado" placeholder="ESTADO" required>
-            </div>
-        </p>
+            <p>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="state" placeholder="ESTADO" required>
+                    <span class="input-group-addon">Estado</span>
+                </div>
+            </p>
+            <button class="btn btn-primary btn-lg" id="register">Registrar</button>
+            <button class="btn btn-primary btn-lg" id="backToPerson">Anterior</button>
+        </form>
+    
+    <p><div class="" id="feedBackGeo"></div></p>
+        
+    </div>
 
-        <button class="btn btn-primary btn-lg">Registrar</button>
-    </form>
-    <button class="btn btn-primary">Anterior</button>
     
 </div>

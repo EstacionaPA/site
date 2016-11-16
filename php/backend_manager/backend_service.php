@@ -195,6 +195,11 @@ class BackEndService {
         $manager = new ManagerController;
         echo $manager->manager('getModels', $form);
     }
+
+    public function checkValuesRegister($form){
+        $manager = new ManagerController;
+        echo $manager->manager('checkValuesRegister', $form);
+    }
 }
 
 

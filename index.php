@@ -230,9 +230,9 @@ $app->get('/getMarks', function () use ($app, $service) {
     $service->getMarks($form);
 });
 
-$app->get('/teste', function () use ($app, $service) {
-    $form = '';
-    $service->TESTEgetPage();
+$app->post('/checkValuesRegister', function () use ($app, $service) {
+    $form = json_decode($app->request->getBody(), true);
+    $service->checkValuesRegister($form);
 });
 
 //http://estacionapa.com/sair
