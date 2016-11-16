@@ -79,7 +79,6 @@ class BackEndService {
                     file_get_contents('front-web/html/head/index.html') . 
                             file_get_contents('front-web/html/body/menu.html') . 
                             file_get_contents('front-web/html/body/slideshow.html') . 
-                    file_get_contents('front-web/html/foot/index.html') .
                     file_get_contents('front-web/html/foot/main.html');   
         }
         
