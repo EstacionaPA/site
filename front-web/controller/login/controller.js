@@ -30,7 +30,7 @@ var ControllerLogin = {
 
                             setTimeout(function () {
                                 document.location = '/login';
-                            }, 1000);
+                            }, 200);
 
                         }else if(feedback == 'inactive'){
                             $('#feedBack').addClass('alert alert-warning');

@@ -45,17 +45,22 @@ class BackEndService {
             $user = $_SESSION['login'];
             $access = SqlController::Request('RequestAccess', $user);
             
-            if($access == 'a')
-                return $this->buildPage('index');
+            if($access == 'm')
+                return $this->buildPage('login_m');
+
+            else if($access == 'a')
+                return $this->buildPage('login_a');
                 
             else if($access == 'f')
-                return $this->buildPage('index');
+                return $this->buildPage('login_f');
                     
             else if($access == 'c')
-                return $this->buildPage('index');
+                return $this->buildPage('login_c');
             
             else
                 echo 'Acesso invalido. Contacte o suporte!';
+                return $this->buildPage('index');
+                
         }
         else 
             return $this->buildPage('login');
@@ -110,6 +115,42 @@ class BackEndService {
                         file_get_contents('front-web/html/body/register/data_geo.html') .
                     file_get_contents('front-web/html/foot/main.html') . 
                     file_get_contents('front-web/html/foot/register.html');
+        }
+
+        elseif($type == 'login_m'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/submenu.html') . 
+                        file_get_contents('front-web/html/body/master/m_menu.html') .
+                        file_get_contents('front-web/html/body/master/m_main.html') .
+                    file_get_contents('front-web/html/foot/main.html') .
+                    file_get_contents('front-web/html/foot/submenu.html');
+        }
+
+        elseif($type == 'login_a'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/submenu.html') . 
+                        file_get_contents('front-web/html/body/admin/a_menu.html') .
+                        file_get_contents('front-web/html/body/admin/a_main.html') .
+                    file_get_contents('front-web/html/foot/main.html') .
+                    file_get_contents('front-web/html/foot/submenu.html');
+        }
+
+        elseif($type == 'login_f'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/submenu.html') . 
+                        file_get_contents('front-web/html/body/func/f_menu.html') .
+                        file_get_contents('front-web/html/body/func/f_main.html') .
+                    file_get_contents('front-web/html/foot/main.html') .
+                    file_get_contents('front-web/html/foot/submenu.html');
+        }
+
+        elseif($type == 'login_c'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/submenu.html') . 
+                        file_get_contents('front-web/html/body/client/c_menu.html') .
+                        file_get_contents('front-web/html/body/client/c_main.html') .
+                    file_get_contents('front-web/html/foot/main.html') .
+                    file_get_contents('front-web/html/foot/submenu.html');
         }
 
         return $page;

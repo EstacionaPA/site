@@ -128,7 +128,7 @@ var ControllerRegister = {
 
                         setTimeout(function () {
                             document.location = '/login';
-                        }, 1000)
+                        }, 500)
                     }
                 });
             }
