@@ -296,14 +296,14 @@ class SqlController {
             $values = '"' . $obj['nome'] . '", ' . 
                       $obj['idResp'] . ', ' .
                       $obj['vagas'] . ', ' . 
-                      $obj['h_func_init'] . ', ' . 
-                      $obj['h_funt_fim'] . ', ' . 
-                      '"' . $obj['endereco'] . '", ' . 
+                      '"' . $obj['h_init'] . '", ' . 
+                      '"' . $obj['h_end'] . '", ' . 
+                      '"' . $obj['end'] . '", ' . 
                       '"' . $obj['num'] . '", ' . 
                       '"' . $obj['bairro'] . '"';
             $query = $sql->Insert('estacionamentos',
                                   'nome, 
-                                   responsavel, 
+                                   id_pessoa, 
                                    vagas, 
                                    h_func_init, 
                                    h_func_fim, 

@@ -106,15 +106,15 @@ $app->post('/register/parks', function() use ($app, $service) {
         echo $service->openPageByAccess();
 });
 
-$app->get('/master.registerparks', function() use ($app, $service) {
+$app->get('/master.registerparks', function() use ($app, $service, $access) {
    if($access == 'm'){
-        echo $service->buildPage('m_registerParks');
+        echo $service->buildPage('m_cadParks');
     }
     else
         echo $service->openPageByAccess();
 });
 
-$app->post('/master.registerparks/added', function() use ($app, $service) {
+$app->post('/master.registerparks/added', function() use ($app, $service, $access) {
    if($access == 'm'){
         $form = json_decode($app->request->getBody(), true);
         $service->registerPark($form);

@@ -1,0 +1,67 @@
+<legend>Cadastro de Estacionamentos</legend>
+<div class="container">
+
+    <form class="form-group">
+        <p>
+            <label class="label label-default">Nome do Estacionamento</label>
+            <div class="input-group">
+                <span class="input-group-addon"></span>
+                <input type="text" class="form-control" id="nome" required placeholder="NOME FANTASIA">
+            </div>
+        </p>
+        <p>
+            <label class="label label-default">Responsável</label>
+            <div class="form-group">
+                <select name="" id="userResp" class="form-control">
+                    <option value="nothing" id="loadUser" selected>(CARREGANDO...)</option>
+                </select>
+            </div>
+        </p>
+        <p>
+            <label class="label label-default">Hora de Inicio</label>
+            <div class="input-group">
+                <span class="input-group-addon"></span>
+                <input type="text" class="form-control" id="h_init" required placeholder="HH:MM">
+            </div>
+        </p>
+        <p>
+            <label class="label label-default">Hora de Fechamento</label>
+            <div class="input-group">
+                <span class="input-group-addon"></span>
+                <input type="text" class="form-control" id="h_end" required placeholder="HH:MM">
+            </div>
+        </p>
+        <p>
+            <label class="label label-default">Quantidade de Vagas</label>
+            <div class="input-group">
+                <span class="input-group-addon"></span>
+                <input type="number" class="form-control" id="qtdVagas" required placeholder="VAGAS">
+            </div>
+        </p>
+        <p>
+            <label class="label label-default">Rua</label>
+            <div class="input-group">
+                <span class="input-group-addon"></span>
+                <input type="text" class="form-control" id="end" required placeholder="RUA">
+            </div>
+        </p>
+        <p>
+            <label class="label label-default">Numero</label>
+            <div class="input-group">
+                <span class="input-group-addon"></span>
+                <input type="number" class="form-control" id="num" required placeholder="NÚMERO">
+            </div>
+        </p>
+        <p>
+            <label class="label label-default">Bairro</label>
+            <div class="input-group">
+                <span class="input-group-addon"></span>
+                <input type="text" class="form-control" id="bairro" required placeholder="BAIRRO">
+            </div>
+        </p>
+        <button class="btn btn-primary btn-lg" id="register">Registrar</button>
+    </form>
+
+    <div id="feedBack" class=""></div>
+
+</div>

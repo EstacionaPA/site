@@ -146,6 +146,15 @@ class BackEndService {
                     file_get_contents('front-web/html/foot/cadCars.html');
         }
 
+        elseif($type == 'm_cadParks'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/submenu.html') . 
+                        file_get_contents('front-web/html/body/master/m_menu.html') .
+                        file_get_contents('front-web/html/body/master/cadParks.html') .
+                    file_get_contents('front-web/html/foot/main.html') .
+                    file_get_contents('front-web/html/foot/cadParks.html');
+        }
+
         elseif($type == 'a_login'){
             $page = file_get_contents('front-web/html/head/main.html') . 
                     file_get_contents('front-web/html/head/submenu.html') . 
