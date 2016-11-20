@@ -26,7 +26,7 @@ var ControllerRegister = {
         $('#nextToPerson').click(function(e) {
             e.preventDefault();
 
-            if($('#user').val() == '' || $('#pass').val() == ''){
+            if($('#user').val() == '' || $('#pass').val() == '' || $('#access').val() == 'n'){
                 $('#feedBackSystem').text('Preencha todos os campos!');
                 $('#feedBackSystem').addClass('alert alert-warning');
             }else{
@@ -123,12 +123,16 @@ var ControllerRegister = {
                     url: '/register/client/added',
                     data: JSON.stringify(form),
                     success: function (data) {
-                        $('#feedBackGeo').text('Registrado com sucesso!');
-                        $('#feedBackGeo').addClass('alert alert-success');
-
-                        setTimeout(function () {
-                            document.location = '/login';
-                        }, 500)
+                        if(data == 'success'){
+                            $('#feedBackGeo').text('Registrado com sucesso!');
+                            $('#feedBackGeo').addClass('alert alert-success');
+                            setTimeout(function () {
+                                document.location = '/login';
+                            }, 200);
+                        }else{
+                            $('#feedBackGeo').text('Houve alo de errado, contacte o suporte!!');
+                            $('#feedBackGeo').addClass('alert alert-danger');
+                        }
                     }
                 });
             }

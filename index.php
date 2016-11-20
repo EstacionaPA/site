@@ -107,9 +107,9 @@ $app->post('/register/parks', function() use ($app, $service) {
 });
 
 // http://estacionapa.com/register/user
-$app->get('/register/user', function() use ($service, $access) {
-    if($access == 'a')
-        echo $service->getPage('html/forms/admin_cad_users.html');
+$app->get('/registeruser', function() use ($service, $access) {
+    if($access == 'a' or $access == 'm')
+        echo $service->buildPage('cadPerson_m');
 
     else
         echo $service->openPageByAccess();
@@ -117,7 +117,7 @@ $app->get('/register/user', function() use ($service, $access) {
 
 // http://estacionapa.com/register/user
 $app->post('/register/user/added', function() use ($app, $service, $access) {
-    if($access == 'a') {
+    if($access == 'a' or $access == 'm') {
         $form = json_decode($app->request->getBody(), true);
         $service->registerUser($form);
     }

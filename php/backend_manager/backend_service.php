@@ -12,15 +12,15 @@ class BackEndService {
      
      public function getAccess($data){
            if(isset($_SESSION['login']) or 
-               (strpos($data, 'Android') != '' or 
-                strpos($data, 'AppleWebKit') != '')){
-                    if(strpos($data, 'Android') == '' && strpos($data, 'AppleWebKit') == '') {
+               (strpos($data, 'Android') != '')){
+                    if(strpos($data, 'Android') == '') {
                     
                         $data = $_SESSION['login'];
                         $access = SqlController::Request('RequestAccess', $data);
                     }
                     else
                         $access = 'valid';
+                    
                     
                     return $access;
            }
@@ -122,8 +122,7 @@ class BackEndService {
                     file_get_contents('front-web/html/head/submenu.html') . 
                         file_get_contents('front-web/html/body/master/m_menu.html') .
                         file_get_contents('front-web/html/body/master/m_main.html') .
-                    file_get_contents('front-web/html/foot/main.html') .
-                    file_get_contents('front-web/html/foot/submenu.html');
+                    file_get_contents('front-web/html/foot/main.html');
         }
 
         elseif($type == 'login_a'){
@@ -131,8 +130,7 @@ class BackEndService {
                     file_get_contents('front-web/html/head/submenu.html') . 
                         file_get_contents('front-web/html/body/admin/a_menu.html') .
                         file_get_contents('front-web/html/body/admin/a_main.html') .
-                    file_get_contents('front-web/html/foot/main.html') .
-                    file_get_contents('front-web/html/foot/submenu.html');
+                    file_get_contents('front-web/html/foot/main.html');
         }
 
         elseif($type == 'login_f'){
@@ -140,8 +138,7 @@ class BackEndService {
                     file_get_contents('front-web/html/head/submenu.html') . 
                         file_get_contents('front-web/html/body/func/f_menu.html') .
                         file_get_contents('front-web/html/body/func/f_main.html') .
-                    file_get_contents('front-web/html/foot/main.html') .
-                    file_get_contents('front-web/html/foot/submenu.html');
+                    file_get_contents('front-web/html/foot/main.html');
         }
 
         elseif($type == 'login_c'){
@@ -149,8 +146,19 @@ class BackEndService {
                     file_get_contents('front-web/html/head/submenu.html') . 
                         file_get_contents('front-web/html/body/client/c_menu.html') .
                         file_get_contents('front-web/html/body/client/c_main.html') .
+                    file_get_contents('front-web/html/foot/main.html');
+        }
+
+        elseif($type == 'cadPerson_m'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/submenu.html') . 
+                        file_get_contents('front-web/html/body/master/m_menu.html') .
+                        file_get_contents('front-web/html/body/master/register_person.html') .
+                        file_get_contents('front-web/html/body/register/data_person.html') .
+                        file_get_contents('front-web/html/body/register/data_geo.html') .
                     file_get_contents('front-web/html/foot/main.html') .
-                    file_get_contents('front-web/html/foot/submenu.html');
+                    file_get_contents('front-web/html/foot/register.html') .
+                    file_get_contents('front-web/html/foot/cadPersonMaster.html');
         }
 
         return $page;
