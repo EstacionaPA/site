@@ -3,8 +3,15 @@
 class RegisterCar {
     public function controll($form){
 
-        if($form['user'] == '' || $form['placa'] == '' || 
-           $form['idMarca'] == '' || $form['idModelo'] == '') {
+
+        if(!isset($form['user']) or !isset($form['idMarca']) or 
+            !isset($form['placa']) or !isset($form['idModelo'])){
+                echo '!fields';
+                return;
+        }
+
+        if($form['user'] == 'nothing' || $form['placa'] == '' || 
+           $form['idMarca'] == 'nothing' || $form['idModelo'] == 'nothing') {
                 echo '!fields';
                 return;
         }
@@ -13,7 +20,6 @@ class RegisterCar {
         $validMarca = SqlController::Validate('CheckIDMark', $form['idMarca']);
         $validModelo = SqlController::Validate('CheckIDModel', $form['idModelo']);
         $validPlaca = SqlController::Validate('CheckBoard', $form['placa']);
-
         if($validUser == 'done'){//1
         if($validMarca == 'done'){//2
         if($validModelo == 'done'){//3

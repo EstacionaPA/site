@@ -38,7 +38,7 @@ class SqlController {
         }
 
         elseif($type == 'RequestUsers'){
-            $query = $sql->Select('p.id, p.usuario');
+            $query = $sql->Select('p.usuario, p.nome');
             $query = $sql->From($query, 'pessoas p');
             $result = $sql->ExecuteSQL($query, 'getArrayList');
             return $result;
@@ -236,7 +236,9 @@ class SqlController {
 
         //operation/cad_cars.php
         elseif($type == 'CheckBoard'){
-            $query = $sql->BuildSelectCountFromWhere('carro', 'placa', $toCheck);
+            $query = $sql->SelectCount('*');
+            $query = $sql->From($query, 'carro c');
+            $query = $sql->Where($query, 'c.placa = "' . $toCheck . '"');
             $result = $sql->ExecuteSQL($query, 'checkValue');
             return $result;
         }
@@ -292,12 +294,22 @@ class SqlController {
         if($type == 'insertPark'){
             
             $values = '"' . $obj['nome'] . '", ' . 
-                      $obj['responsavel'] . ', ' .
+                      $obj['idResp'] . ', ' .
                       $obj['vagas'] . ', ' . 
                       $obj['h_func_init'] . ', ' . 
-                      $obj['h_funt_fim'];
+                      $obj['h_funt_fim'] . ', ' . 
+                      '"' . $obj['endereco'] . '", ' . 
+                      '"' . $obj['num'] . '", ' . 
+                      '"' . $obj['bairro'] . '"';
             $query = $sql->Insert('estacionamentos',
-                                  'nome, responsavel, vagas, h_func_init, h_func_fim',
+                                  'nome, 
+                                   responsavel, 
+                                   vagas, 
+                                   h_func_init, 
+                                   h_func_fim, 
+                                   endereco,
+                                   num,
+                                   bairro',
                                   $values);
             $result = $sql->ExecuteSQL($query, 'OnlyExecute');
             return $result;

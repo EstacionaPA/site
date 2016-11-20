@@ -98,7 +98,24 @@ $app->post('/register/client/added', function() use ($app, $service) {
 });
 
 $app->post('/register/parks', function() use ($app, $service) {
-    if(1){
+   if($access == 'm'){
+        $form = json_decode($app->request->getBody(), true);
+        $service->registerPark($form);
+    }
+    else
+        echo $service->openPageByAccess();
+});
+
+$app->get('/master.registerparks', function() use ($app, $service) {
+   if($access == 'm'){
+        echo $service->buildPage('m_registerParks');
+    }
+    else
+        echo $service->openPageByAccess();
+});
+
+$app->post('/master.registerparks/added', function() use ($app, $service) {
+   if($access == 'm'){
         $form = json_decode($app->request->getBody(), true);
         $service->registerPark($form);
     }
@@ -108,7 +125,7 @@ $app->post('/register/parks', function() use ($app, $service) {
 
 // http://estacionapa.com/register/user
 $app->get('/master.registeruser', function() use ($service, $access) {
-    if($access == 'a' or $access == 'm')
+    if($access == 'm')
         echo $service->buildPage('m_cadPerson');
 
     else

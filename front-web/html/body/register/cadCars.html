@@ -6,7 +6,7 @@
             <label class="label label-default">Usuário</label>
             <div class="form-group">
                 <select name="" id="user" class="form-control">
-                    <option value="nothing" selected>(CARREGANDO...)</option>
+                    <option value="nothing" id="loadUser" selected>(CARREGANDO...)</option>
                 </select>
             </div>
         </p>
@@ -14,14 +14,14 @@
             <label class="label label-default">Placa</label>
             <div class="input-group">
                 <span class="input-group-addon"></span>
-                <input type="text" class="form-control" id="board" placeholder="PLACA">
+                <input type="text" class="form-control" id="board" required placeholder="PLACA">
             </div>
         </p>
         <p>
             <label class="label label-default">Marca do Carro</label>
             <div class="form-group">
                 <select name="" id="mark" class="form-control">
-                    <option value="nothing" selected>(CARREGANDO...)</option>
+                    <option value="nothing" id="loadMark"  selected>(CARREGANDO...)</option>
                 </select>
             </div>
         </p>
@@ -29,7 +29,7 @@
             <label class="label label-default">Modelo do Carro</label>
             <div class="form-group">
                 <select name="" id="model" class="form-control">
-                    <option value="nothing" selected>(ESCOLHA UMA MARCA PRIMEIRO)</option>
+                    <option value="nothing" id="loadModel" selected>(ESCOLHA UMA MARCA PRIMEIRO)</option>
                 </select>
             </div>
         </p>
