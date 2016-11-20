@@ -37,6 +37,13 @@ class SqlController {
             return $result['id'];
         }
 
+        elseif($type == 'RequestUsers'){
+            $query = $sql->Select('p.id, p.usuario');
+            $query = $sql->From($query, 'pessoas p');
+            $result = $sql->ExecuteSQL($query, 'getArrayList');
+            return $result;
+        }
+
         //operation/cad_cars.php
         elseif($type == 'RequestIdModel'){
             $query = $sql->BuildSelectFromWhere('id', 'modelo', 'nome', $var);

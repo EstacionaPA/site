@@ -9,6 +9,7 @@ include 'php/operation/get_parks.php';
 include 'php/operation/get_cars.php';
 include 'php/operation/get_models.php';
 include 'php/operation/get_marks.php';
+include 'php/operation/get_users.php';
 include 'php/operation/check_valuesRegister.php';
 
 include 'php/admin/admin_service.php';
@@ -107,6 +108,11 @@ class ToActionClass{                    //Similar to C/C++ pointer
 
             elseif($action == 'getMarks'){
                 $class = new GetMarks;
+                return $class;
+            }
+
+            elseif($action == 'getUsers'){
+                $class = new GetUsers;
                 return $class;
             }
 

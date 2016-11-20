@@ -107,9 +107,9 @@ $app->post('/register/parks', function() use ($app, $service) {
 });
 
 // http://estacionapa.com/register/user
-$app->get('/registeruser', function() use ($service, $access) {
+$app->get('/master.registeruser', function() use ($service, $access) {
     if($access == 'a' or $access == 'm')
-        echo $service->buildPage('cadPerson_m');
+        echo $service->buildPage('m_cadPerson');
 
     else
         echo $service->openPageByAccess();
@@ -125,21 +125,22 @@ $app->post('/register/user/added', function() use ($app, $service, $access) {
         echo $service->openPageByAccess();
 });
 
-$app->get('/register/cars', function() use ($service, $access) {
-    if($access == 'a')
-        echo $service->getPage('html/forms/admin_cad_cars.html');
+$app->get('/master.registercars', function() use ($service, $access) {
+    if($access == 'a' || $access == 'c' || $access == 'f' || $access == 'm')
+        echo $service->buildPage('m_cadCars');
 
     else
         echo $service->openPageByAccess();
 });
 
 $app->post('/register/cars/added', function() use ($app, $service, $access) {
-    //if($access == 'a') {
+    if($access == 'a' || $access == 'c' || $access == 'f' || $access == 'm' || 
+       $access == 'valid') {
         $form = json_decode($app->request->getBody(), true);
         $service->registerCar($form);
-    //}
-    //else
-    //    echo $service->openPageByAccess();
+    }
+    else
+        echo $service->openPageByAccess();
 });
 
 $app->get('/report/infUser', function() use ($app, $service, $access) {
@@ -228,6 +229,11 @@ $app->post('/getModels', function () use ($app, $service) {
 $app->get('/getMarks', function () use ($app, $service) {
     $form = '';
     $service->getMarks($form);
+});
+
+$app->get('/getUsers', function () use ($app, $service) {
+    $form = '';
+    $service->getUsers($form);
 });
 
 $app->post('/checkValuesRegister', function () use ($app, $service) {
