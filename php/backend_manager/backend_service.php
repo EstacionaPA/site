@@ -117,9 +117,28 @@ class BackEndService {
                     file_get_contents('front-web/html/foot/register.html');
         }
 
+        elseif($type == 'vacanciesConsult'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
+                            file_get_contents('front-web/html/body/menu.html') . 
+                            file_get_contents('front-web/html/body/services/vacancies_consult.html') . 
+                    file_get_contents('front-web/html/foot/main.html') .
+                    file_get_contents('front-web/html/foot/services.html'); 
+        }
+
+        elseif($type == 'parksConsult'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
+                            file_get_contents('front-web/html/body/menu.html') . 
+                            file_get_contents('front-web/html/body/about.html') . 
+                    file_get_contents('front-web/html/foot/main.html') .
+                    file_get_contents('front-web/html/foot/services.html'); 
+                    
+        }
+
         elseif($type == 'm_login'){
             $page = file_get_contents('front-web/html/head/main.html') . 
-                    file_get_contents('front-web/html/head/submenu.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
                         file_get_contents('front-web/html/body/master/m_menu.html') .
                         file_get_contents('front-web/html/body/master/m_main.html') .
                     file_get_contents('front-web/html/foot/main.html');
@@ -127,7 +146,7 @@ class BackEndService {
 
         elseif($type == 'm_cadPerson'){
             $page = file_get_contents('front-web/html/head/main.html') . 
-                    file_get_contents('front-web/html/head/submenu.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
                         file_get_contents('front-web/html/body/master/m_menu.html') .
                         file_get_contents('front-web/html/body/master/register_person.html') .
                         file_get_contents('front-web/html/body/register/data_person.html') .
@@ -139,7 +158,7 @@ class BackEndService {
 
         elseif($type == 'm_cadCars'){
             $page = file_get_contents('front-web/html/head/main.html') . 
-                    file_get_contents('front-web/html/head/submenu.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
                         file_get_contents('front-web/html/body/master/m_menu.html') .
                         file_get_contents('front-web/html/body/register/cadCars.html') .
                     file_get_contents('front-web/html/foot/main.html') .
@@ -148,7 +167,7 @@ class BackEndService {
 
         elseif($type == 'm_cadParks'){
             $page = file_get_contents('front-web/html/head/main.html') . 
-                    file_get_contents('front-web/html/head/submenu.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
                         file_get_contents('front-web/html/body/master/m_menu.html') .
                         file_get_contents('front-web/html/body/master/cadParks.html') .
                     file_get_contents('front-web/html/foot/main.html') .
@@ -157,7 +176,7 @@ class BackEndService {
 
         elseif($type == 'a_login'){
             $page = file_get_contents('front-web/html/head/main.html') . 
-                    file_get_contents('front-web/html/head/submenu.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
                         file_get_contents('front-web/html/body/admin/a_menu.html') .
                         file_get_contents('front-web/html/body/admin/a_main.html') .
                     file_get_contents('front-web/html/foot/main.html');
@@ -165,7 +184,7 @@ class BackEndService {
 
         elseif($type == 'f_login'){
             $page = file_get_contents('front-web/html/head/main.html') . 
-                    file_get_contents('front-web/html/head/submenu.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
                         file_get_contents('front-web/html/body/func/f_menu.html') .
                         file_get_contents('front-web/html/body/func/f_main.html') .
                     file_get_contents('front-web/html/foot/main.html');
@@ -173,11 +192,14 @@ class BackEndService {
 
         elseif($type == 'c_login'){
             $page = file_get_contents('front-web/html/head/main.html') . 
-                    file_get_contents('front-web/html/head/submenu.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
                         file_get_contents('front-web/html/body/client/c_menu.html') .
                         file_get_contents('front-web/html/body/client/c_main.html') .
                     file_get_contents('front-web/html/foot/main.html');
         }
+        else
+            return 'Houve um erro na construção da página. Contacte o suporte!';
+        
 
         return $page;
     }

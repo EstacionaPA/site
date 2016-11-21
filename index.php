@@ -210,6 +210,14 @@ $app->post('/vacancies/consult', function() use ($app, $service) {
         $service->vacanciesConsult($form);
 });
 
+$app->get('/vacancies.consult', function() use ($app, $service) {
+       echo $service->buildPage('vacanciesConsult');
+});
+
+$app->get('/parks.consult', function() use ($app, $service) {
+       echo $service->buildPage('parksConsult');
+});
+
 $app->post('/vacancies/request', function() use ($app, $service, $access) {
     if($access == 'a' or $access == 'valid'){
         $form = json_decode($app->request->getBody(), true);
