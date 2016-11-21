@@ -23,7 +23,7 @@ class SqlController {
             return $result['acesso'];
         }
 
-        //login/name_user.php
+        //login/name_user.php && php/backend_manager/backend_service.php
         elseif($type == 'RequestName'){
             $query = $sql->BuildSelectFromWhere('nome', 'pessoas', 'usuario', $var);
             $result = $sql->ExecuteSQL($query, 'getArray');

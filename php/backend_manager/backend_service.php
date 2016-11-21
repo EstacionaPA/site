@@ -206,6 +206,16 @@ class BackEndService {
                     file_get_contents('front-web/html/foot/main.html') .
                     file_get_contents('front-web/html/foot/cadCars_client.html');
         }
+
+        elseif($type == 'c_reqVacancy'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
+                        file_get_contents('front-web/html/body/client/c_menu.html') .
+                        file_get_contents('front-web/html/body/client/c_reqVacancy.html') .
+                    file_get_contents('front-web/html/foot/main.html') .
+                    file_get_contents('front-web/html/foot/req_vacancy.html');
+        }
+
         else
             return 'Houve um erro na construção da página. Contacte o suporte!';
         
@@ -215,7 +225,8 @@ class BackEndService {
 
     public function getDataLogin(){
         if(isset($_SESSION['login'])) {
-            $data = array(array('nome' => $_SESSION['login'],
+            $data = array(array('id' => SqlController::Request('RequestIdUser', $_SESSION['login']),
+                                'nome' => SqlController::Request('RequestName', $_SESSION['login']),
                                 'usuario' => $_SESSION['login']));
             return json_encode($data);
         }

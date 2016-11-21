@@ -23,7 +23,6 @@ var ControllerServices = {
                             temp = '';
                         for(var l = 0; l < 10; l++){
                             var td = document.createElement('td');
-                            console.log(l + ' ');
                             if(l > 5 && l != 8){
                                 temp = temp + list[i][l];
                             }

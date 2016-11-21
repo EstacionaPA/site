@@ -1,0 +1,64 @@
+<legend>Cadastro de Carros</legend>
+<div class="container">
+
+    <form class="form-group">
+        <p>
+            <label class="label label-default">Usuário</label>
+            <div class="form-group">
+                <select name="" id="user" class="form-control">
+                    <option value="nothing" id="loadUser" selected>(CARREGANDO...)</option>
+                </select>
+            </div>
+        </p>
+        <p>
+            <label class="label label-default">Carro</label>
+            <div class="form-group">
+                <select name="" id="idCar" class="form-control">
+                    <option value="nothing" id="loadCar" selected>(CARREGANDO...)</option>
+                </select>
+            </div>
+        </p>
+        <p>
+            <label class="label label-default">Estacionamento</label>
+            <div class="form-group">
+                <select name="" id="idEst" class="form-control">
+                    <option value="nothing" id="loadEst" selected>(CARREGANDO...)</option>
+                </select>
+            </div>
+        </p>
+        <p>
+            <label class="label label-default">Vaga</label>
+            <div class="input-group">
+                <span class="input-group-addon"></span>
+                <input type="number" class="form-control" id="vacancy" required placeholder="VAGA">
+            </div>
+        </p>
+        <p>
+            <label for="board" class="label label-default">Horário inicial</label>
+            <div class="input-group">
+                <span class="input-group-addon"></span>
+                <input id="h_init" type="text" class="form-control" placeholder="HH - Não trabalhamos com hora fracionada" autofocus>
+            </div>
+        </p>
+        <p>
+            <label for="board" class="label label-default">Horário Final</label>
+            <div class="input-group">
+                <span class="input-group-addon"></span>
+                <input id="h_end" type="text" class="form-control" placeholder="HH - Não trabalhamos com hora fracionada" autofocus>
+            </div>
+        </p>
+
+        <p>
+            <label class="label label-default">Data</label>
+            <div class="input-group">
+                <span class="input-group-addon"></span>
+                <input type="text" class="form-control" id="date" required placeholder="DD/MM/YYYY">
+            </div>
+        </p>
+        
+        <button class="btn btn-primary btn-lg" id="request">Requisitar</button>
+    </form>
+
+    <div id="feedBack" class=""></div>
+
+</div>
