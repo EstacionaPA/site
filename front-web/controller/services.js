@@ -6,8 +6,41 @@ var ControllerServices = {
         $('#h_end').mask('99:99');
         $('#date').mask('AA9999');
 
-        if($('#consultParks').length){
-            alert('');
+        if($('#parksConsult').length){
+            $('#feedBack').text('Consultando estacionamentos...');
+            $('#feedBack').addClass('alert alert-info');
+
+            var get = $.ajax({
+                type: 'POST',
+                contentType: 'application/json',
+                url: '/getParks',
+                success: function (listParks) {
+                    $('#feedBack').text('');
+                    $('#feedBack').removeClass('alert alert-info');
+                    var list = JSON.parse(listParks);
+                    for(var i = 0; i<list.length; i++){
+                        var tr = document.createElement('tr'),
+                            temp = '';
+                        for(var l = 0; l < 10; l++){
+                            var td = document.createElement('td');
+                            console.log(l + ' ');
+                            if(l > 5 && l != 8){
+                                temp = temp + list[i][l];
+                            }
+                            else if(l == 8){
+                                $(td).text(temp + list[i][l]);
+                                $(tr).append(td);
+                            } 
+                            else{
+                                $(td).text(list[i][l]);
+                                $(tr).append(td);
+                            }
+                        }
+                        $('#parksConsult').append(tr);
+                    }
+                }
+            })
+
         }
 
         $('#consult').click(function (e) {

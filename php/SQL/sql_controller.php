@@ -138,13 +138,14 @@ class SqlController {
                                    p.nome as "responsavel",
                                    e.h_func_init,
                                    e.h_func_fim,
+                                   e.vagas,
                                    e.endereco,
                                    e.num,
-                                   e.vagas,
                                    e.bairro');
             $query = $sql->From($query, 'estacionamentos e');
             $query = $sql->leftOuterJoin($query, 'pessoas p', 'e.id_pessoa = p.id');
             $result = $sql->ExecuteSQL($query, 'getArrayList');
+            //echo $query;
             return $result;
         }
         

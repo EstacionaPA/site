@@ -150,6 +150,16 @@ $app->get('/master.registercars', function() use ($service, $access) {
         echo $service->openPageByAccess();
 });
 
+$app->get('/client.registercars', function() use ($service, $access) {
+    if($access == 'c')
+        echo $service->buildPage('c_cadCars');
+
+    else
+        echo $service->openPageByAccess();
+});
+
+
+
 $app->post('/register/cars/added', function() use ($app, $service, $access) {
     if($access == 'a' || $access == 'c' || $access == 'f' || $access == 'm' || 
        $access == 'valid') {
@@ -259,6 +269,10 @@ $app->get('/getMarks', function () use ($app, $service) {
 $app->get('/getUsers', function () use ($app, $service) {
     $form = '';
     $service->getUsers($form);
+});
+
+$app->get('/getuser.login', function() use ($service) {
+    echo $service->getDataLogin();
 });
 
 $app->post('/checkValuesRegister', function () use ($app, $service) {

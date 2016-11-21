@@ -70,7 +70,7 @@ var ControllerCadCars = {
         var get = $.ajax({
             type: 'GET',
             contentType: 'application/json',
-            url: '/getUsers',
+            url: '/getuser.login',
             success: function (list){
                 $('#loadUser').text('INFORME UM USUÁRIO!');
                 ControllerCadCars.createList(JSON.parse(list), 'user');
@@ -95,7 +95,7 @@ var ControllerCadCars = {
         for(var i=0; i<list.length; i++){
             option = document.createElement('option');
             $(option).text(list[i].nome);
-            alert(list[i].nome);
+
             if(type == 'user') {$(option).val(list[i].usuario);}
             else $(option).val(list[i].id);
 
