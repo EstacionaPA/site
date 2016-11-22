@@ -95,7 +95,6 @@ var ControllerCadCars = {
         for(var i=0; i<list.length; i++){
             option = document.createElement('option');
             $(option).text(list[i].nome);
-            alert(list[i].nome);
             if(type == 'user') {$(option).val(list[i].usuario);}
             else $(option).val(list[i].id);
 
