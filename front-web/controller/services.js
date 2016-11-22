@@ -2,46 +2,54 @@ var ControllerServices = {
 
     init: function () {
 
-        $('#h_init').mask('99:99');
-        $('#h_end').mask('99:99');
-        $('#date').mask('AA9999');
-
         if($('#parksConsult').length){
-            $('#feedBack').text('Consultando estacionamentos...');
-            $('#feedBack').addClass('alert alert-info');
-
-            var get = $.ajax({
-                type: 'POST',
-                contentType: 'application/json',
-                url: '/getParks',
-                success: function (listParks) {
-                    $('#feedBack').text('');
-                    $('#feedBack').removeClass('alert alert-info');
-                    var list = JSON.parse(listParks);
-                    for(var i = 0; i<list.length; i++){
-                        var tr = document.createElement('tr'),
-                            temp = '';
-                        for(var l = 0; l < 10; l++){
-                            var td = document.createElement('td');
-                            if(l > 5 && l != 8){
-                                temp = temp + list[i][l];
-                            }
-                            else if(l == 8){
-                                $(td).text(temp + list[i][l]);
-                                $(tr).append(td);
-                            } 
-                            else{
-                                $(td).text(list[i][l]);
-                                $(tr).append(td);
-                            }
-                        }
-                        $('#parksConsult').append(tr);
-                    }
-                }
-            })
-
+            ControllerServices.fillTable();
+        }else{
+            ControllerServices.consultVacancy();
         }
+    },
 
+    fillTable: function () {
+        $('#feedBack').text('Consultando estacionamentos...');
+        $('#feedBack').addClass('alert alert-info');
+
+        var get = $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            url: '/getParks',
+            success: function (listParks) {
+                $('#feedBack').text('');
+                $('#feedBack').removeClass('alert alert-info');
+                var list = JSON.parse(listParks);
+                for(var i = 0; i<list.length; i++){
+                    var tr = document.createElement('tr'),
+                        temp = '';
+                    for(var l = 0; l < 10; l++){
+                        var td = document.createElement('td');
+                        if(l > 5 && l != 8){
+                            temp = temp + list[i][l];
+                        }
+                        else if(l == 8){
+                            $(td).text(temp + list[i][l]);
+                            $(tr).append(td);
+                        } 
+                        else{
+                            $(td).text(list[i][l]);
+                            $(tr).append(td);
+                        }
+                    }
+                    $('#parksConsult').append(tr);
+                }
+            }
+        })
+
+    },
+
+    consultVacancy: function () {
+
+        $('#h_init').mask('99');
+        $('#h_end').mask('99');
+        $('#date').mask('99/99/9999');
         $('#consult').click(function (e) {
             e.preventDefault();
 
@@ -49,30 +57,50 @@ var ControllerServices = {
                 $('#feedBack').text('Preencha todos os campos!');
                 $('#feedBack').addClass('alert alert-warning');
             }else{
+                $('#feedBack').removeClass('alert alert-warning');
+                $('#feedBack').removeClass('alert alert-info');
+                $('#feedBack').removeClass('alert alert-danger');
+                $('#feedBack').removeClass('alert alert-success');
                 $('#feedBack').text('Consultando...');
                 $('#feedBack').addClass('alert alert-info');
 
-                var consult = {'h_reserva': $('#h_init').val() + ':00',
-                               'h_fim' : $('#h_end').val() + ':00',
+                var consult = {'hora_reserva': $('#h_init').val() + ':00:00',
+                               'hora_fim' : $('#h_end').val() + ':00:00',
                                'data' : $('#date').val()}
-                
+        
                 var post = $.ajax({
                     type: 'POST',
                     contentType: 'application/json',
                     url: '/vacancies/consult',
                     data: JSON.stringify(consult),
                     success: function (list) {
+                        $('#feedBack').removeClass('alert alert-info');
                         if(list == 'empty'){
                             $('#feedBack').text('Todos os estacionamentos estão vazios. Registre uma vaga!');
                             $('#feedBack').addClass('alert alert-success');
-                        }else if(data == '!validDate'){
+                        }else if(list == '!validDate'){
                             $('#feedBack').text('A data informada é inválida!');
-                            $('#feedBack').addClass('alert alert-info');
-                        }else if(data == '!validHour'){
+                            $('#feedBack').addClass('alert alert-danger');
+                        }else if(list == '!validObject'){
+                            $('#feedBack').text('Os dados informados estão inválidos. Verifique e tente novamente!');
+                            $('#feedBack').addClass('alert alert-danger');
+                        }else if(list == '!validHour'){
                             $('#feedBack').text('A hora informada é inválida!');
-                            $('#feedBack').addClass('alert alert-info');
+                            $('#feedBack').addClass('alert alert-danger');
                         }else{
-                            
+                            $('#feedBack').text('');
+                            $('#feedBack').removeClass('alert alert-info');
+                            var list = JSON.parse(list);
+                            for(var i = 0; i<list.length; i++){
+                                var tr = document.createElement('tr'),
+                                temp = '';
+                                for(var l = 0; l < 10; l++){
+                                    var td = document.createElement('td');
+                                    $(td).text(list[i][l]);
+                                    $(tr).append(td);
+                                }
+                                $('#vacancies').append(tr);
+                            }
                         }
                     }
                 })

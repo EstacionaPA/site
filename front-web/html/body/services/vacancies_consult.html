@@ -6,14 +6,14 @@
                 <label for="board" class="label label-default">Horário inicial</label>
                 <div class="input-group">
                     <span class="input-group-addon"></span>
-                    <input id="h_init" type="text" class="form-control" placeholder="HH:MM" autofocus>
+                    <input id="h_init" type="text" class="form-control" placeholder="HH - Não trabalhamos com hora fracionada" autofocus>
                 </div>
             </p>
             <p>
                 <label for="board" class="label label-default">Horário Final</label>
                 <div class="input-group">
                     <span class="input-group-addon"></span>
-                    <input id="h_end" type="text" class="form-control" placeholder="HH:MM" autofocus>
+                    <input id="h_end" type="text" class="form-control" placeholder="HH - Não trabalhamos com hora fracionada" autofocus>
                 </div>
             </p>
             <p>
@@ -31,39 +31,24 @@
     <div class="row">
         <div class="panel panel-primary filterable">
             <div class="panel-heading">
-                <h3 class="panel-title">Users</h3>
+                <h3 class="panel-title">Consulta de Reservas</h3>
                 <div class="pull-right">
                     <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
                 </div>
             </div>
-            <table class="table">
+            <table class="table" id="vacancies">
                 <thead>
                     <tr class="filters">
-                        <th><input type="text" class="form-control" placeholder="#"></th>
-                        <th><input type="text" class="form-control" placeholder="First Name"></th>
-                        <th><input type="text" class="form-control" placeholder="Last Name"></th>
-                        <th><input type="text" class="form-control" placeholder="Username"></th>
+                        <th><input type="text" class="form-control" placeholder="Vaga Reser."></th>
+                        <th><input type="text" class="form-control" placeholder="Hora Inicial"></th>
+                        <th><input type="text" class="form-control" placeholder="Hora Final"></th>
+                        <th><input type="text" class="form-control" placeholder="Codigo Est."></th>
+                        <th><input type="text" class="form-control" placeholder="Estacionamento"></th>
+                        <th><input type="text" class="form-control" placeholder="Qtd. Vagas Max"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr style="display: table-row;">
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr style="display: table-row;">
-                        <td>3</td>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+
                 </tbody>
             </table>
         </div>
