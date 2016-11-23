@@ -16,6 +16,9 @@ var ControllerRegister = {
         $('#dataSystem').hide();
         $('#dataPerson').hide();
         $('#dataGeo').hide();
+        $('#cpf').mask('99999999999');
+        $('#cel').mask('99999999999');
+        $('#tel').mask('9999999999');
         
         $('#acceptButton').click(function() {
             $('#accept').hide('specialEasing');
@@ -57,7 +60,8 @@ var ControllerRegister = {
             }
         });
 
-        $('#backToSystem').click(function() {
+        $('#backToSystem').click(function(e) {
+            e.preventDefault();
             $('#dataPerson').hide('specialEasing');
             $('#dataSystem').show('progress');
         });

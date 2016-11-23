@@ -35,7 +35,7 @@ CREATE TABLE `carro` (
   CONSTRAINT `fk_carro_marca1` FOREIGN KEY (`marca_id`) REFERENCES `marca` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_carro_modelo1` FOREIGN KEY (`modelo_id`) REFERENCES `modelo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_carro_pessoas1` FOREIGN KEY (`pessoas_id`) REFERENCES `pessoas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,6 @@ CREATE TABLE `carro` (
 
 LOCK TABLES `carro` WRITE;
 /*!40000 ALTER TABLE `carro` DISABLE KEYS */;
-INSERT INTO `carro` VALUES (1,'TES9999','12',36,'010010-2'),(2,'KKJ9898','177',37,'080009-0'),(3,'IOI9898','182',36,'081001-0');
 /*!40000 ALTER TABLE `carro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,7 +67,7 @@ CREATE TABLE `estacionamentos` (
   PRIMARY KEY (`id`),
   KEY `responsavel` (`id_pessoa`),
   CONSTRAINT `estacionamentos_ibfk_1` FOREIGN KEY (`id_pessoa`) REFERENCES `pessoas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,7 +76,6 @@ CREATE TABLE `estacionamentos` (
 
 LOCK TABLES `estacionamentos` WRITE;
 /*!40000 ALTER TABLE `estacionamentos` DISABLE KEYS */;
-INSERT INTO `estacionamentos` VALUES (1,'Estacionamento Logo Ali',37,12,'08:00:00','18:00:00','',0,''),(2,'Ze da Esquina',37,8,'08:00:00','18:00:00','',0,''),(3,'Brothers Park - ME',37,35,'06:00:00','23:00:00','',0,''),(4,'EstacionaPA',36,8,'08:00:00','18:00:00','',0,''),(5,'New EstacionaPA',36,10,'08:00:00','18:00:00','',0,'');
 /*!40000 ALTER TABLE `estacionamentos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,30 +154,6 @@ INSERT INTO `modelo` VALUES ('001001-4','Fiorino FurgÃ£o 1.5 mpi / i.e.','21')
 UNLOCK TABLES;
 
 --
--- Table structure for table `parametros`
---
-
-DROP TABLE IF EXISTS `parametros`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `parametros` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `value` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `parametros`
---
-
-LOCK TABLES `parametros` WRITE;
-/*!40000 ALTER TABLE `parametros` DISABLE KEYS */;
-/*!40000 ALTER TABLE `parametros` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `pessoas`
 --
 
@@ -203,8 +177,10 @@ CREATE TABLE `pessoas` (
   `telefone` varchar(11) DEFAULT NULL,
   `celular` varchar(12) NOT NULL,
   `acesso` varchar(1) NOT NULL,
-  PRIMARY KEY (`id`,`usuario`,`email`,`cpf`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
+  `id_estac` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`,`usuario`,`email`,`cpf`),
+  KEY `id_estac` (`id_estac`)
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,7 +189,7 @@ CREATE TABLE `pessoas` (
 
 LOCK TABLES `pessoas` WRITE;
 /*!40000 ALTER TABLE `pessoas` DISABLE KEYS */;
-INSERT INTO `pessoas` VALUES (36,'Andre','andre','c4ca4238a0b923820dcc509a6f75849b','andre@estacionapa.com.br','115','Plinio','123','N/A','Foch','37550','PA','MG','9898','9898','a'),(37,'Andre','master','f9a4492eeefee0bce696d94f189abd4d','andreluiz1993pa@gmail.com','12312312367','PA','PA','N/A','PA','37550000','PA','MG','99999999','9999999','a'),(38,'1','alfredo','202cb962ac59075b964b07152d234b70','1','1','1','1','1','1','1','1','1','1','1','c'),(39,'Q','y','c4ca4238a0b923820dcc509a6f75849b','Q','Q','Q','Q','N/A','Q','Q','Q','Q','Q','Q','c'),(40,'Qq','Teste','c4ca4238a0b923820dcc509a6f75849b','Qjd','Qyetw','Q','Q','N/A','Q','Q','Q','Q','Q','Q','c');
+INSERT INTO `pessoas` VALUES (82,'Usuario Master','master','c4ca4238a0b923820dcc509a6f75849b','master@master.com','11111111111','Rua X','123','','Bairro','37550000','Pouso Alegre','MG','1111111111','11111111111','m',0);
 /*!40000 ALTER TABLE `pessoas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,11 +209,13 @@ CREATE TABLE `reservas` (
   `data` varchar(10) DEFAULT NULL,
   `id_estac` int(11) NOT NULL,
   `id_pessoa` int(11) NOT NULL,
-  `agendada` varchar(1) DEFAULT NULL,
+  `status` char(1) DEFAULT NULL,
+  `hora_checkin` time DEFAULT NULL,
+  `hora_checkout` time DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_carro` (`id_carro`),
   CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`id_carro`) REFERENCES `carro` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,35 +224,7 @@ CREATE TABLE `reservas` (
 
 LOCK TABLES `reservas` WRITE;
 /*!40000 ALTER TABLE `reservas` DISABLE KEYS */;
-INSERT INTO `reservas` VALUES (39,3,4,'08:00:00','10:30:00','21/02/2016',5,36,NULL),(40,3,4,'05:00:00','06:00:00','21/02/2016',5,36,NULL),(41,3,4,'11:00:00','12:00:00','21/02/2016',5,36,NULL),(42,3,4,'14:30:00','15:00:00','21/02/2016',5,36,NULL),(43,3,4,'17:30:00','18:00:00','21/02/2016',5,36,NULL),(44,3,4,'16:30:00','17:00:00','22/02/2016',5,36,NULL),(45,3,4,'13:30:00','14:00:00','22/02/2016',5,36,NULL),(46,3,4,'10:30:00','12:00:00','22/02/2016',5,36,NULL),(47,3,4,'18:30:00','19:00:00','22/02/2016',5,36,NULL),(48,3,4,'10:00:00','13:00:00','28/02/2016',5,36,NULL),(49,3,1,'09:00:00','15:00:00','21/02/2016',2,36,NULL),(50,3,2,'09:00:00','15:00:00','21/02/2016',3,36,NULL),(51,3,5,'09:00:00','15:00:00','21/02/2016',1,36,NULL);
 /*!40000 ALTER TABLE `reservas` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `vaga`
---
-
-DROP TABLE IF EXISTS `vaga`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `vaga` (
-  `id` int(11) NOT NULL,
-  `num_vaga` varchar(45) DEFAULT NULL,
-  `check_in` datetime DEFAULT NULL,
-  `check_out` datetime DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `vaga`
---
-
-LOCK TABLES `vaga` WRITE;
-/*!40000 ALTER TABLE `vaga` DISABLE KEYS */;
-INSERT INTO `vaga` VALUES (1,'1','2015-05-13 12:00:00','2015-05-13 15:00:00',0),(2,'2','2015-05-15 13:00:00','2015-05-15 16:00:00',0),(3,'3',NULL,NULL,0),(4,'4',NULL,NULL,0),(5,'5',NULL,NULL,0),(6,'6',NULL,NULL,0),(7,'7',NULL,NULL,0),(8,'8','2015-05-15 12:00:00','2015-05-15 13:00:00',0),(9,'9',NULL,NULL,0),(10,'10',NULL,NULL,0);
-/*!40000 ALTER TABLE `vaga` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -290,4 +240,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-03 16:08:39
+-- Dump completed on 2016-11-23 14:48:47
