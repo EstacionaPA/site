@@ -4,8 +4,6 @@ var ControllerRequestVacancy = {
         
         ControllerRequestVacancy.getUser();
         ControllerRequestVacancy.getParks();
-        $('#h_init').mask('99');
-        $('#h_end').mask('99');
         $('#date').mask('99/99/9999');
 
         $('#request').click(function (e) {
@@ -13,7 +11,7 @@ var ControllerRequestVacancy = {
             if($('#user').val() == 'nothing' || $('#idCar').val() == 'nothing' || 
                 $('#idEst').val() == 'nothing' ||  $('#vacancy').val() == '' || 
                 $('#h_init').val() == '' || $('#h_end').val() == '' || $('#date').val() == '') {
-                    $('#feedBack').text('Preencha todos os campos!');
+                    $('#feedBack').text('Preencha / informe todos os campos!');
                     $('#feedBack').addClass('alert alert-warning');
             }else{
                 $('#feedBack').removeClass('alert alert-warning');
@@ -25,8 +23,8 @@ var ControllerRequestVacancy = {
                 var request = {'id_carro': $('#idCar').val(),
                                'id_estac': $('#idEst').val(),
                                'vaga': $('#vacancy').val(),
-                               'hora_reserva': $('#h_init').val() + ':00:00',
-                               'hora_fim': $('#h_end').val() + ':00:00',
+                               'hora_reserva': $('#h_init').val(),
+                               'hora_fim': $('#h_end').val(),
                                'data': $('#date').val(),
                                'usuario': $('#user').val()};
 

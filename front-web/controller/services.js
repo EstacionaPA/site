@@ -47,8 +47,6 @@ var ControllerServices = {
 
     consultVacancy: function () {
 
-        $('#h_init').mask('99');
-        $('#h_end').mask('99');
         $('#date').mask('99/99/9999');
         $('#legenda').hide();
         $('#consult').click(function (e) {
@@ -56,7 +54,7 @@ var ControllerServices = {
             e.preventDefault();
 
             if($('#h_init').val() == '' || $('#h_end').val() == '' || $('#date').val() == ''){
-                $('#feedBack').text('Preencha todos os campos!');
+                $('#feedBack').text('Preencha / informe todos os campos!');
                 $('#feedBack').addClass('alert alert-warning');
             }else{
                 $('#feedBack').removeClass('alert alert-warning');
@@ -66,8 +64,8 @@ var ControllerServices = {
                 $('#feedBack').text('Consultando...');
                 $('#feedBack').addClass('alert alert-info');
 
-                var consult = {'hora_reserva': $('#h_init').val() + ':00:00',
-                               'hora_fim' : $('#h_end').val() + ':00:00',
+                var consult = {'hora_reserva': $('#h_init').val(),
+                               'hora_fim' : $('#h_end').val(),
                                'data' : $('#date').val()}
         
                 var post = $.ajax({
