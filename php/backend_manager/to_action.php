@@ -28,7 +28,7 @@ include 'php/vacancies/vacancies_consult.php';
 
 
 class ToActionClass{                    //Similar to C/C++ pointer
-    public function convert($action, &$person){
+    public function convert($action, &$object){
             
             if($action == 'checkLogin'){
                 $class = new Login;
@@ -47,7 +47,7 @@ class ToActionClass{                    //Similar to C/C++ pointer
                 $class = new registerPersonController;
                 
                 //Similar to C/C++ pointer
-                $person['access'] = 'c';
+                $object['access'] = 'c';
                 return $class;
             }
             elseif($action == 'editUser'){
@@ -72,6 +72,7 @@ class ToActionClass{                    //Similar to C/C++ pointer
             }
             
             elseif($action == 'vacanciesRequest'){
+                $object['status'] = 'R';
                 $class = new VacanciesRequest;
                 return $class;
             }

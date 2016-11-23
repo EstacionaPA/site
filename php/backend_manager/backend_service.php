@@ -190,6 +190,24 @@ class BackEndService {
                     file_get_contents('front-web/html/foot/main.html');
         }
 
+        elseif($type == 'f_checkIn'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
+                        file_get_contents('front-web/html/body/func/f_menu.html') .
+                        file_get_contents('front-web/html/body/reserves/check_in.html') .
+                    file_get_contents('front-web/html/foot/main.html') . 
+                    file_get_contents('front-web/html/foot/checkinout.html');
+        }
+
+        elseif($type == 'f_checkOut'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
+                        file_get_contents('front-web/html/body/func/f_menu.html') .
+                        file_get_contents('front-web/html/body/reserves/check_out.html') .
+                    file_get_contents('front-web/html/foot/main.html') . 
+                    file_get_contents('front-web/html/foot/checkinout.html');
+        }
+
         elseif($type == 'c_login'){
             $page = file_get_contents('front-web/html/head/main.html') . 
                     file_get_contents('front-web/html/head/end.html') . 
@@ -227,7 +245,8 @@ class BackEndService {
         if(isset($_SESSION['login'])) {
             $data = array(array('id' => SqlController::Request('RequestIdUser', $_SESSION['login']),
                                 'nome' => SqlController::Request('RequestName', $_SESSION['login']),
-                                'usuario' => $_SESSION['login']));
+                                'usuario' => $_SESSION['login'],
+                                'idEstac' => SqlController::Request('RequestIdEst', $_SESSION['login'])));
             return json_encode($data);
         }
     }
@@ -320,6 +339,32 @@ class BackEndService {
     public function checkValuesRegister($form){
         $manager = new ManagerController;
         echo $manager->manager('checkValuesRegister', $form);
+    }
+
+    public function setCheckIn($form){
+        $manager = new ManagerController;
+        $valid = SqlController::Update('setCheckIn', $form['idReserv']);
+        if($valid) echo 'done';
+        else 'not';
+    }
+
+    public function setCheckOut($form){
+        $manager = new ManagerController;
+        $valid = SqlController::Update('setCheckOut', $form['idReserv']);
+        if($valid) echo 'done';
+        else 'not';
+    }
+
+    public function getCheckIn($form){
+        $manager = new ManagerController;
+        $user = json_decode(self::getDataLogin(), true);
+        return SqlController::Request('RequestCheckIn', $user[0]['idEstac']);
+    }
+
+    public function getCheckOut($form){
+        $manager = new ManagerController;
+        $user = json_decode(self::getDataLogin(), true);
+        return SqlController::Request('RequestCheckOut', $user[0]['idEstac']);
     }
 }
 

@@ -37,6 +37,15 @@ class SqlController {
             return $result['id'];
         }
 
+        elseif($type == 'RequestIdEst'){
+            $query = $sql->Select('e.id');
+            $query = $sql->From($query, 'pessoas p');
+            $query = $sql->LeftOuterJoin($query, 'estacionamentos e', 'e.id = p.id_estac');
+            $query = $sql->Where($query, 'p.usuario = "' . $var . '"');
+            $result = $sql->ExecuteSQL($query, 'getArray');
+            return $result['id'];
+        }
+
         elseif($type == 'RequestUsers'){
             $query = $sql->Select('p.usuario, p.nome');
             $query = $sql->From($query, 'pessoas p');
@@ -85,7 +94,9 @@ class SqlController {
                                           AND
                                           r.id_estac = ' . $var['id_estac'] . ' ' . 
                                           'AND 
-                                          r.vaga = ' . $var['vaga']);
+                                          r.vaga = ' . $var['vaga'] . ' ' . 
+                                          'AND 
+                                          r.status <> "L"');
             $result = $sql->ExecuteSQL($query, 'getArrayList');
             return $result;
         }
@@ -119,7 +130,7 @@ class SqlController {
             $query = $sql->Select('r.vaga, 
                                    r.hora_reserva, 
                                    r.hora_fim, 
-                                   r.id_estac,
+                                   r.status,
                                    e.nome,
                                    e.vagas as "' . 'max_vagas'. '"');
             $query = $sql->From($query, 'reservas r');
@@ -173,6 +184,44 @@ class SqlController {
             $query = $sql->From($query, 'estacionamentos e');
             $query = $sql->Where($query, 'e.id = ' . $var);
             $result = $sql->ExecuteSQL($query, 'getArray');
+            return $result;
+        }
+
+        elseif($type == 'RequestCheckIn'){
+            $query = $sql->Select('r.id as "id_reserva",
+                                   p.nome as "responsavel",
+                                   m.nome as "mod_carro",
+                                   c.placa,
+                                   r.vaga,
+                                   r.hora_reserva,
+                                   r.hora_fim');
+            $query = $sql->From($query, 'reservas r');
+            $query = $sql->leftOuterJoin($query, 'carro c', 'c.id = r.id_carro');
+            $query = $sql->leftOuterJoin($query, 'modelo m', 'c.modelo_id = m.id');
+            $query = $sql->leftOuterJoin($query, 'pessoas p', 'r.id_pessoa = p.id');
+            $query = $sql->Where($query, 'r.id_estac = ' . $var . '
+                                          AND
+                                          r.status = "R"');
+            $result = $sql->ExecuteSQL($query, 'getArrayList');
+            return $result;
+        }
+
+        elseif($type == 'RequestCheckOut'){
+            $query = $sql->Select('r.id as "id_reserva",
+                                   p.nome as "responsavel",
+                                   m.nome as "mod_carro",
+                                   c.placa,
+                                   r.vaga,
+                                   r.hora_reserva,
+                                   r.hora_fim');
+            $query = $sql->From($query, 'reservas r');
+            $query = $sql->leftOuterJoin($query, 'carro c', 'c.id = r.id_carro');
+            $query = $sql->leftOuterJoin($query, 'modelo m', 'c.modelo_id = m.id');
+            $query = $sql->leftOuterJoin($query, 'pessoas p', 'r.id_pessoa = p.id');
+            $query = $sql->Where($query, 'r.id_estac = ' . $var . '
+                                          AND
+                                          r.status = "U"');
+            $result = $sql->ExecuteSQL($query, 'getArrayList');
             return $result;
         }
         
@@ -336,11 +385,14 @@ class SqlController {
 
         //account_mananger/register_person
         elseif($type == 'registerPerson'){
+            if(!isset($obj['id_estac'])) {
+                $obj['id_estac'] = NULL;
+            }
             $query = $sql->BuildSqlInsertUsers($obj['name'], $obj['user'], $obj['pass'], 
                                                        $obj['email'], $obj['cpf'], $obj['address'],  
                                                        $obj['number'], $obj['comp'], $obj['block'], 
                                                        $obj['cep'], $obj['city'], $obj['state'], 
-                                                       $obj['tel'], $obj['cel'], $obj['access']);
+                                                       $obj['tel'], $obj['cel'], $obj['access'], $obj['id_estac']);
             $result = $sql->ExecuteSQL($query, 'OnlyExecute');
             return $result;
         }
@@ -362,14 +414,16 @@ class SqlController {
                                    vaga, 
                                    hora_reserva, 
                                    hora_fim, 
-                                   data',
+                                   data, 
+                                   status',
                                    $obj['id_carro'] . ', ' .
                                    $obj['id_estac'] . ', ' .
                                    $obj['id_pessoa'] . ', ' .
                                    $obj['vaga'] . ', ' .
                                    '"' . $obj['hora_reserva'] . '", ' . 
                                    '"' . $obj['hora_fim'] . '", ' . 
-                                   '"' . $obj['data'] . '"');
+                                   '"' . $obj['data'] . '", ' . 
+                                   '"' . $obj['status'] . '"');
             
             $result = $sql->ExecuteSQL($query, 'OnlyExecute');
             return $result;
@@ -407,6 +461,24 @@ class SqlController {
             
             $query = $sql->Update('estacionamentos e', $values);
             $query = $sql->Where($query, 'e.id = ' . $obj['id']);
+            $result = $sql->ExecuteSQL($query, 'OnlyExecute');
+            return $result;
+        }
+
+        elseif($type == 'setCheckIn'){
+            $values = 'r.status = "U"';
+            
+            $query = $sql->Update('reservas r', $values);
+            $query = $sql->Where($query, 'r.id = ' . $obj);
+            $result = $sql->ExecuteSQL($query, 'OnlyExecute');
+            return $result;
+        }
+
+        elseif($type == 'setCheckOut'){
+            $values = 'r.status = "L"';
+            
+            $query = $sql->Update('reservas r', $values);
+            $query = $sql->Where($query, 'r.id = ' . $obj);
             $result = $sql->ExecuteSQL($query, 'OnlyExecute');
             return $result;
         }

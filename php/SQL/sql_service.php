@@ -136,17 +136,17 @@ class SQLService {
     
     public function BuildSqlInsertUsers($nome, $usuario, $criptografada, $email, 
                                                $cpf, $end, $num, $comp, $bairro, $cep, 
-                                               $cidade, $estado, $tel, $cel, $acesso) {
+                                               $cidade, $estado, $tel, $cel, $acesso, $idEst) {
     
         $sql =  "INSERT INTO pessoas (
                     nome, usuario, senha, email, cpf, endereco, 
-                    numero, complemento, bairro, cep, cidade, estado, telefone, celular, acesso
+                    numero, complemento, bairro, cep, cidade, estado, telefone, celular, acesso, id_estac
                 ) 
                 VALUES (
                     '{$nome}','{$usuario}','{$criptografada}',
                     '{$email}','{$cpf}','{$end}','{$num}','{$comp}',
                     '{$bairro}','{$cep}','{$cidade}','{$estado}','{$tel}',
-                    '{$cel}','{$acesso}'
+                    '{$cel}','{$acesso}','{$idEst}'
                 )";
                 
         return $sql;

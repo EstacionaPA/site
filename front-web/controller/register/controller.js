@@ -99,7 +99,8 @@ var ControllerRegister = {
             }
         });
 
-        $('#backToPerson').click(function() {
+        $('#backToPerson').click(function(e) {
+            e.preventDefault();
             $('#dataGeo').hide('specialEasing');
             $('#dataPerson').show('progress');
         });

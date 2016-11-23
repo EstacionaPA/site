@@ -50,7 +50,9 @@ var ControllerServices = {
         $('#h_init').mask('99');
         $('#h_end').mask('99');
         $('#date').mask('99/99/9999');
+        $('#legenda').hide();
         $('#consult').click(function (e) {
+            $('.vacanciesValues').remove();
             e.preventDefault();
 
             if($('#h_init').val() == '' || $('#h_end').val() == '' || $('#date').val() == ''){
@@ -90,6 +92,7 @@ var ControllerServices = {
                         }else{
                             $('#feedBack').text('');
                             $('#feedBack').removeClass('alert alert-info');
+                            $('#legenda').show('progressive');
                             var list = JSON.parse(list);
                             for(var i = 0; i<list.length; i++){
                                 var tr = document.createElement('tr'),
@@ -97,6 +100,7 @@ var ControllerServices = {
                                 for(var l = 0; l < 10; l++){
                                     var td = document.createElement('td');
                                     $(td).text(list[i][l]);
+                                    td.className = 'vacanciesValues';
                                     $(tr).append(td);
                                 }
                                 $('#vacancies').append(tr);

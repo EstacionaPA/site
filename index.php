@@ -247,6 +247,65 @@ $app->get('/report/carXboard/:board', function($board) use ($app, $service, $acc
         echo $service->openPageByAccess();
 });
 
+/*                                                          
+ *                                                          *
+ *                                                          *
+ * ---------------------ACESSO FUNCIONARIO----------------- *
+ *                                                          *
+ *                                                          *
+*/  
+
+$app->get('/func.checkin', function() use ($app, $service, $access) {
+    if($access == 'a' ||  $access == 'f' || $access == 'm'){
+        echo $service->buildPage('f_checkIn');
+
+    }else
+        echo $service->openPageByAccess();
+});
+
+$app->get('/func.checkout', function() use ($app, $service, $access) {
+    if($access == 'a' ||  $access == 'f' || $access == 'm'){
+        echo $service->buildPage('f_checkOut');
+
+    }else
+        echo $service->openPageByAccess();
+});
+
+$app->get('/func.getcheckin', function() use ($app, $service, $access) {
+    if($access == 'a' ||  $access == 'f' || $access == 'm'){
+        $form = json_decode($app->request->getBody(), true);
+        echo json_encode($service->getCheckIn($form));
+
+    }else
+        echo $service->openPageByAccess();
+});
+
+$app->get('/func.getcheckout', function() use ($app, $service, $access) {
+    if($access == 'a' ||  $access == 'f' || $access == 'm'){
+        $form = json_decode($app->request->getBody(), true);
+        echo json_encode($service->getCheckOut($form));
+    }
+    else
+        echo $service->openPageByAccess();
+});
+
+$app->post('/func/setcheckin', function() use ($app, $service, $access) {
+    if($access == 'a' ||  $access == 'f' || $access == 'm'){
+        $form = json_decode($app->request->getBody(), true);
+        echo $service->setCheckIn($form);
+    }
+    else
+        echo $service->openPageByAccess();
+});
+
+$app->post('/func/setcheckout', function() use ($app, $service, $access) {
+    if($access == 'a' ||  $access == 'f' || $access == 'm'){
+        $form = json_decode($app->request->getBody(), true);
+        echo $service->setCheckOut($form);
+    }
+    else
+        echo $service->openPageByAccess();
+});
 
 /*                                                          
  *                                                          *
