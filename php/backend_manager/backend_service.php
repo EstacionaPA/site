@@ -182,6 +182,41 @@ class BackEndService {
                     file_get_contents('front-web/html/foot/main.html');
         }
 
+        elseif($type == 'a_checkIn'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
+                        file_get_contents('front-web/html/body/admin/a_menu.html') .
+                        file_get_contents('front-web/html/body/reserves/check_in.html') .
+                    file_get_contents('front-web/html/foot/main.html') . 
+                    file_get_contents('front-web/html/foot/checkinout.html');
+        }
+
+        elseif($type == 'a_checkOut'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
+                        file_get_contents('front-web/html/body/admin/a_menu.html') .
+                        file_get_contents('front-web/html/body/reserves/check_out.html') .
+                    file_get_contents('front-web/html/foot/main.html') . 
+                    file_get_contents('front-web/html/foot/checkinout.html');
+        }
+
+        elseif($type == 'a_relatinfuser'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
+                        file_get_contents('front-web/html/body/admin/a_menu.html') .
+                        file_get_contents('front-web/html/body/admin/a_relatinfuser.html') .
+                    file_get_contents('front-web/html/foot/main.html') . 
+                    file_get_contents('front-web/html/foot/relats.html');
+        }
+
+        elseif($type == 'a_carroxplaca'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
+                        file_get_contents('front-web/html/body/admin/a_menu.html') .
+                    file_get_contents('front-web/html/foot/main.html') . 
+                    file_get_contents('front-web/html/foot/relats.html');
+        }
+
         elseif($type == 'f_login'){
             $page = file_get_contents('front-web/html/head/main.html') . 
                     file_get_contents('front-web/html/head/end.html') . 
@@ -253,7 +288,7 @@ class BackEndService {
         return $page;
     }
 
-    public function getDataLogin(){
+    public static function getDataLogin(){
         if(isset($_SESSION['login'])) {
             $data = array(array('id' => SqlController::Request('RequestIdUser', $_SESSION['login']),
                                 'nome' => SqlController::Request('RequestName', $_SESSION['login']),
@@ -377,6 +412,12 @@ class BackEndService {
         $manager = new ManagerController;
         $user = json_decode(self::getDataLogin(), true);
         return SqlController::Request('RequestCheckOut', $user[0]['idEstac']);
+    }
+
+    public function getBoards(){
+        $manager = new ManagerController;
+        $user = json_decode(self::getDataLogin(), true);
+        return SqlController::Request('RequestBoardsAdmin', $user[0]['idEstac']);
     }
 }
 

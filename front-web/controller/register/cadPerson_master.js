@@ -41,9 +41,6 @@ var ControllerCadPersonMaster = {
                         if(data=='success'){
                             $('#feedBackGeo').text('Registrado com sucesso!');
                             $('#feedBackGeo').addClass('alert alert-success');
-                            setTimeout(function () {
-                                document.location = '/login';
-                            }, 200);
                         }else{
                             $('#feedBackGeo').text('Houve alo de errado, contacte o suporte!!');
                             $('#feedBackGeo').addClass('alert alert-danger');

@@ -12,13 +12,9 @@ class ReportInfUser {
                 //Find information of user
                 $result = SqlController::Report('InfUser', $name);
                 
-                if(count($result) == 0) return NULL; 
+                if(count($result) == 0) return '!data'; 
                 
-                for($i=0; $i < count($result); $i = $i+1){
-                                   //COLUMNS NUMBER OF SQL
-                    for($l=0; $l < 6; $l = $l+1)
-                        echo $result[$i][$l] . ';';
-                }   
+                echo json_encode($result);
                 
                 return NULL;
             }

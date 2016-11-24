@@ -15,6 +15,15 @@ $app->error(function (\Exception $e) use ($app) {
     $app->render('error.php');
 });
 
+/*                                                          
+ *                                                          *
+ *                                                          *
+ * ---------------------ACESSO PUBLICO--------------------- *
+ *                                                          *
+ *                                                          *
+*/                                                          
+
+
 // http://estacionapa.com/
 $app->get('/', function() use ($service) {
     echo $service->buildPage('index');
@@ -43,10 +52,6 @@ $app->post('/getParks', function () use ($app, $service) {
 });
 
 
-$app->get('/getUsers', function () use ($app, $service) {
-    $form = '';
-    $service->getUsers($form);
-});
 
 
 $app->post('/checkValuesRegister', function () use ($app, $service) {
@@ -90,7 +95,16 @@ $app->get('/sair', function() use ($service) {
  * ---------------------ACESSO MASTER---------------------- *
  *                                                          *
  *                                                          *
-*/                                                          
+*/  
+
+$app->get('/getUsers', function () use ($app, $service, $access) {
+    if($access == 'm'){
+        $form = '';
+        $service->getUsers($form);
+    }
+    else
+        echo $service->openPageByAccess();
+});                                                        
 
 $app->get('/master.registerparks', function() use ($app, $service, $access) {
    if($access == 'm'){
@@ -149,6 +163,39 @@ $app->get('/master.registercars', function() use ($service, $access) {
  *                                                          *
  *                                                          *
 */    
+
+$app->get('/admin.getUsers', function () use ($app, $service, $access) {
+    if($access == 'a' || $access == 'm'){
+        $valid = 'admin';
+        $service->getUsers($valid);
+    }
+    else
+        echo $service->openPageByAccess();
+}); 
+
+$app->get('/admin.checkout', function() use ($app, $service, $access) {
+    if($access == 'a' || $access == 'm'){
+        echo $service->buildPage('a_checkOut');
+
+    }else
+        echo $service->openPageByAccess();
+});
+
+$app->get('/admin.checkin', function() use ($app, $service, $access) {
+    if($access == 'a' || $access == 'm'){
+        echo $service->buildPage('a_checkIn');
+
+    }else
+        echo $service->openPageByAccess();
+});
+
+$app->get('/admin.getboards', function() use ($app, $service, $access) {
+    if($access == 'a' || $access == 'm'){
+        echo json_encode($service->getBoards());
+
+    }else
+        echo $service->openPageByAccess();
+});
 
 $app->get('/edit', function() use ($app, $service, $access) {
     if($access == 'a')
@@ -213,16 +260,16 @@ $app->post('/register/user/added', function() use ($app, $service, $access) {
         echo $service->openPageByAccess();
 });
 
-$app->get('/report/infUser', function() use ($app, $service, $access) {
-    if($access == 'a') 
-        echo $service->getPage('html/forms/admin_relat_inf_user.html');
+$app->get('/relat.infuser', function() use ($app, $service, $access) {
+    if($access == 'a' or $access == 'm') 
+        echo $service->buildPage('a_relatinfuser');
     
     else
         echo $service->openPageByAccess();
 });
 
 $app->get('/report/infUser/:name', function($name) use ($app, $service, $access) {
-    if($access == 'a'){
+    if($access == 'a' or $access == 'm'){
         $report = $service->reportInfUser($name);
         echo $report;
     }
@@ -230,16 +277,16 @@ $app->get('/report/infUser/:name', function($name) use ($app, $service, $access)
         echo $service->openPageByAccess();
 });
 
-$app->get('/report/carXboard', function() use ($app, $service, $access) {
-    if($access == 'a') 
-        echo $service->getPage('html/forms/admin_relat_placaxcarro.html');
+$app->get('/relat.boardxcar', function() use ($app, $service, $access) {
+    if($access == 'a' or $access == 'm') 
+        echo $service->buildPage('a_carroxplaca');
     
     else
         echo $service->openPageByAccess();
 });
 
 $app->get('/report/carXboard/:board', function($board) use ($app, $service, $access) {
-    if($access == 'a'){
+    if($access == 'a' or $access == 'm'){
         $report = $service->reportCarXBoard($board);
         echo $report;
     }

@@ -46,6 +46,27 @@ class SqlController {
             return $result['id'];
         }
 
+        elseif($type == 'RequestUsersAdmin'){
+            $query = $sql->Select('p.usuario, p.nome');
+            $query = $sql->From($query, 'pessoas p');
+            $query = $sql->Where($query, 'p.id_estac = "' . $var . '" OR ' . 
+                                         'p.id_estac = "c"');
+            $result = $sql->ExecuteSQL($query, 'getArrayList');
+            return $result;
+        }
+
+        elseif($type == 'RequestBoardsAdmin'){
+            $query = $sql->Select('c.placa');
+            $query = $sql->From($query, 'pessoas p');
+            $query = $sql->LeftOuterJoin($query, 'carro c', 'p.id = c.pessoas_id');  
+            $query = $sql->Where($query, 'p.id_estac = "' . $var . '" OR ' . 
+                                         'p.id_estac = "c" AND ' . 
+                                         'c.id is not null');
+            //echo $query;
+            $result = $sql->ExecuteSQL($query, 'getArrayList');
+            return $result;
+        }
+
         elseif($type == 'RequestUsers'){
             $query = $sql->Select('p.usuario, p.nome');
             $query = $sql->From($query, 'pessoas p');
@@ -154,7 +175,7 @@ class SqlController {
                                    e.num,
                                    e.bairro');
             $query = $sql->From($query, 'estacionamentos e');
-            $query = $sql->leftOuterJoin($query, 'pessoas p', 'e.id_pessoa = p.id');
+            $query = $sql->leftOuterJoin($query, 'pessoas p', 'p.id_estac = e.id');
             $result = $sql->ExecuteSQL($query, 'getArrayList');
             //echo $query;
             return $result;
@@ -248,7 +269,6 @@ class SqlController {
             return $result;
         }
 
-        //account_mananger/register_person
         elseif($type == 'CheckPass'){
             $query = $sql->SelectCount('*');
             $query = $sql->From($query, 'pessoas p');
@@ -387,9 +407,6 @@ class SqlController {
 
         //account_mananger/register_person
         elseif($type == 'registerPerson'){
-            if(!isset($obj['id_estac'])) {
-                $obj['id_estac'] = NULL;
-            }
             $query = $sql->BuildSqlInsertUsers($obj['name'], $obj['user'], $obj['pass'], 
                                                        $obj['email'], $obj['cpf'], $obj['address'],  
                                                        $obj['number'], $obj['comp'], $obj['block'], 
@@ -502,14 +519,34 @@ class SqlController {
     
         //operation/relat_boardXcar.php
         if($type == 'BoardXCar'){
-            $query = $sql->relatBoardXCar($obj);
+            $query = $sql->Select('p.nome,
+                                   p.celular,
+                                   ma.nome as "marca",
+                                   mo.nome as "modelo');
+            $query = $sql->From($sql, 'pessoa p');
+            $query = $sql->LeftOuterJoin($query, 'carro c', 'p.id_carro = c.id');  
+            $query = $sql->LeftOuterJoin($query, 'marca ma', 'ma.id = c.id_marca');  
+            $query = $sql->LeftOuterJoin($query, 'modelo mo', 'mo.id = c.id_modelo');
+            $query = $sql->Where($query, 'c.placa = "' . $obj . '"');  
+            echo $query;
             $result = $sql->ExecuteSQL($query, 'getArrayList');
             return $result;
-        }
+        }            
         
         //operation/relat_inf_user.php
         elseif($type == 'InfUser'){
-            $query = $sql->relatInfUser($obj);
+            $query = $sql->Select('p.nome,
+                                   p.celular,
+                                   p.cpf,
+                                   c.placa,
+                                   ma.nome as "marca",
+                                   mo.nome as "modelo"');
+            $query = $sql->From($query, 'pessoas p');
+            $query = $sql->LeftOuterJoin($query, 'carro c', 'c.pessoas_id = p.id');  
+            $query = $sql->LeftOuterJoin($query, 'marca ma', 'ma.id = c.marca_id');  
+            $query = $sql->LeftOuterJoin($query, 'modelo mo', 'mo.id = c.modelo_id');
+            $query = $sql->Where($query, 'p.usuario = "' . $obj . '"');  
+            //echo $query;
             $result = $sql->ExecuteSQL($query, 'getArrayList');
             return $result;
         }

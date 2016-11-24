@@ -1,4 +1,4 @@
-var ControllerCadPersonMaster = {
+var ControllerCadPersonFunc = {
 
     init: function () {
         $('#dataSystem').show();
@@ -6,4 +6,4 @@ var ControllerCadPersonMaster = {
     }
 }
 
-ControllerCadPersonMaster.init();
+ControllerCadPersonFunc.init();

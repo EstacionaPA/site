@@ -27,7 +27,7 @@ var ControllerServices = {
                     for(var l = 0; l < 10; l++){
                         var td = document.createElement('td');
                         if(l > 5 && l != 8){
-                            temp = temp + list[i][l];
+                            temp = temp +  list[i][l] + ', ';
                         }
                         else if(l == 8){
                             $(td).text(temp + list[i][l]);
@@ -97,6 +97,7 @@ var ControllerServices = {
                                 temp = '';
                                 for(var l = 0; l < 10; l++){
                                     var td = document.createElement('td');
+
                                     $(td).text(list[i][l]);
                                     td.className = 'vacanciesValues';
                                     $(tr).append(td);

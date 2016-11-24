@@ -47,6 +47,7 @@ class ToActionClass{                    //Similar to C/C++ pointer
                 $class = new registerPersonController;
                 
                 //Similar to C/C++ pointer
+                $object['id_estac'] = 'c';
                 $object['access'] = 'c';
                 return $class;
             }
