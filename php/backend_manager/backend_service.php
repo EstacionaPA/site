@@ -190,6 +190,18 @@ class BackEndService {
                     file_get_contents('front-web/html/foot/main.html');
         }
 
+        elseif($type == 'f_cadPerson'){
+            $page = file_get_contents('front-web/html/head/main.html') . 
+                    file_get_contents('front-web/html/head/end.html') . 
+                        file_get_contents('front-web/html/body/func/f_menu.html') .
+                        file_get_contents('front-web/html/body/register/data_system.html') .
+                        file_get_contents('front-web/html/body/register/data_person.html') .
+                        file_get_contents('front-web/html/body/register/data_geo.html') .
+                    file_get_contents('front-web/html/foot/main.html') . 
+                    file_get_contents('front-web/html/foot/register.html') . 
+                    file_get_contents('front-web/html/foot/cadPerson_func.html');
+        }
+
         elseif($type == 'f_checkIn'){
             $page = file_get_contents('front-web/html/head/main.html') . 
                     file_get_contents('front-web/html/head/end.html') . 

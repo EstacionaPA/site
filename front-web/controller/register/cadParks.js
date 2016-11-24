@@ -3,9 +3,6 @@ var ControllerCadParks = {
     init: function () {
         ControllerCadParks.getUsers();
         
-        $('#h_init').mask('99:99');
-        $('#h_end').mask('99:99');
-
         $('#register').click(function (e) {
             e.preventDefault();
 
@@ -21,8 +18,8 @@ var ControllerCadParks = {
                 
                 var park = {'nome': $('#nome').val(),
                             'user': $('#userResp').val(),
-                            'h_init': $('#h_init').val() + ':00',
-                            'h_end': $('#h_end').val() + ':00',
+                            'h_init': $('#h_init').val(),
+                            'h_end': $('#h_end').val(),
                             'end': $('#end').val(),
                             'num': $('#num').val(),
                             'bairro': $('#bairro').val(),

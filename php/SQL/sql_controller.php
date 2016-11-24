@@ -189,6 +189,7 @@ class SqlController {
 
         elseif($type == 'RequestCheckIn'){
             $query = $sql->Select('r.id as "id_reserva",
+                                   r.data,
                                    p.nome as "responsavel",
                                    m.nome as "mod_carro",
                                    c.placa,
@@ -208,6 +209,7 @@ class SqlController {
 
         elseif($type == 'RequestCheckOut'){
             $query = $sql->Select('r.id as "id_reserva",
+                                   r.data,
                                    p.nome as "responsavel",
                                    m.nome as "mod_carro",
                                    c.placa,

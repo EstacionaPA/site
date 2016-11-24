@@ -255,6 +255,14 @@ $app->get('/report/carXboard/:board', function($board) use ($app, $service, $acc
  *                                                          *
 */  
 
+$app->get('/func.cadperson', function() use ($app, $service, $access) {
+    if($access == 'a' ||  $access == 'f' || $access == 'm'){
+        echo $service->buildPage('f_cadPerson');
+
+    }else
+        echo $service->openPageByAccess();
+});
+
 $app->get('/func.checkin', function() use ($app, $service, $access) {
     if($access == 'a' ||  $access == 'f' || $access == 'm'){
         echo $service->buildPage('f_checkIn');

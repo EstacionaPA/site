@@ -38,7 +38,6 @@ var ControllerCadPersonMaster = {
                     url: '/register/user/added',
                     data: JSON.stringify(form),
                     success: function (data) {
-                        alert(data);
                         if(data=='success'){
                             $('#feedBackGeo').text('Registrado com sucesso!');
                             $('#feedBackGeo').addClass('alert alert-success');

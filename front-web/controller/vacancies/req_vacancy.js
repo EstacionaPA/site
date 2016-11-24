@@ -83,9 +83,13 @@ var ControllerRequestVacancy = {
                     url: '/getCars',
                     data: JSON.stringify(JSONuser),
                     success: function (list) {
-                        ControllerRequestVacancy.createList(JSON.parse(list), 'idCar');
-                        $('#loadCar').text('SELECIONE UM CARRO!');
-                    }
+                        if(list == 'null') 
+                            $('#loadCar').text('REGISTRE UM CARRO PRIMEIRO!');
+                        else{
+                            $('#loadCar').text('SELECIONE UM CARRO!');
+                            ControllerRequestVacancy.createList(JSON.parse(list), 'idCar');
+                        }
+                    }   
         });
     },
 
