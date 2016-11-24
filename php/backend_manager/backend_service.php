@@ -213,6 +213,7 @@ class BackEndService {
             $page = file_get_contents('front-web/html/head/main.html') . 
                     file_get_contents('front-web/html/head/end.html') . 
                         file_get_contents('front-web/html/body/admin/a_menu.html') .
+                        file_get_contents('front-web/html/body/admin/a_relatboardxcar.html') .
                     file_get_contents('front-web/html/foot/main.html') . 
                     file_get_contents('front-web/html/foot/relats.html');
         }

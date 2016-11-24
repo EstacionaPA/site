@@ -522,13 +522,12 @@ class SqlController {
             $query = $sql->Select('p.nome,
                                    p.celular,
                                    ma.nome as "marca",
-                                   mo.nome as "modelo');
-            $query = $sql->From($sql, 'pessoa p');
-            $query = $sql->LeftOuterJoin($query, 'carro c', 'p.id_carro = c.id');  
-            $query = $sql->LeftOuterJoin($query, 'marca ma', 'ma.id = c.id_marca');  
-            $query = $sql->LeftOuterJoin($query, 'modelo mo', 'mo.id = c.id_modelo');
+                                   mo.nome as "modelo"');
+            $query = $sql->From($query, 'pessoas p');
+            $query = $sql->LeftOuterJoin($query, 'carro c', 'c.pessoas_id = p.id');  
+            $query = $sql->LeftOuterJoin($query, 'marca ma', 'ma.id = c.marca_id');  
+            $query = $sql->LeftOuterJoin($query, 'modelo mo', 'mo.id = c.modelo_id');
             $query = $sql->Where($query, 'c.placa = "' . $obj . '"');  
-            echo $query;
             $result = $sql->ExecuteSQL($query, 'getArrayList');
             return $result;
         }            

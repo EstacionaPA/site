@@ -2,7 +2,7 @@ var ControllerRelatorios = {
 
     init: function () {
 
-        if($('relatBoardXCar').length)
+        if($('#relatBoardXCar').length)
             ControllerRelatorios.relatBoardXCar();
         else
             ControllerRelatorios.relatInfUser();
@@ -32,7 +32,34 @@ var ControllerRelatorios = {
     },
 
     relatBoardXCar: function () {
-
+        ControllerRelatorios.getBoards();
+        $('#boards').change(function () {
+      
+            
+            $('#feedBack').show();
+            $('#feedBack').text('Realizando a consulta...');
+            $('#feedBack').addClass('alert alert-info');
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/text',
+                url: '/report/carXboard/' + $('#boards').val(),
+                success: function (list){
+                    list = JSON.parse(list);
+                    $('.values').remove();
+                    $('#feedBack').hide('progress');
+                    if(list == ''){
+                        $('#feedBack').text('Houve um erro grave. Por favor, contate o suporte!');
+                        $('#feedBack').removeClass('alert alert-danger');
+                    }else {
+                        ControllerRelatorios.fillTable(list, 'relatBoardXCar');
+                    }
+                    $('#feedBack').text('');
+                    $('#feedBack').removeClass('alert alert-info');
+                    
+                }
+                
+            }) 
+        })
     },
 
     getUsers: function () {
@@ -53,7 +80,7 @@ var ControllerRelatorios = {
             contentType: 'application/json',
             url: '/admin.getboards',
             success: function (list){
-                $('#loadUser').text('INFORME UMA PLACA!');
+                $('#loadBoard').text('INFORME UMA PLACA!');
                 ControllerRelatorios.createList(JSON.parse(list), 'boards');
             }
         });
@@ -77,8 +104,14 @@ var ControllerRelatorios = {
     fillTable: function (list, type) {
         for(var i = 0; i<list.length; i++){
             var tr = document.createElement('tr'),
-            temp = '';
-            for(var l = 0; l < 6; l++){
+                max = 0;
+
+            if(type == 'relatBoardXCar')
+                max = 4;
+            else
+                max = 6;
+            
+            for(var l = 0; l < max; l++){
                 var td = document.createElement('td');
                 if(list[i][l] == null)
                     $(td).text('Sem cadastro de carro');
