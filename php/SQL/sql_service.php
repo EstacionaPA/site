@@ -88,6 +88,12 @@ class SQLService {
                 "LEFT OUTER JOIN $table ON $condition";
         return $query;
     }
+
+    public function RightOuterJoin($sql, $table, $condition){
+        $query = $sql . " " .  
+                "RIGHT OUTER JOIN $table ON $condition";
+        return $query;
+    }
     
     public function Where($sql, $condition) {
         $query = $sql . " " . 

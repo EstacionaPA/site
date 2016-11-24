@@ -58,7 +58,7 @@ class SqlController {
         elseif($type == 'RequestBoardsAdmin'){
             $query = $sql->Select('c.placa');
             $query = $sql->From($query, 'pessoas p');
-            $query = $sql->LeftOuterJoin($query, 'carro c', 'p.id = c.pessoas_id');  
+            $query = $sql->RightOuterJoin($query, 'carro c', 'p.id = c.pessoas_id');  
             $query = $sql->Where($query, 'p.id_estac = "' . $var . '" OR ' . 
                                          'p.id_estac = "c" AND ' . 
                                          'c.id is not null');
